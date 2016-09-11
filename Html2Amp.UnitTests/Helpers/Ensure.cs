@@ -11,7 +11,7 @@ namespace Html2Amp.UnitTests.Helpers
 	{
 		public static void ArgumentExceptionIsThrown(Action action, string argumentName)
 		{
-			bool succeed = true;
+			bool succeed = false;
 
 			try
 			{
@@ -21,6 +21,7 @@ namespace Html2Amp.UnitTests.Helpers
 			{
 				succeed = exception.ParamName == argumentName;
 			}
+			catch (Exception) { }
 
 			string message = string.Format("ArgumentException for parameter \"{0}\" has not been thrown", argumentName);
 			Assert.IsTrue(succeed, message);
