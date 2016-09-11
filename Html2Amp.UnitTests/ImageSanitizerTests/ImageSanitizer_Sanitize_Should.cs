@@ -10,6 +10,20 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 	public class ImageSanitizer_Sanitize_Should
 	{
 		[TestMethod]
+		public void ThowArgumentNullException_WhenDocumentArgumentIsNull()
+		{
+			// Assert
+			Ensure.ArgumentExceptionIsThrown(() => new ImageSanitizer().Sanitize(null, null), "document");
+		}
+
+		[TestMethod]
+		public void ThowArgumentNullException_WhenHtmlElementIsNull()
+		{
+			// Assert
+			Ensure.ArgumentExceptionIsThrown(() => new ImageSanitizer().Sanitize(ElementFactory.Document, null), "htmlElement");
+		}
+
+		[TestMethod]
 		public void ReturnAmpImageElement()
 		{
 			// Arrange

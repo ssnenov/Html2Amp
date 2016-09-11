@@ -13,11 +13,10 @@ namespace Html2Amp.UnitTests.StyleAttributeSanitizerTests
 	public class StyleAttributeSanitizer_Sanitize_Should
 	{
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void ThorwArgumentNullException_WhenElementIsNull()
 		{
-			// Act
-			new StyleAttributeSanitizer().Sanitize(null, null);
+			// Assert
+			Ensure.ArgumentExceptionIsThrown(() => new StyleAttributeSanitizer().Sanitize(null, null), "htmlElement");
 		}
 
 		[TestMethod]

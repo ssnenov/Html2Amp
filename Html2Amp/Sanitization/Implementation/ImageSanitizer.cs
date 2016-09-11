@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,6 +21,9 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
+			Guard.Requires(document, "document").IsNotNull();
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+
 			var imageElement = (IHtmlImageElement)htmlElement;
 			IElement ampElement = CreateAmpElement(document, imageElement);
 
@@ -45,6 +49,8 @@ namespace Html2Amp.Sanitization.Implementation
 
 		protected override void SetElementLayout(IElement element, IElement ampElement)
 		{
+			Guard.Requires(ampElement, "ampElement").IsNotNull();
+
 			base.SetElementLayout(element, ampElement);
 
 			// If the base class hasn't set a layout attribute
@@ -60,6 +66,8 @@ namespace Html2Amp.Sanitization.Implementation
 
 		protected virtual void SetImageSize(IElement htmlElement)
 		{
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+
 			if (!string.IsNullOrEmpty(htmlElement.GetAttribute("src")))
 			{
 				return;

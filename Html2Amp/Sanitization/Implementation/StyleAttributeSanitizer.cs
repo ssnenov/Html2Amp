@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom;
+using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+
 			if (htmlElement == null)
 			{
 				throw new ArgumentNullException("htmlElement");

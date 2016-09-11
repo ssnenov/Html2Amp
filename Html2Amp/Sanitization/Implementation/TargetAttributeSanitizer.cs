@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+ 
 			htmlElement.SetAttribute("target", "_blank");
 
 			return htmlElement;

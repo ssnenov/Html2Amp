@@ -39,6 +39,9 @@
     <Reference Include="AngleSharp">
       <HintPath>..\packages\AngleSharp.0.9.8\lib\net45\AngleSharp.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetGuard">
+      <HintPath>..\Referenced Assemblies\DotNetGuard.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

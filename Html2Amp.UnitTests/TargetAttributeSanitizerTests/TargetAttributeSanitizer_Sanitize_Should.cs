@@ -9,6 +9,13 @@ namespace Html2Amp.UnitTests.TargetAttributeSanitizerTests
 	public class TargetAttributeSanitizer_Sanitize_Should
 	{
 		[TestMethod]
+		public void ThrowException_WhenHtmlElementArgumentIsNull()
+		{
+			// Assert
+			Ensure.ArgumentExceptionIsThrown(() => new TargetAttributeSanitizer().Sanitize(null, null), "htmlElement");
+		}
+
+		[TestMethod]
 		public void SetTargetAttributeToBlank()
 		{
 			// Arrange
