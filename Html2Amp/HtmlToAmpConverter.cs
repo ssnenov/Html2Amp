@@ -23,7 +23,9 @@ namespace Html2Amp
 		{
 			Sanitizers = new HashSet<ISanitizer>();
 
+			// Initialize a default collection of sanitizers
 			Sanitizers.Add(new ImageSanitizer());
+			Sanitizers.Add(new TargetAttributeSanitizer());
 			Sanitizers.Add(new StyleAttributeSanitizer());
 		}
 
@@ -54,9 +56,6 @@ namespace Html2Amp
 				if (sanitizer.CanSanitize(htmlElement))
 				{
 					htmlElement = sanitizer.Sanitize(document, htmlElement);
-
-					// May should rewrite with all possible sanitizers
-					//break;
 				}
 			}
 
