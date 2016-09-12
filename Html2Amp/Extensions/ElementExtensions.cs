@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AngleSharp.Dom.Html
+namespace AngleSharp.Dom
 {
-	public static class HtmlElementsExtensions
+	public static class ElementExtensions
 	{
 		public static void CopyTo(this IElement source, IElement destination)
 		{
-			destination.InnerHtml = source.InnerHtml;
+			foreach (var node in source.Children)
+			{
+				destination.AppendChild(node);
+			}
 
 			foreach (var attribute in source.Attributes)
 			{

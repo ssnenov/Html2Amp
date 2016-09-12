@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced assemblies", "Re
 		Referenced Assemblies\DotNetGuard.dll = Referenced Assemblies\DotNetGuard.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Html2Amp.PerfTests", "Html2Amp.PerfTests\Html2Amp.PerfTests.csproj", "{F51F1FF2-5FD2-4061-AA7D-34DFDA80CC70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{900F293C-95E1-44FE-8366-45F7C392969F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{900F293C-95E1-44FE-8366-45F7C392969F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{900F293C-95E1-44FE-8366-45F7C392969F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51F1FF2-5FD2-4061-AA7D-34DFDA80CC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51F1FF2-5FD2-4061-AA7D-34DFDA80CC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51F1FF2-5FD2-4061-AA7D-34DFDA80CC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51F1FF2-5FD2-4061-AA7D-34DFDA80CC70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
