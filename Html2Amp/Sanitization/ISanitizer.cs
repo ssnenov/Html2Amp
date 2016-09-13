@@ -12,5 +12,7 @@ namespace Html2Amp.Sanitization
 		bool CanSanitize(IElement element);
 
 		IElement Sanitize(IDocument document, IElement htmlElement);
+
+		void Configure(RunConfiguration configuration);
 	}
 }

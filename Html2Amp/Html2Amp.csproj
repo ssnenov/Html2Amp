@@ -55,6 +55,7 @@
     <Compile Include="Extensions\ElementExtensions.cs" />
     <Compile Include="HtmlToAmpConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunConfiguration.cs" />
     <Compile Include="Sanitization\Implementation\ImageSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\StyleAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\TargetAttributeSanitizer.cs" />

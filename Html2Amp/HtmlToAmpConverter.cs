@@ -11,27 +11,44 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Html2Amp
 {
 	public class HtmlToAmpConverter
 	{
-		public HashSet<ISanitizer> Sanitizers { get; set; }
+		private HashSet<ISanitizer> sanitizers { get; set; }
+
+		private RunConfiguration configuration;
+
+		private volatile bool isInitialized = false;
+
+		private object initializationLock = new object();
 
 		public HtmlToAmpConverter()
 		{
-			Sanitizers = new HashSet<ISanitizer>();
+			this.configuration = new RunConfiguration();
+			this.sanitizers = new HashSet<ISanitizer>();
 
 			// Initialize a default collection of sanitizers
-			Sanitizers.Add(new ImageSanitizer());
-			Sanitizers.Add(new TargetAttributeSanitizer());
-			Sanitizers.Add(new StyleAttributeSanitizer());
+			this.sanitizers.Add(new ImageSanitizer());
+			this.sanitizers.Add(new TargetAttributeSanitizer());
+			this.sanitizers.Add(new StyleAttributeSanitizer());
 		}
 
-		public HtmlToAmpConverter(HashSet<ISanitizer> sanitizers)
+		public HtmlToAmpConverter WithSanitizers(HashSet<ISanitizer> sanitizers)
 		{
-			this.Sanitizers = sanitizers;
+			this.sanitizers = sanitizers;
+
+			return this;
+		}
+
+		public HtmlToAmpConverter WithSanitizers(RunConfiguration configuration)
+		{
+			this.configuration = configuration;
+
+			return this;
 		}
 
 		public string ConvertFromHtml(string htmlSource)
@@ -44,14 +61,39 @@ namespace Html2Amp
 			IHtmlDocument document = new HtmlParser().Parse(htmlSource);
 			IHtmlHtmlElement htmlElement = (IHtmlHtmlElement)document.DocumentElement;
 
+			this.EnsureInitilized();
+
 			ConvertFromHtmlElement(document, document.Body);
 
 			return document.Body.InnerHtml;
 		}
 
+		private void EnsureInitilized()
+		{
+			if (!isInitialized)
+			{
+				lock (this.initializationLock)
+				{
+					if (!isInitialized)
+					{
+						this.Initialize();
+						this.isInitialized = true;
+					}
+				}
+			}
+		}
+
+		private void Initialize()
+		{
+			foreach (var sanitizer in this.sanitizers)
+			{
+				sanitizer.Configure(this.configuration);
+			}
+		}
+
 		private void ConvertFromHtmlElement(IDocument document, IElement htmlElement)
 		{
-			foreach (var sanitizer in Sanitizers)
+			foreach (var sanitizer in sanitizers)
 			{
 				if (sanitizer.CanSanitize(htmlElement))
 				{

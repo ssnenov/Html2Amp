@@ -10,6 +10,8 @@ namespace Html2Amp.Sanitization
 {
 	public abstract class Sanitizer : ISanitizer
 	{
+		protected RunConfiguration Configuration { get; private set; }
+
 		public abstract bool CanSanitize(AngleSharp.Dom.IElement element);
 
 		public abstract IElement Sanitize(IDocument document, IElement htmlElement);
@@ -24,6 +26,11 @@ namespace Html2Amp.Sanitization
 			{
 				ampElement.SetAttribute("layout", "nodisplay");
 			}
+		}
+
+		public void Configure(RunConfiguration configuration)
+		{
+			this.Configuration = configuration;
 		}
 	}
 }
