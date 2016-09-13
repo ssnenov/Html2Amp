@@ -13,7 +13,7 @@ namespace Html2Amp.Sanitization.Implementation
 	{
 		public override bool CanSanitize(IElement element)
 		{
-			if(element == null  || !(element is IHtmlAnchorElement ))
+			if (element == null || !(element is IHtmlAnchorElement))
 			{
 				return false;
 			}
@@ -26,7 +26,7 @@ namespace Html2Amp.Sanitization.Implementation
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
- 
+
 			htmlElement.SetAttribute("target", "_blank");
 
 			return htmlElement;
