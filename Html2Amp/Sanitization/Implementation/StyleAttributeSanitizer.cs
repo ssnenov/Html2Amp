@@ -19,11 +19,6 @@ namespace Html2Amp.Sanitization.Implementation
 		{
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			if (htmlElement == null)
-			{
-				throw new ArgumentNullException("htmlElement");
-			}
-
 			htmlElement.RemoveAttribute("style");
 
 			return htmlElement;
