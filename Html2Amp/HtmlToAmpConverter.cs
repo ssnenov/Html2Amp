@@ -44,7 +44,7 @@ namespace Html2Amp
 			return this;
 		}
 
-		public HtmlToAmpConverter WithSanitizers(RunConfiguration configuration)
+		public HtmlToAmpConverter WithConfiguration(RunConfiguration configuration)
 		{
 			this.configuration = configuration;
 
