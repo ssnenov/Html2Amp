@@ -23,10 +23,11 @@ htmlToAmpConverter.WithConfiguration(
 ```
 
 ### 2.3 Sanitizers ###
+Html2Amp is built using "HTML sanitizers" which are the main extensibility point. You can add your custom sanitizers or extend the existing ones. Using ``WithSanitizers(HashSet<ISanitizer>)`` method you can configure the collection of sanitizers which will be used for the conversion:
 ```csharp
 var htmlToAmpConverter = new HtmlToAmpConverter();
 htmlToAmpConverter.WithSanitizers(
-	new HashSet<Sanitization.ISanitizer>
+	new HashSet<ISanitizer>
 	{
 		new ImageSanitizer()
 	});
@@ -54,6 +55,7 @@ new HtmlToAmpConverter().WithSanitizers(...).WithConfiguration(...)
 	- Future version
 
 #### Next versions ####
+- Implement Html helper for asp.net mvc framework
 - Implement media sanitizers
 	- amp-soundcloud
 	- amp-dailymotion
