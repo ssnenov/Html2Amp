@@ -79,6 +79,8 @@ namespace Html2Amp.Sanitization.Implementation
 				Image image;
 				var imageBytes = webClient.DownloadData(htmlElement.GetAttribute("src"));
 
+				// TODO: Implement handling of relative URLs using this.Configuration.RelativeUrlsHost
+				
 				using (var memoryStream = new MemoryStream(imageBytes))
 				{
 					image = Image.FromStream(memoryStream);
