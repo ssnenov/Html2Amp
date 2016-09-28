@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -65,6 +66,7 @@
     <Compile Include="StyleAttributeSanitizerTests\StyleAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="TargetAttributeSanitizerTests\TargetAttributeSanitizer_CanSanitize_Should.cs" />
     <Compile Include="TargetAttributeSanitizerTests\TargetAttributeSanitizer_Sanitize_Should.cs" />
+    <Compile Include="TestDoubles\ImageSanitizerTestDouble.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Html2Amp\Html2Amp.csproj">
