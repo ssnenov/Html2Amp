@@ -92,6 +92,8 @@ namespace Html2Amp.Sanitization.Implementation
 
         protected virtual Image DownloadImage(string imageUrl)
         {
+			Guard.Requires(imageUrl, "imageUrl").IsNotNullOrEmpty();
+
             Image image;
            
             using (var webClient = new WebClient())
