@@ -2,7 +2,7 @@
 
 # Getting started #
 ## 1. Install Html2Amp##
-With first official release Html2Amp will be available as a nuget package. Until then you can reference Html2Amp.dll to your project.
+With the first official release Html2Amp will be available as a nuget package. Until then you can reference Html2Amp.dll to your project.
 
 ## 2. Writing code ##
 ### 2.1 Simple usage ###
@@ -56,6 +56,9 @@ new HtmlToAmpConverter().WithSanitizers(...).WithConfiguration(...)
 
 #### Next versions ####
 - Implement Html helper for asp.net mvc framework
+- Exporting all third party dependencies used after conversion. Also Html helper should be implemented to add dependencies into "scripts" section. Examples:
+	<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
+	<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 - Implement media sanitizers
 	- amp-soundcloud
 	- amp-dailymotion
@@ -66,6 +69,7 @@ new HtmlToAmpConverter().WithSanitizers(...).WithConfiguration(...)
 - Implement Socials media sanitizers
 	- amp-instagram
 	- amp-pinterest
+- Minifiy "AMP HTML"
 
 #### Contributing ####
 Todo
@@ -74,8 +78,12 @@ Todo
 Todo
 
 #### Resources ####
+[https://www.ampproject.org/docs/get_started/technical_overview.html](Link URL)
+
 [https://www.ampproject.org/docs/reference/spec.html#ancr](Link URL)
 
 [http://searchengineland.com/get-started-accelerated-mobile-pages-amp-240688](Link URL)
 
 [https://www.ampproject.org/docs/reference/extended.html](Link URL)
+
+[https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md](Link URL)
