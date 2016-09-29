@@ -52,7 +52,6 @@ new HtmlToAmpConverter().WithSanitizers(...).WithConfiguration(...)
 	- amp-facebook
 	- amp-twitter
 	- amp-social-share
-	- Future version
 
 #### Next versions ####
 - Implement Html helper for asp.net mvc framework
