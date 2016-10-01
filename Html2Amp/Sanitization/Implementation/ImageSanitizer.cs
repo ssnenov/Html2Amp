@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
+using Html2Amp.Web;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -73,29 +74,36 @@ namespace Html2Amp.Sanitization.Implementation
                 return;
             }
 
-            if (!string.IsNullOrEmpty(this.Configuration.RelativeUrlsHost))
+            var imageUrl = htmlElement.GetAttribute("src");
+            var urlHander = new UrlHandler();
+            var resultUrl = urlHander.TryResolveUrl(this.Configuration.RelativeUrlsHost, imageUrl);
+
+            if (!string.IsNullOrEmpty(resultUrl))
             {
-                var relativeUrl = htmlElement.GetAttribute("src");
-                var url = this.Configuration.RelativeUrlsHost + relativeUrl;
-                htmlElement.SetAttribute("src", url);
+                var image = this.DownloadImage(resultUrl);
+
+                if (image != null)
+                {
+                    // Width & Height should be dynamically generated attributes
+                    htmlElement.SetAttribute("width", image.Width.ToString());
+                    htmlElement.SetAttribute("height", image.Height.ToString());
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException(string.Format("Invaid image url: {0}", imageUrl));
             }
 
-            // Width & Height should be dynamically generated attributes
-            var image = this.DownloadImage(htmlElement.GetAttribute("src"));
-
-            if (image != null)
-            {
-                htmlElement.SetAttribute("width", image.Width.ToString());
-                htmlElement.SetAttribute("height", image.Height.ToString());
-            }
+            //TODO: Uncomment the following line when relative urls are not allowed in AMP.
+            //htmlElement.SetAttribute("src", resultUrl);
         }
 
         protected virtual Image DownloadImage(string imageUrl)
         {
-			Guard.Requires(imageUrl, "imageUrl").IsNotNullOrEmpty();
+            Guard.Requires(imageUrl, "imageUrl").IsNotNullOrEmpty();
 
             Image image;
-           
+
             using (var webClient = new WebClient())
             {
                 var imageBytes = webClient.DownloadData(imageUrl);

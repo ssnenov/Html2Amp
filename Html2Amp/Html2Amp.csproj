@@ -62,6 +62,7 @@
     <Compile Include="Sanitization\Implementation\TargetAttributeSanitizer.cs" />
     <Compile Include="Sanitization\ISanitizer.cs" />
     <Compile Include="Sanitization\Sanitizer.cs" />
+    <Compile Include="Web\UrlHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

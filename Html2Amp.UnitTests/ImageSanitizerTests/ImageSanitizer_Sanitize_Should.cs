@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Html2Amp.Sanitization.Implementation;
 using Html2Amp.UnitTests.Helpers;
-using Html2Amp.Sanitization.Implementation;
 using Html2Amp.UnitTests.Spies;
-using AngleSharp.Dom.Html;
 using Html2Amp.UnitTests.TestDoubles;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Drawing;
 
 namespace Html2Amp.UnitTests.ImageSanitizerTests
 {
@@ -185,6 +185,8 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
+        [Ignore]
+        // TODO: Remove "Ignore" attribute when we set the absolute url of images always.
         public void ResolveImageUrl_WhenSourceAttributeIsRelative()
         {
             // Arrange
@@ -203,6 +205,67 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 
             // Assert
             Assert.AreEqual("http://mywebsite.com/images/logo.png", ampElement.GetAttribute("src"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ThrowInvalidOperationException_WhenTheImageHasNoWidthAndHeightAndTheImageUrlIsInvalid()
+        {
+            // Arrange
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "/images/logo.png";
+
+            var imageSanitizer = new ImageSanitizerTestDouble();
+            imageSanitizer.Configure(new RunConfiguration());
+            imageSanitizer.DownloadImageResult = (imageUrl) => null;
+
+            // Adding image element to the document in order to simulate real herarchy
+            ElementFactory.Document.Body.Append(imageElement);
+
+            // Act
+            var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
+        }
+
+        [TestMethod]
+       
+        public void SetImageWidth_WhenTheyAreNotSpecifiedAndTheImageUrlIsValid()
+        {
+            // Arrange
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "/images/logo.png";
+
+            var imageSanitizer = new ImageSanitizerTestDouble();
+            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+            imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
+
+            // Adding image element to the document in order to simulate real herarchy
+            ElementFactory.Document.Body.Append(imageElement);
+
+            // Act
+            var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(100, int.Parse(ampElement.GetAttribute("width")));
+        }
+
+        public void SetImageHeight_WhenTheyAreNotSpecifiedAndTheImageUrlIsValid()
+        {
+            // Arrange
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "/images/logo.png";
+
+            var imageSanitizer = new ImageSanitizerTestDouble();
+            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+            imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
+
+            // Adding image element to the document in order to simulate real herarchy
+            ElementFactory.Document.Body.Append(imageElement);
+
+            // Act
+            var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(200, int.Parse(ampElement.GetAttribute("height")));
         }
     }
 }
