@@ -13,9 +13,13 @@ namespace Html2Amp.Sanitization.Implementation
 	{
 		public override bool CanSanitize(IElement element)
 		{
-			return element != null
-				&& element is IHtmlAnchorElement
-				&& element.GetAttribute("href").StartsWith("javascript:");
+			if(element == null || !(element is IHtmlAnchorElement))
+			{
+				return false;
+			}
+
+			var hrefAttribute = element.GetAttribute("href");
+			return hrefAttribute != null && hrefAttribute.StartsWith("javascript:");
 		}
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)

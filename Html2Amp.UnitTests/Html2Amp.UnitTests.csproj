@@ -59,6 +59,7 @@
     <Compile Include="Accessors\ImageSanitizerAccessor.cs" />
     <Compile Include="Helpers\ElementFactory.cs" />
     <Compile Include="Helpers\Ensure.cs" />
+    <Compile Include="HrefJavaScriptSanitizerTests\HrefJavaScriptSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_Sanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_DownloadImage_Should.cs" />
