@@ -34,6 +34,7 @@ namespace Html2Amp
 			// Initialize a default collection of sanitizers
 			this.sanitizers.Add(new ImageSanitizer());
 			this.sanitizers.Add(new TargetAttributeSanitizer());
+			this.sanitizers.Add(new HrefJavaScriptSanitizer());
 			this.sanitizers.Add(new StyleAttributeSanitizer());
 		}
 
