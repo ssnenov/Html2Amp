@@ -1,18 +1,9 @@
-﻿using AngleSharp;
-using AngleSharp.Dom;
+﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
-using AngleSharp.Services.Default;
 using Html2Amp.Sanitization;
 using Html2Amp.Sanitization.Implementation;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Html2Amp
 {
@@ -36,6 +27,7 @@ namespace Html2Amp
 			this.sanitizers.Add(new TargetAttributeSanitizer());
 			this.sanitizers.Add(new HrefJavaScriptSanitizer());
 			this.sanitizers.Add(new StyleAttributeSanitizer());
+            this.sanitizers.Add(new XmlAttributeSanitizer());
 		}
 
 		public HtmlToAmpConverter WithSanitizers(HashSet<ISanitizer> sanitizers)
