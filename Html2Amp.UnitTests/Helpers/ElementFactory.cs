@@ -1,11 +1,7 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp.UnitTests.Helpers
 {
@@ -25,6 +21,13 @@ namespace Html2Amp.UnitTests.Helpers
 		{
 			return document.CreateElement(name);
 		}
+
+        public static IElement CreateFromHtmlString(string html)
+        {
+            IHtmlDocument document = new HtmlParser().Parse(html);
+
+            return document.Body.Children.First();
+        }
 
 		public static IHtmlImageElement CreateImage()
 		{

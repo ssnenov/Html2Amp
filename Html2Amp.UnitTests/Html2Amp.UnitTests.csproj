@@ -72,6 +72,8 @@
     <Compile Include="TargetAttributeSanitizerTests\TargetAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="TestDoubles\ImageSanitizerTestDouble.cs" />
     <Compile Include="UrlHandlerTests\UrlHandler_TryResolveUrl_Should.cs" />
+    <Compile Include="XmlAttributeSanitizerTests\XmlAttributeSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="XmlAttributeSanitizerTests\XmlAttributeSanitizer_Sanitize_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Html2Amp\Html2Amp.csproj">
