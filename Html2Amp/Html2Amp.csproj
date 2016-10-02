@@ -59,6 +59,7 @@
     <Compile Include="Sanitization\Implementation\HrefJavaScriptSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\IFrameSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\ImageSanitizer.cs" />
+    <Compile Include="Sanitization\Implementation\JavaScriptRelatedAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\StyleAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\TargetAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\XmlAttributeSanitizer.cs" />
