@@ -64,6 +64,8 @@
     <Compile Include="ImageSanitizerTests\ImageSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_Sanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_DownloadImage_Should.cs" />
+    <Compile Include="JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="Spies\ImageSanitizerSpy.cs" />
     <Compile Include="StyleAttributeSanitizerTests\StyleAttributeSanitizer_CanSanitize_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
