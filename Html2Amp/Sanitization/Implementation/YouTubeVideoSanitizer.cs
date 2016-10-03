@@ -15,7 +15,7 @@ namespace Html2Amp.Sanitization.Implementation
 {
 	public class YouTubeVideoSanitizer : Sanitizer
 	{
-		public const string VideoIdRegex = @"^/embed/[^/\?]+$";
+		public const string VideoIdRegex = @"^/embed/(?<id>[^/\?]+)/?$";
 
 		public override bool CanSanitize(IElement element)
 		{
@@ -31,7 +31,7 @@ namespace Html2Amp.Sanitization.Implementation
 			Uri sourceUri;
 			if (Uri.TryCreate(sourceAttributeValue, UriKind.Absolute, out sourceUri))
 			{
-				return sourceUri.LocalPath.StartsWith("^/embed/")
+				return sourceUri.LocalPath.StartsWith("/embed/")
 					&& Regex.IsMatch(sourceUri.Host, @"^(www\.)?youtube\.com$");
 			}
 
@@ -64,6 +64,9 @@ namespace Html2Amp.Sanitization.Implementation
 
 		protected virtual void SetVideoParams(IElement ampElement, NameValueCollection videoParams)
 		{
+			Guard.Requires(ampElement, "ampElement").IsNotNull();
+			Guard.Requires(videoParams, "videoParams").IsNotNull();
+
 			foreach (var paramName in videoParams.AllKeys)
 			{
 				var ampParamAttributeName = "data-param-" + paramName;
@@ -73,9 +76,11 @@ namespace Html2Amp.Sanitization.Implementation
 
 		protected virtual string GetVideoId(Uri videoUri)
 		{
+			Guard.Requires(videoUri, "videoUri").IsNotNull();
+
 			var videoIdMatch = Regex.Match(videoUri.LocalPath, VideoIdRegex);
 
-			return videoIdMatch.Value;
+			return videoIdMatch.Groups["id"].Value;
 		}
 	}
 }

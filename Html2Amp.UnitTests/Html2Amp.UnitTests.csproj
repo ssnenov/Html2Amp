@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Accessors\ImageSanitizerAccessor.cs" />
+    <Compile Include="Accessors\YouTubeVideoSanitizerAccessor.cs" />
     <Compile Include="Helpers\ElementFactory.cs" />
     <Compile Include="Helpers\Ensure.cs" />
     <Compile Include="HrefJavaScriptSanitizerTests\HrefJavaScriptSanitizer_CanSanitize_Should.cs" />
@@ -76,6 +77,10 @@
     <Compile Include="UrlHandlerTests\UrlHandler_TryResolveUrl_Should.cs" />
     <Compile Include="XmlAttributeSanitizerTests\XmlAttributeSanitizer_CanSanitize_Should.cs" />
     <Compile Include="XmlAttributeSanitizerTests\XmlAttributeSanitizer_Sanitize_Should.cs" />
+    <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_GetVideoId_Should.cs" />
+    <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_SetVideoParams_Should.cs" />
+    <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_Sanitize_Should.cs" />
+    <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_CanSanitizer_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Html2Amp\Html2Amp.csproj">
