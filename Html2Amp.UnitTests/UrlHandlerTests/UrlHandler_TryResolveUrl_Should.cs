@@ -80,5 +80,33 @@ namespace Html2Amp.UnitTests.UrlHandlerTests
             // Assert
             Assert.AreEqual("http://mydomain.com/images/pic.jpg", actualResult);
         }
+
+        [TestMethod]
+        public void ReturnResultUrl_WhenEitherTheHostOrTheUrlMissASlash()
+        {
+            // Arrange
+            var host = "http://mydomain.com";
+            var url = "images/pic.jpg";
+
+            // Act
+            var actualResult = this.UrlHandler.TryResolveUrl(host, url);
+
+            // Assert
+            Assert.AreEqual("http://mydomain.com/images/pic.jpg", actualResult);
+        }
+
+        [TestMethod]
+        public void ReturnResultUrl_WhenBothTheHostAndTheUrlContainASlash()
+        {
+            // Arrange
+            var host = "http://mydomain.com/";
+            var url = "/images/pic.jpg";
+
+            // Act
+            var actualResult = this.UrlHandler.TryResolveUrl(host, url);
+
+            // Assert
+            Assert.AreEqual("http://mydomain.com/images/pic.jpg", actualResult);
+        }
     }
 }
