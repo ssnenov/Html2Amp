@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,8 @@
     <Compile Include="Sanitization\Implementation\StyleAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\TargetAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\XmlAttributeSanitizer.cs" />
+    <Compile Include="Sanitization\Implementation\YouTubeVideoSanitizer.cs" />
+
     <Compile Include="Sanitization\ISanitizer.cs" />
     <Compile Include="Sanitization\Sanitizer.cs" />
     <Compile Include="Web\UrlHandler.cs" />

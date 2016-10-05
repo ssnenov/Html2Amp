@@ -32,8 +32,7 @@ namespace Html2Amp.Sanitization.Implementation
 
             this.SetElementLayout(imageElement, ampElement);
 
-            imageElement.After(ampElement);
-            imageElement.Parent.RemoveChild(imageElement);
+			imageElement.Parent.ReplaceChild(ampElement, imageElement);
 
             return ampElement;
         }
