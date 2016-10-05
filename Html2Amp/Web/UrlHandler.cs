@@ -15,7 +15,7 @@ namespace Html2Amp.Web
             }
             else
             {
-                var resultUrl = host + url;
+                var resultUrl = host.Trim('/') + "/" + url.Trim('/');
 
                 if (Uri.IsWellFormedUriString(resultUrl, UriKind.Absolute))
                 {
