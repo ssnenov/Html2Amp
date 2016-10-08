@@ -17,7 +17,7 @@ namespace Html2Amp.Sanitization.Implementation
     {
         public override bool CanSanitize(IElement element)
         {
-            return element is IHtmlImageElement;
+            return element != null && element is IHtmlImageElement;
         }
 
         public override IElement Sanitize(IDocument document, IElement htmlElement)

@@ -29,6 +29,8 @@ namespace Html2Amp
 			this.sanitizers.Add(new StyleAttributeSanitizer());
             this.sanitizers.Add(new XmlAttributeSanitizer());
             this.sanitizers.Add(new JavaScriptRelatedAttributeSanitizer());
+            this.sanitizers.Add(new YouTubeVideoSanitizer());
+            this.sanitizers.Add(new IFrameSanitizer());
 		}
 
 		public HtmlToAmpConverter WithSanitizers(HashSet<ISanitizer> sanitizers)
