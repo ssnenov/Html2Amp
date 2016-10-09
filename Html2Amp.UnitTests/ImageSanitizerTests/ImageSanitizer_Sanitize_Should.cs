@@ -130,10 +130,11 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
-        public void SetImageSizeMethodIsCalled_WhenWidthIsNotSpecified()
+        public void SetImageSizeMethodIsCalled_WhenWidthIsNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
             var imageSanitizerSpy = new ImageSanitizerSpy();
+            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
             var imageElement = ElementFactory.CreateImage();
 
             imageElement.DisplayHeight = 100;
@@ -149,10 +150,11 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
-        public void SetImageSizeMethodIsCalled_WhenHeightIsNotSpecified()
+        public void SetImageSizeMethodIsCalled_WhenHeightIsNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
             var imageSanitizerSpy = new ImageSanitizerSpy();
+            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
             var imageElement = ElementFactory.CreateImage();
 
             imageElement.DisplayWidth = 100;
@@ -168,10 +170,11 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
-        public void SetImageSizeMethodIsCalled_WhenHeightAndWeightAreNotSpecified()
+        public void SetImageSizeMethodIsCalled_WhenHeightAndWeightAreNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
             var imageSanitizerSpy = new ImageSanitizerSpy();
+            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
             var imageElement = ElementFactory.CreateImage();
 
             // Adding image element to the document in order to simulate real herarchy
@@ -216,7 +219,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration());
+            imageSanitizer.Configure(new RunConfiguration() { ShouldDownloadImages = true });
             imageSanitizer.DownloadImageResult = (imageUrl) => null;
 
             // Adding image element to the document in order to simulate real herarchy
@@ -227,15 +230,15 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
-       
-        public void SetImageWidth_WhenTheyAreNotSpecifiedAndTheImageUrlIsValid()
+
+        public void SetImageWidth_WhenItIsNotSpecifiedAndTheImageUrlIsValidAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com", ShouldDownloadImages = true });
             imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
 
             // Adding image element to the document in order to simulate real herarchy
@@ -266,6 +269,81 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 
             // Assert
             Assert.AreEqual(200, int.Parse(ampElement.GetAttribute("height")));
+        }
+
+        [TestMethod]
+        public void ReturnAmpImageElementWithLayoutAttributeSetToFixedHeight_IfTheOriginalIFrameElementHasOnlyHeightAttributeAndShouldDownloadImagesIsNotSpecified()
+        {
+            // Arrange
+            const string ExpectedResult = "fixed-height";
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "http://www.mywebsite.com/img1.jpg";
+            imageElement.DisplayHeight = 100;
+
+            ElementFactory.Document.Body.Append(imageElement);
+  
+            // Act
+            var actualResult = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+        }
+
+        [TestMethod]
+        public void ReturnAmpImageElementWithLayoutAttributeSetToContainer_IfTheOriginalImageElementHasNoWidthAndHeightAttributesAndShouldDownloadImagesIsNotSpecified()
+        {
+            // Arrange
+            const string ExpectedResult = "container";
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "http://www.mywebsite.com/img1.jpg";
+
+            ElementFactory.Document.Body.Append(imageElement);
+
+            // Act
+            var actualResult = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+        }
+
+        [TestMethod]
+        public void ReturnAmpImageElementWithLayoutAttributeSetToResponsive_IfTheOriginalImageElementHasBothWidthAndHeightAttributes()
+        {
+            // Arrange
+            const string ExpectedResult = "responsive";
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "http://www.mywebsite.com/img1.jpg";
+            imageElement.DisplayWidth = 100;
+            imageElement.DisplayHeight = 100;
+
+            ElementFactory.Document.Body.Append(imageElement);
+
+            // Act
+            var actualResult = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+        }
+
+        [TestMethod]
+        public void ReturnAmpImageElementWithLayoutAttributeSetToResponsive_IfTheOriginalImageElementHasNoWidthAndHeightButShouldDownloadImagesEqualsTrue()
+        {
+            // Arrange
+            const string ExpectedResult = "responsive";
+            var imageElement = ElementFactory.CreateImage();
+            imageElement.Source = "http://www.mywebsite.com/img1.jpg";
+
+            ElementFactory.Document.Body.Append(imageElement);
+
+            var imageSanitizer = new ImageSanitizerTestDouble();
+            imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
+            imageSanitizer.Configure(new RunConfiguration() { ShouldDownloadImages = true });
+
+            // Act
+            var actualResult = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
         }
     }
 }

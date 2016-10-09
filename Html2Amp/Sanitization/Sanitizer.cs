@@ -1,10 +1,5 @@
 ﻿using AngleSharp.Dom;
 using ComboRox.Core.Utilities.SimpleGuard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp.Sanitization
 {
@@ -27,6 +22,31 @@ namespace Html2Amp.Sanitization
 				ampElement.SetAttribute("layout", "nodisplay");
 			}
 		}
+
+        protected virtual void SetMediaElementLayout(IElement element, IElement ampElement)
+        {
+            Guard.Requires(element, "element").IsNotNull();
+            Guard.Requires(ampElement, "ampElement").IsNotNull();
+
+            if (!ampElement.HasAttribute("layout"))
+            {
+                if (ampElement.HasAttribute("height"))
+                {
+                    if (ampElement.HasAttribute("width"))
+                    {
+                        ampElement.SetAttribute("layout", "responsive");
+                    }
+                    else
+                    {
+                        ampElement.SetAttribute("layout", "fixed-height");
+                    }
+                }
+                else
+                {
+                    ampElement.SetAttribute("layout", "container");
+                }
+            }
+        }
 
 		public void Configure(RunConfiguration configuration)
 		{

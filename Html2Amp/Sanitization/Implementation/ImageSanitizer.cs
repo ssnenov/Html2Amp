@@ -3,13 +3,9 @@ using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using Html2Amp.Web;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -31,8 +27,9 @@ namespace Html2Amp.Sanitization.Implementation
             imageElement.CopyTo(ampElement);
 
             this.SetElementLayout(imageElement, ampElement);
+            this.SetMediaElementLayout(imageElement, ampElement);
 
-			imageElement.Parent.ReplaceChild(ampElement, imageElement);
+            imageElement.Parent.ReplaceChild(ampElement, imageElement);
 
             return ampElement;
         }
@@ -47,20 +44,15 @@ namespace Html2Amp.Sanitization.Implementation
             return document.CreateElement("amp-img");
         }
 
-        protected override void SetElementLayout(IElement element, IElement ampElement)
+        protected override void SetMediaElementLayout(IElement element, IElement ampElement)
         {
-            Guard.Requires(ampElement, "ampElement").IsNotNull();
+            base.SetMediaElementLayout(element, ampElement);
 
-            base.SetElementLayout(element, ampElement);
-
-            // If the base class hasn't set a layout attribute
-            if (!ampElement.HasAttribute("layout"))
+            if ((!ampElement.HasAttribute("width") || !ampElement.HasAttribute("heigth"))
+                && this.Configuration != null && this.Configuration.ShouldDownloadImages)
             {
                 ampElement.SetAttribute("layout", "responsive");
-                if (!ampElement.HasAttribute("width") || !ampElement.HasAttribute("height"))
-                {
-                    this.SetImageSize(ampElement);
-                }
+                this.SetImageSize(ampElement);
             }
         }
 

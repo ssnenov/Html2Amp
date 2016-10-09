@@ -27,34 +27,11 @@ namespace Html2Amp.Sanitization.Implementation
             iframeElement.CopyTo(ampElement);
 
             this.SetElementLayout(iframeElement, ampElement);
+            this.SetMediaElementLayout(iframeElement, ampElement);
 
             iframeElement.Parent.ReplaceChild(ampElement, iframeElement);
 
             return ampElement;
-        }
-
-        protected override void SetElementLayout(IElement element, IElement ampElement)
-        {
-            base.SetElementLayout(element, ampElement);
-
-            if (!ampElement.HasAttribute("layout"))
-            {
-                if (ampElement.HasAttribute("height"))
-                {
-                    if (ampElement.HasAttribute("width"))
-                    {
-                        ampElement.SetAttribute("layout", "responsive");
-                    }
-                    else
-                    {
-                        ampElement.SetAttribute("layout", "fixed-height");
-                    }
-                }
-                else
-                {
-                    ampElement.SetAttribute("layout", "container");
-                }
-            }
         }
 
         private void SetSourceAttribute(IHtmlInlineFrameElement iframeElement)
