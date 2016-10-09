@@ -2,6 +2,7 @@
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System;
+using System.Text;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -9,7 +10,9 @@ namespace Html2Amp.Sanitization.Implementation
     {
         public override bool CanSanitize(IElement element)
         {
-            return element != null && element is IHtmlInlineFrameElement;
+            return element != null 
+                && element is IHtmlInlineFrameElement 
+                && this.IsValidSourceAttribute(element);
         }
 
         public override IElement Sanitize(IDocument document, IElement htmlElement)
@@ -23,10 +26,7 @@ namespace Html2Amp.Sanitization.Implementation
             var ampElement = document.CreateElement("amp-iframe");
             iframeElement.CopyTo(ampElement);
 
-            if (!this.IsValidSourceAttribute(ampElement))
-            {
-                throw new InvalidOperationException("Iframes could not be in the same origin as the container, unless they do not specify allow-same-origin");
-            }
+            this.SetElementLayout(iframeElement, ampElement);
 
             iframeElement.Parent.ReplaceChild(ampElement, iframeElement);
 
@@ -37,7 +37,6 @@ namespace Html2Amp.Sanitization.Implementation
         {
             base.SetElementLayout(element, ampElement);
 
-            // If the base class hasn't set a layout attribute
             if (!ampElement.HasAttribute("layout"))
             {
                 if (ampElement.HasAttribute("height"))
@@ -65,21 +64,32 @@ namespace Html2Amp.Sanitization.Implementation
 
             if (iframeElementSrc.Scheme != "https")
             {
-                var newUrl = new UriBuilder("https", iframeElementSrc.Host, iframeElementSrc.Port, iframeElementSrc.PathAndQuery).ToString();
+                var newUrl = new StringBuilder("https://");
+                newUrl.Append(iframeElementSrc.Host);
 
-                iframeElement.Source = newUrl;
+                if (!iframeElementSrc.IsDefaultPort)
+                {
+                    newUrl.Append(":");
+                    newUrl.Append(iframeElementSrc.Port);
+                }
+
+                newUrl.Append(iframeElementSrc.PathAndQuery);
+
+                iframeElement.Source = newUrl.ToString();
             }
         }
 
-        private bool IsValidSourceAttribute(IElement ampElement)
+        private bool IsValidSourceAttribute(IElement htmlElement)
         {
-            var source = new Uri(ampElement.GetAttribute("src"));
-            var sandbox = ampElement.GetAttribute("sandbox");
+            var source = new Uri(htmlElement.GetAttribute("src"));
+            var sandbox = htmlElement.GetAttribute("sandbox");
 
-            //amp-iframes could not be in the same origin as the container, unless they do not specify allow-same-origin.
-            if (!string.IsNullOrEmpty(this.Configuration.RelativeUrlsHost))
+            //iframes could not be in the same origin as the container, unless they do not specify allow-same-origin.
+            if (this.Configuration != null && !string.IsNullOrEmpty(this.Configuration.RelativeUrlsHost))
             {
-                if (this.Configuration.RelativeUrlsHost == source.Host)
+                var urlsHost = new Uri(this.Configuration.RelativeUrlsHost);
+
+                if (urlsHost.Host == source.Host)
                 {
                     if (!string.IsNullOrEmpty(sandbox) && sandbox.Contains("allow-same-origin"))
                     {

@@ -19,7 +19,8 @@ namespace Html2Amp.UnitTests.JavaScriptRelatedAttributeSanitizerTests
         public void RemoveAllAttributesStartingWithOnAndLengthGreaterThanTwo()
         {
             // Arrange
-            var htmlString = "<button onclick=\"myFunction()\">Click me</button>"; var htmlElement = ElementFactory.CreateFromHtmlString(htmlString);
+            var htmlString = "<button onclick=\"myFunction()\">Click me</button>";
+            var htmlElement = ElementFactory.CreateFromHtmlString(htmlString);
 
             // Act
             var actualResult = new JavaScriptRelatedAttributeSanitizer().Sanitize(null, htmlElement);
@@ -33,7 +34,8 @@ namespace Html2Amp.UnitTests.JavaScriptRelatedAttributeSanitizerTests
         public void NotRemoveOnAttribute()
         {
             // Arrange
-            var htmlString = "<button onclick=\"myFunction()\" on=\"yes\">Click me</button>"; var htmlElement = ElementFactory.CreateFromHtmlString(htmlString);
+            var htmlString = "<button onclick=\"myFunction()\" on=\"yes\">Click me</button>";
+            var htmlElement = ElementFactory.CreateFromHtmlString(htmlString);
 
             // Act
             var actualResult = new JavaScriptRelatedAttributeSanitizer().Sanitize(null, htmlElement);

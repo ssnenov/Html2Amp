@@ -62,6 +62,8 @@
     <Compile Include="Helpers\Ensure.cs" />
     <Compile Include="HrefJavaScriptSanitizerTests\HrefJavaScriptSanitizer_CanSanitize_Should.cs" />
     <Compile Include="HrefJavaScriptSanitizerTests\HrefJavaScriptSanitizer_Sanitizer_Should.cs" />
+    <Compile Include="IFrameSanitizerTests\IFrameSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="IFrameSanitizerTests\IFrameSanitizer_Sanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_Sanitize_Should.cs" />
     <Compile Include="ImageSanitizerTests\ImageSanitizer_DownloadImage_Should.cs" />
@@ -81,7 +83,6 @@
     <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_SetVideoParams_Should.cs" />
     <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_Sanitize_Should.cs" />
     <Compile Include="YouTubeVideoSanitizerTests\YouTubeVideoSanitizer_CanSanitizer_Should.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Html2Amp\Html2Amp.csproj">
