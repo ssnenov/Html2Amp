@@ -27,11 +27,16 @@ namespace Html2Amp.Sanitization.Implementation
             iframeElement.CopyTo(ampElement);
 
             this.SetElementLayout(iframeElement, ampElement);
-            this.SetMediaElementLayout(iframeElement, ampElement);
 
             iframeElement.Parent.ReplaceChild(ampElement, iframeElement);
 
             return ampElement;
+        }
+
+        protected override void SetElementLayout(IElement element, IElement ampElement)
+        {
+            base.SetElementLayout(element, ampElement);
+            this.SetMediaElementLayout(element, ampElement);
         }
 
         private void SetSourceAttribute(IHtmlInlineFrameElement iframeElement)

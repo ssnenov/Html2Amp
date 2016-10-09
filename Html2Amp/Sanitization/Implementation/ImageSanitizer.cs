@@ -27,7 +27,6 @@ namespace Html2Amp.Sanitization.Implementation
             imageElement.CopyTo(ampElement);
 
             this.SetElementLayout(imageElement, ampElement);
-            this.SetMediaElementLayout(imageElement, ampElement);
 
             imageElement.Parent.ReplaceChild(ampElement, imageElement);
 
@@ -42,6 +41,12 @@ namespace Html2Amp.Sanitization.Implementation
             }
 
             return document.CreateElement("amp-img");
+        }
+
+        protected override void SetElementLayout(IElement element, IElement ampElement)
+        {
+            base.SetElementLayout(element, ampElement);
+            this.SetMediaElementLayout(element, ampElement);
         }
 
         protected override void SetMediaElementLayout(IElement element, IElement ampElement)
