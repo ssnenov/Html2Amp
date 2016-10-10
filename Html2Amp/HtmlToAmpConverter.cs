@@ -13,6 +13,8 @@ namespace Html2Amp
 
 		private RunConfiguration configuration;
 
+		private RunContext runContext;
+
 		private volatile bool isInitialized = false;
 
 		private object initializationLock = new object();
@@ -93,9 +95,11 @@ namespace Html2Amp
 
 		private void Initialize()
 		{
+			this.runContext = new RunContext(this.configuration);
+
 			foreach (var sanitizer in this.sanitizers)
 			{
-				sanitizer.Configure(this.configuration);
+				sanitizer.Configure(this.runContext);
 			}
 		}
 

@@ -31,8 +31,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.Source = "http://www.mysite.com";
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -50,8 +52,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.Source = "http://www.mysite.com";
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -70,8 +74,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.Source = "http://www.site.com:8082/test-resource?q=1";
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -90,8 +96,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             var iframeElement = ElementFactory.CreateFromHtmlString(htmlString);
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -110,8 +118,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.DisplayHeight = 100;
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -129,8 +139,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.Source = "http://www.mywebsite.com/example-resource";
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
@@ -150,8 +162,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             iframeElement.DisplayHeight = 100;
             ElementFactory.Document.Body.Append(iframeElement);
 
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);

@@ -13,6 +13,6 @@ namespace Html2Amp.Sanitization
 
 		IElement Sanitize(IDocument document, IElement htmlElement);
 
-		void Configure(RunConfiguration configuration);
+		void Configure(RunContext configuration);
 	}
 }

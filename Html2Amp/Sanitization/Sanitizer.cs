@@ -5,6 +5,8 @@ namespace Html2Amp.Sanitization
 {
 	public abstract class Sanitizer : ISanitizer
 	{
+		protected RunContext RunContext { get; private set; }
+
 		protected RunConfiguration Configuration { get; private set; }
 
 		public abstract bool CanSanitize(AngleSharp.Dom.IElement element);
@@ -48,9 +50,10 @@ namespace Html2Amp.Sanitization
             }
         }
 
-		public void Configure(RunConfiguration configuration)
+		public void Configure(RunContext runContext)
 		{
-			this.Configuration = configuration;
+			this.RunContext = runContext;
+			this.Configuration = this.RunContext.Configuration;
 		}
 	}
 }

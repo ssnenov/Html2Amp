@@ -133,8 +133,11 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void SetImageSizeMethodIsCalled_WhenWidthIsNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration { ShouldDownloadImages = true });
+
             var imageSanitizerSpy = new ImageSanitizerSpy();
-            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
+            imageSanitizerSpy.Configure(runContext);
+
             var imageElement = ElementFactory.CreateImage();
 
             imageElement.DisplayHeight = 100;
@@ -153,8 +156,10 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void SetImageSizeMethodIsCalled_WhenHeightIsNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration { ShouldDownloadImages = true });
+
             var imageSanitizerSpy = new ImageSanitizerSpy();
-            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
+            imageSanitizerSpy.Configure(runContext);
             var imageElement = ElementFactory.CreateImage();
 
             imageElement.DisplayWidth = 100;
@@ -173,8 +178,10 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void SetImageSizeMethodIsCalled_WhenHeightAndWeightAreNotSpecifiedAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration { ShouldDownloadImages = true });
+
             var imageSanitizerSpy = new ImageSanitizerSpy();
-            imageSanitizerSpy.Configure(new RunConfiguration { ShouldDownloadImages = true });
+            imageSanitizerSpy.Configure(runContext);
             var imageElement = ElementFactory.CreateImage();
 
             // Adding image element to the document in order to simulate real herarchy
@@ -193,11 +200,13 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void ResolveImageUrl_WhenSourceAttributeIsRelative()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+            imageSanitizer.Configure(runContext);
             imageSanitizer.DownloadImageResult = (imageUrl) => null;
 
             // Adding image element to the document in order to simulate real herarchy
@@ -215,11 +224,13 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void ThrowInvalidOperationException_WhenTheImageHasNoWidthAndHeightAndTheImageUrlIsInvalid()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration { ShouldDownloadImages = true });
+
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration() { ShouldDownloadImages = true });
+            imageSanitizer.Configure(runContext);
             imageSanitizer.DownloadImageResult = (imageUrl) => null;
 
             // Adding image element to the document in order to simulate real herarchy
@@ -234,11 +245,13 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void SetImageWidth_WhenItIsNotSpecifiedAndTheImageUrlIsValidAndShouldDownloadImagesEqualsTrue()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com", ShouldDownloadImages = true });
+
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com", ShouldDownloadImages = true });
+            imageSanitizer.Configure(runContext);
             imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
 
             // Adding image element to the document in order to simulate real herarchy
@@ -254,11 +267,13 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void SetImageHeight_WhenTheyAreNotSpecifiedAndTheImageUrlIsValid()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "/images/logo.png";
 
             var imageSanitizer = new ImageSanitizerTestDouble();
-            imageSanitizer.Configure(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
+            imageSanitizer.Configure(runContext);
             imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
 
             // Adding image element to the document in order to simulate real herarchy
@@ -329,6 +344,8 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void ReturnAmpImageElementWithLayoutAttributeSetToResponsive_IfTheOriginalImageElementHasNoWidthAndHeightButShouldDownloadImagesEqualsTrue()
         {
             // Arrange
+			var runContext = new RunContext(new RunConfiguration { ShouldDownloadImages = true });
+
             const string ExpectedResult = "responsive";
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "http://www.mywebsite.com/img1.jpg";
@@ -337,7 +354,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 
             var imageSanitizer = new ImageSanitizerTestDouble();
             imageSanitizer.DownloadImageResult = (imageUrl) => new Bitmap(100, 200);
-            imageSanitizer.Configure(new RunConfiguration() { ShouldDownloadImages = true });
+            imageSanitizer.Configure(runContext);
 
             // Act
             var actualResult = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);

@@ -54,7 +54,7 @@ namespace Html2Amp.Sanitization.Implementation
             base.SetMediaElementLayout(element, ampElement);
 
             if ((!ampElement.HasAttribute("width") || !ampElement.HasAttribute("heigth"))
-                && this.Configuration != null && this.Configuration.ShouldDownloadImages)
+                && this.RunContext != null && this.Configuration.ShouldDownloadImages)
             {
                 ampElement.SetAttribute("layout", "responsive");
                 this.SetImageSize(ampElement);

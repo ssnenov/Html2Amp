@@ -37,9 +37,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             // Arrange
             var htmlElement = ElementFactory.CreateIFrame();
             htmlElement.Source = "https://www.example.com/example-source";
-
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
+
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.CanSanitize(htmlElement);
@@ -54,9 +55,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             // Arrange
             var htmlString = "<iframe src=\"http://www.mywebsite.com/example-resource\" sandbox=\"allow-same-origin\" />";
             var htmlElement = ElementFactory.CreateFromHtmlString(htmlString);
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
 
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.CanSanitize(htmlElement);
@@ -71,9 +73,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             // Arrange
             var htmlElement = ElementFactory.CreateIFrame();
             htmlElement.Source = "http://www.mywebsite.com/example-resource";
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
 
             var iframeSanitizer = new IFrameSanitizer();
-            iframeSanitizer.Configure(new RunConfiguration { RelativeUrlsHost = "https://www.mywebsite.com" });
+            iframeSanitizer.Configure(runContext);
 
             // Act
             var actualResult = iframeSanitizer.CanSanitize(htmlElement);
