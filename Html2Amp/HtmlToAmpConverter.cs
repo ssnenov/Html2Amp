@@ -22,15 +22,27 @@ namespace Html2Amp
 			this.configuration = new RunConfiguration();
 			this.sanitizers = new HashSet<ISanitizer>();
 
-			// Initialize a default collection of sanitizers
+			// Initializing a default collection of sanitizers
+			// With high priority should be the sanitizers which remove and rewrite elements in order to
+			// eliminate redundant removing/rewriting of them itself or their attributes. After that
+			// they should be ordered by logical behaviour. E.g. the YouTubeVideoSanitizer should be
+			// before IFrameSanitizer, because YouTubeVideoSanitizer relies on iframe element.
+
+			// Removing elements
+			this.sanitizers.Add(new ScriptElementSanitizer());
+
+			// Rewriting elements
 			this.sanitizers.Add(new ImageSanitizer());
-			this.sanitizers.Add(new TargetAttributeSanitizer());
-			this.sanitizers.Add(new HrefJavaScriptSanitizer());
+			this.sanitizers.Add(new YouTubeVideoSanitizer());
+			this.sanitizers.Add(new IFrameSanitizer());
+
+			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
-            this.sanitizers.Add(new XmlAttributeSanitizer());
-            this.sanitizers.Add(new JavaScriptRelatedAttributeSanitizer());
-            this.sanitizers.Add(new YouTubeVideoSanitizer());
-            this.sanitizers.Add(new IFrameSanitizer());
+			this.sanitizers.Add(new JavaScriptRelatedAttributeSanitizer());
+			this.sanitizers.Add(new XmlAttributeSanitizer());
+			// Changing attributes
+			this.sanitizers.Add(new HrefJavaScriptSanitizer());
+			this.sanitizers.Add(new TargetAttributeSanitizer());
 		}
 
 		public HtmlToAmpConverter WithSanitizers(HashSet<ISanitizer> sanitizers)
@@ -94,12 +106,19 @@ namespace Html2Amp
 				if (sanitizer.CanSanitize(htmlElement))
 				{
 					htmlElement = sanitizer.Sanitize(document, htmlElement);
+					if (htmlElement == null) // If the element is removed
+					{
+						break;
+					}
 				}
 			}
 
-			foreach (var childElement in htmlElement.Children)
+			if (htmlElement != null)
 			{
-				ConvertFromHtmlElement(document, childElement);
+				foreach (var childElement in htmlElement.Children)
+				{
+					ConvertFromHtmlElement(document, childElement);
+				}
 			}
 		}
 	}

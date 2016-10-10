@@ -19,8 +19,6 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override bool CanSanitize(IElement element)
 		{
-			// <iframe width="560" height="315" src="https://www.youtube.com/embed/znlFu_lemsU" frameborder="0" allowfullscreen></iframe>
-
 			if (element == null || !(element is IHtmlInlineFrameElement))
 			{
 				return false;

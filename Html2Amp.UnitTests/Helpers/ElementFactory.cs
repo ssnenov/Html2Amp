@@ -43,5 +43,10 @@ namespace Html2Amp.UnitTests.Helpers
 		{
 			return (IHtmlInlineFrameElement)Create("iframe");
 		}
+
+		public static IHtmlScriptElement CreateScript()
+		{
+			return (IHtmlScriptElement)Create("script");
+		}
 	}
 }
