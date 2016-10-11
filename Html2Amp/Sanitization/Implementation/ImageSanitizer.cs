@@ -9,108 +9,110 @@ using System.Net;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-    public class ImageSanitizer : Sanitizer
-    {
-        public override bool CanSanitize(IElement element)
-        {
-            return element != null && element is IHtmlImageElement;
-        }
+	public class ImageSanitizer : Sanitizer
+	{
+		public override bool CanSanitize(IElement element)
+		{
+			return element != null && element is IHtmlImageElement;
+		}
 
-        public override IElement Sanitize(IDocument document, IElement htmlElement)
-        {
-            Guard.Requires(document, "document").IsNotNull();
-            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+		public override IElement Sanitize(IDocument document, IElement htmlElement)
+		{
+			Guard.Requires(document, "document").IsNotNull();
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-            var imageElement = (IHtmlImageElement)htmlElement;
-            IElement ampElement = CreateAmpElement(document, imageElement);
+			var imageElement = (IHtmlImageElement)htmlElement;
+			IElement ampElement = CreateAmpElement(document, imageElement);
 
-            imageElement.CopyTo(ampElement);
+			imageElement.CopyTo(ampElement);
 
-            this.SetElementLayout(imageElement, ampElement);
+			this.SetElementLayout(imageElement, ampElement);
 
-            imageElement.Parent.ReplaceChild(ampElement, imageElement);
+			imageElement.Parent.ReplaceChild(ampElement, imageElement);
 
-            return ampElement;
-        }
+			return ampElement;
+		}
 
-        private static IElement CreateAmpElement(IDocument document, IHtmlImageElement imageElement)
-        {
-            if (Path.GetExtension(imageElement.Source) == ".gif")
-            {
-                return document.CreateElement("amp-anim");
-            }
+		private static IElement CreateAmpElement(IDocument document, IHtmlImageElement imageElement)
+		{
+			if (Path.GetExtension(imageElement.Source) == ".gif")
+			{
+				return document.CreateElement("amp-anim");
+			}
 
-            return document.CreateElement("amp-img");
-        }
+			return document.CreateElement("amp-img");
+		}
 
-        protected override void SetElementLayout(IElement element, IElement ampElement)
-        {
-            base.SetElementLayout(element, ampElement);
-            this.SetMediaElementLayout(element, ampElement);
-        }
+		protected override void SetElementLayout(IElement element, IElement ampElement)
+		{
+			base.SetElementLayout(element, ampElement);
+			this.SetMediaElementLayout(element, ampElement);
+		}
 
-        protected override void SetMediaElementLayout(IElement element, IElement ampElement)
-        {
-            base.SetMediaElementLayout(element, ampElement);
+		protected override void SetMediaElementLayout(IElement element, IElement ampElement)
+		{
+			base.SetMediaElementLayout(element, ampElement);
 
-            if ((!ampElement.HasAttribute("width") || !ampElement.HasAttribute("heigth"))
-                && this.RunContext != null && this.Configuration.ShouldDownloadImages)
-            {
-                ampElement.SetAttribute("layout", "responsive");
-                this.SetImageSize(ampElement);
-            }
-        }
+			if ((!ampElement.HasAttribute("width") || !ampElement.HasAttribute("heigth"))
+				&& this.RunContext != null
+				&& this.RunContext.Configuration != null
+				&& this.RunContext.Configuration.ShouldDownloadImages)
+			{
+				ampElement.SetAttribute("layout", "responsive");
+				this.SetImageSize(ampElement);
+			}
+		}
 
-        protected virtual void SetImageSize(IElement htmlElement)
-        {
-            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+		protected virtual void SetImageSize(IElement htmlElement)
+		{
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-            if (!htmlElement.HasAttribute("src"))
-            {
-                return;
-            }
+			if (!htmlElement.HasAttribute("src"))
+			{
+				return;
+			}
 
-            var imageUrl = htmlElement.GetAttribute("src");
-            var urlHander = new UrlHandler();
-            var resultUrl = urlHander.TryResolveUrl(this.Configuration.RelativeUrlsHost, imageUrl);
+			var imageUrl = htmlElement.GetAttribute("src");
+			var urlHander = new UrlHandler();
+			var resultUrl = urlHander.TryResolveUrl(this.RunContext.Configuration.RelativeUrlsHost, imageUrl);
 
-            if (!string.IsNullOrEmpty(resultUrl))
-            {
-                var image = this.DownloadImage(resultUrl);
+			if (!string.IsNullOrEmpty(resultUrl))
+			{
+				var image = this.DownloadImage(resultUrl);
 
-                if (image != null)
-                {
-                    // Width & Height should be dynamically generated attributes
-                    htmlElement.SetAttribute("width", image.Width.ToString());
-                    htmlElement.SetAttribute("height", image.Height.ToString());
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException(string.Format("Invaid image url: {0}", imageUrl));
-            }
+				if (image != null)
+				{
+					// Width & Height should be dynamically generated attributes
+					htmlElement.SetAttribute("width", image.Width.ToString());
+					htmlElement.SetAttribute("height", image.Height.ToString());
+				}
+			}
+			else
+			{
+				throw new InvalidOperationException(string.Format("Invaid image url: {0}", imageUrl));
+			}
 
-            //TODO: Uncomment the following line when relative urls are not allowed in AMP.
-            //htmlElement.SetAttribute("src", resultUrl);
-        }
+			//TODO: Uncomment the following line when relative urls are not allowed in AMP.
+			//htmlElement.SetAttribute("src", resultUrl);
+		}
 
-        protected virtual Image DownloadImage(string imageUrl)
-        {
-            Guard.Requires(imageUrl, "imageUrl").IsNotNullOrEmpty();
+		protected virtual Image DownloadImage(string imageUrl)
+		{
+			Guard.Requires(imageUrl, "imageUrl").IsNotNullOrEmpty();
 
-            Image image;
+			Image image;
 
-            using (var webClient = new WebClient())
-            {
-                var imageBytes = webClient.DownloadData(imageUrl);
+			using (var webClient = new WebClient())
+			{
+				var imageBytes = webClient.DownloadData(imageUrl);
 
-                using (var memoryStream = new MemoryStream(imageBytes))
-                {
-                    image = Image.FromStream(memoryStream);
-                }
-            }
+				using (var memoryStream = new MemoryStream(imageBytes))
+				{
+					image = Image.FromStream(memoryStream);
+				}
+			}
 
-            return image;
-        }
-    }
+			return image;
+		}
+	}
 }
