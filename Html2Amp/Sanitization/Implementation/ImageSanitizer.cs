@@ -18,13 +18,12 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
-            Guard.Requires(document, "document").IsNotNull();
-            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-            return this.SanitizeCore<IHtmlImageElement>(document, htmlElement, this.GetAmpElementTag(htmlElement));
+			return this.SanitizeCore<IHtmlImageElement>(document, htmlElement, this.GetAmpElementTag(htmlElement));
 		}
 
-        private string GetAmpElementTag(IElement imageElement)
+		private string GetAmpElementTag(IElement imageElement)
 		{
 			if (Path.GetExtension(imageElement.GetAttribute("src")) == ".gif")
 			{

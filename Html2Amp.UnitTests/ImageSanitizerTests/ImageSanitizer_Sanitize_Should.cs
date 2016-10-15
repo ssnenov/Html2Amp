@@ -15,7 +15,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         public void ThowArgumentNullException_WhenDocumentArgumentIsNull()
         {
             // Assert
-            Ensure.ArgumentExceptionIsThrown(() => new ImageSanitizer().Sanitize(null, null), "document");
+            Ensure.ArgumentExceptionIsThrown(() => new ImageSanitizer().Sanitize(null, ElementFactory.CreateImage()), "document");
         }
 
         [TestMethod]

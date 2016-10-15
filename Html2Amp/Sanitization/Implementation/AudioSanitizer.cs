@@ -4,52 +4,49 @@ using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-    public class AudioSanitizer : MediaSanitizer
-    {
-        public override bool CanSanitize(IElement element)
-        {
-            return element != null && element is IHtmlAudioElement;
-        }
+	public class AudioSanitizer : MediaSanitizer
+	{
+		public override bool CanSanitize(IElement element)
+		{
+			return element != null && element is IHtmlAudioElement;
+		}
 
-        public override IElement Sanitize(IDocument document, IElement htmlElement)
-        {
-            Guard.Requires(document, "document").IsNotNull();
-            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+		public override IElement Sanitize(IDocument document, IElement htmlElement)
+		{
+			return this.SanitizeCore<IHtmlAudioElement>(document, htmlElement, "amp-audio");
+		}
 
-            return this.SanitizeCore<IHtmlAudioElement>(document, htmlElement, "amp-audio");
-        }
+		protected override void SetMediaElementLayout(IElement element, IElement ampElement)
+		{
+			Guard.Requires(element, "element").IsNotNull();
+			Guard.Requires(ampElement, "ampElement").IsNotNull();
 
-        protected override void SetMediaElementLayout(IElement element, IElement ampElement)
-        {
-            Guard.Requires(element, "element").IsNotNull();
-            Guard.Requires(ampElement, "ampElement").IsNotNull();
+			if (!ampElement.HasAttribute("layout"))
+			{
+				if (ampElement.HasAttribute("height"))
+				{
+					if (ampElement.HasAttribute("width"))
+					{
+						if (ampElement.GetAttribute("width") == "auto")
+						{
+							ampElement.SetAttribute("layout", "responsive");
+						}
+						else
+						{
+							ampElement.SetAttribute("layout", "fixed");
+						}
+					}
+					else
+					{
+						ampElement.SetAttribute("layout", "fixed-height");
+					}
+				}
+			}
+		}
 
-            if (!ampElement.HasAttribute("layout"))
-            {
-                if (ampElement.HasAttribute("height"))
-                {
-                    if (ampElement.HasAttribute("width"))
-                    {
-                        if (ampElement.GetAttribute("width") == "auto")
-                        {
-                            ampElement.SetAttribute("layout", "responsive");
-                        }
-                        else
-                        {
-                            ampElement.SetAttribute("layout", "fixed");
-                        }
-                    }
-                    else
-                    {
-                        ampElement.SetAttribute("layout", "fixed-height");
-                    }
-                }
-            }
-        }
-
-        protected override bool ShoulRequestResourcesOnlyViaHttps
-        {
-            get { return true; }
-        }
-    }
+		protected override bool ShoulRequestResourcesOnlyViaHttps
+		{
+			get { return true; }
+		}
+	}
 }
