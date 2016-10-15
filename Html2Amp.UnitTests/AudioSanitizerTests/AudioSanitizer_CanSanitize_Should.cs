@@ -34,7 +34,7 @@ namespace Html2Amp.UnitTests.AudioSanitizerTests
         public void ReturnTrue_WhenElementArgumentIsAudioElement()
         {
             // Arrange
-            var htmlElement = ElementFactory.Create("audio");
+            var htmlElement = ElementFactory.CreateAudio();
 
             // Act
             var actualResult = new AudioSanitizer().CanSanitize(htmlElement);
