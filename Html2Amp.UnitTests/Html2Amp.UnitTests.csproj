@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Accessors\ImageSanitizerAccessor.cs" />
     <Compile Include="Accessors\YouTubeVideoSanitizerAccessor.cs" />
+    <Compile Include="AudioSanitizerTests\AudioSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="AudioSanitizerTests\AudioSanitizer_Sanitize_Should.cs" />
     <Compile Include="Helpers\ElementFactory.cs" />
     <Compile Include="Helpers\Ensure.cs" />
     <Compile Include="HrefJavaScriptSanitizerTests\HrefJavaScriptSanitizer_CanSanitize_Should.cs" />

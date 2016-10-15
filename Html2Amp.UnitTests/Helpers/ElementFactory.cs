@@ -48,5 +48,10 @@ namespace Html2Amp.UnitTests.Helpers
 		{
 			return (IHtmlScriptElement)Create("script");
 		}
+
+        public static IHtmlAudioElement CreateAudio()
+        {
+            return (IHtmlAudioElement)Create("audio");
+        }
 	}
 }

@@ -32,7 +32,7 @@ namespace Html2Amp.Sanitization
             }
         }
 
-        protected virtual void SetSourceAttribute(IElement htmlElement)
+        protected virtual void RewriteSourceAttribute(IElement htmlElement)
         {
             //Resources can be requested only via HTTPS
             var htmlElementSrc = new Uri(htmlElement.GetAttribute("src"));

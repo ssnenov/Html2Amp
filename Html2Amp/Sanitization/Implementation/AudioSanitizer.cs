@@ -17,7 +17,11 @@ namespace Html2Amp.Sanitization.Implementation
             Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
             var audioElement = (IHtmlAudioElement)htmlElement;
-            this.SetSourceAttribute(audioElement);
+
+            if (!string.IsNullOrEmpty(audioElement.Source))
+            {
+                this.RewriteSourceAttribute(audioElement);
+            }
 
             var ampElement = document.CreateElement("amp-audio");
             audioElement.CopyTo(ampElement);

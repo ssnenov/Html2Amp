@@ -21,7 +21,7 @@ namespace Html2Amp.Sanitization.Implementation
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
 			var iframeElement = (IHtmlInlineFrameElement)htmlElement;
-			this.SetSourceAttribute(iframeElement);
+			this.RewriteSourceAttribute(iframeElement);
 
 			var ampElement = document.CreateElement("amp-iframe");
 			iframeElement.CopyTo(ampElement);
