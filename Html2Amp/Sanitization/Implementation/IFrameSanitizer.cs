@@ -17,20 +17,10 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
-			Guard.Requires(document, "document").IsNotNull();
-			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+            Guard.Requires(document, "document").IsNotNull();
+            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			var iframeElement = (IHtmlInlineFrameElement)htmlElement;
-			this.RewriteSourceAttribute(iframeElement);
-
-			var ampElement = document.CreateElement("amp-iframe");
-			iframeElement.CopyTo(ampElement);
-
-			this.SetElementLayout(iframeElement, ampElement);
-
-			iframeElement.Parent.ReplaceChild(ampElement, iframeElement);
-
-			return ampElement;
+            return this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
 		}
 
 		private bool IsValidSourceAttribute(IElement htmlElement)
@@ -60,5 +50,10 @@ namespace Html2Amp.Sanitization.Implementation
 
 			return false;
 		}
-	}
+
+        protected override bool ShoulRequestResourcesOnlyViaHttps
+        {
+            get { return true; }
+        }
+    }
 }

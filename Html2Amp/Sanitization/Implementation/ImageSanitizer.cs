@@ -18,29 +18,20 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
-			Guard.Requires(document, "document").IsNotNull();
-			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+            Guard.Requires(document, "document").IsNotNull();
+            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			var imageElement = (IHtmlImageElement)htmlElement;
-			IElement ampElement = CreateAmpElement(document, imageElement);
-
-			imageElement.CopyTo(ampElement);
-
-			this.SetElementLayout(imageElement, ampElement);
-
-			imageElement.Parent.ReplaceChild(ampElement, imageElement);
-
-			return ampElement;
+            return this.SanitizeCore<IHtmlImageElement>(document, htmlElement, this.GetAmpElementTag(htmlElement));
 		}
 
-		private static IElement CreateAmpElement(IDocument document, IHtmlImageElement imageElement)
+        private string GetAmpElementTag(IElement imageElement)
 		{
-			if (Path.GetExtension(imageElement.Source) == ".gif")
+			if (Path.GetExtension(imageElement.GetAttribute("src")) == ".gif")
 			{
-				return document.CreateElement("amp-anim");
+				return "amp-anim";
 			}
 
-			return document.CreateElement("amp-img");
+			return "amp-img";
 		}
 
 		protected override void SetMediaElementLayout(IElement element, IElement ampElement)

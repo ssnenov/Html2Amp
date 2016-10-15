@@ -16,21 +16,7 @@ namespace Html2Amp.Sanitization.Implementation
             Guard.Requires(document, "document").IsNotNull();
             Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-            var audioElement = (IHtmlAudioElement)htmlElement;
-
-            if (!string.IsNullOrEmpty(audioElement.Source))
-            {
-                this.RewriteSourceAttribute(audioElement);
-            }
-
-            var ampElement = document.CreateElement("amp-audio");
-            audioElement.CopyTo(ampElement);
-
-            this.SetElementLayout(audioElement, ampElement);
-
-            audioElement.Parent.ReplaceChild(ampElement, audioElement);
-
-            return ampElement;
+            return this.SanitizeCore<IHtmlAudioElement>(document, htmlElement, "amp-audio");
         }
 
         protected override void SetMediaElementLayout(IElement element, IElement ampElement)
@@ -59,6 +45,11 @@ namespace Html2Amp.Sanitization.Implementation
                     }
                 }
             }
+        }
+
+        protected override bool ShoulRequestResourcesOnlyViaHttps
+        {
+            get { return true; }
         }
     }
 }

@@ -7,6 +7,14 @@ namespace Html2Amp.Sanitization
 {
     public abstract class MediaSanitizer : Sanitizer
     {
+        protected virtual bool ShoulRequestResourcesOnlyViaHttps
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         protected virtual void SetMediaElementLayout(IElement element, IElement ampElement)
         {
             Guard.Requires(element, "element").IsNotNull();
@@ -34,6 +42,11 @@ namespace Html2Amp.Sanitization
 
         protected virtual void RewriteSourceAttribute(IElement htmlElement)
         {
+            if (!htmlElement.HasAttribute("src"))
+            {
+                return;
+            }
+
             //Resources can be requested only via HTTPS
             var htmlElementSrc = new Uri(htmlElement.GetAttribute("src"));
 
@@ -58,6 +71,25 @@ namespace Html2Amp.Sanitization
         {
             base.SetElementLayout(element, ampElement);
             this.SetMediaElementLayout(element, ampElement);
+        }
+
+        protected virtual IElement SanitizeCore<T>(IDocument document, IElement htmlElement, string ampElementTagName) where T : IElement
+        {
+            var element = (T)htmlElement;
+
+            if (this.ShoulRequestResourcesOnlyViaHttps)
+            {
+                this.RewriteSourceAttribute(element);
+            }
+
+            var ampElement = document.CreateElement(ampElementTagName);
+            element.CopyTo(ampElement);
+
+            this.SetElementLayout(element, ampElement);
+
+            element.Parent.ReplaceChild(ampElement, element);
+
+            return ampElement;
         }
     }
 }
