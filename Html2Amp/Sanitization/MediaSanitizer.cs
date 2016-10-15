@@ -52,15 +52,15 @@ namespace Html2Amp.Sanitization
 
 			if (htmlElementSrc.Scheme != "https")
 			{
-				htmlElementSrc.Scheme = "https";
-
 				var components = UriComponents.Scheme | UriComponents.Host | UriComponents.PathAndQuery;
 				if (!htmlElementSrc.Uri.IsDefaultPort)
 				{
 					components |= UriComponents.Port;
 				}
 
-				htmlElement.SetAttribute("src", htmlElementSrc.Uri.GetComponents(components, UriFormat.UriEscaped));
+				htmlElementSrc.Scheme = "https";
+
+				htmlElement.SetAttribute("src", htmlElementSrc.Uri.GetComponents(components, UriFormat.UriEscaped).Trim('/'));
 			}
 		}
 

@@ -65,6 +65,27 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             Assert.AreEqual(ExpectedResult, ampElementSource.Scheme);
         }
 
+		[TestMethod]
+		public void ReturnAmpIFrameElementWithTheSameUrlExceptTheProtocolWhenTheUrlHasNoPorts_Always()
+		{
+			// Arrange
+			const string ExpectedResult = "https://www.mysite.com";
+			var iframeElement = ElementFactory.CreateIFrame();
+			iframeElement.Source = "http://www.mysite.com";
+			ElementFactory.Document.Body.Append(iframeElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("src"));
+		}
+
         [TestMethod]
         public void ReturnAmpIFrameElementWithSourceStartingWithHttpsAndTheOtherPartOfTheUrlPreserved_Always()
         {
