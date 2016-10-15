@@ -131,10 +131,10 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
         }
 
         [TestMethod]
-        public void ReturnAmpIFrameElementWithLayoutAttributeSetToContainer_IfTheOriginalIFrameElementHasNoWidthAndHeightAttributes()
+        public void ReturnAmpIFrameElementWithLayoutAttributeSetToFill_IfTheOriginalIFrameElementHasNoWidthAndHeightAttributes()
         {
             // Arrange
-            const string ExpectedResult = "container";
+            const string ExpectedResult = "fill";
             var iframeElement = ElementFactory.CreateIFrame();
             iframeElement.Source = "http://www.mywebsite.com/example-resource";
             ElementFactory.Document.Body.Append(iframeElement);

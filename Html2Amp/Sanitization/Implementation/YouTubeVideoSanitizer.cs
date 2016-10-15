@@ -66,17 +66,6 @@ namespace Html2Amp.Sanitization.Implementation
             return ampElement;
         }
 
-        protected override void SetMediaElementLayout(IElement element, IElement ampElement)
-        {
-            base.SetMediaElementLayout(element, ampElement);
-
-            // amp-youtube doesn't support container layout, so we need to change it with s.th. else.
-            if (ampElement.GetAttribute("layout") == "container")
-            {
-                ampElement.SetAttribute("layout", "fill");
-            }
-        }
-
         protected virtual void SetVideoParams(IElement ampElement, NameValueCollection videoParams)
         {
             Guard.Requires(ampElement, "ampElement").IsNotNull();

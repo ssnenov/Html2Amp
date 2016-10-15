@@ -305,10 +305,10 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
         }
 
         [TestMethod]
-        public void ReturnAmpImageElementWithLayoutAttributeSetToContainer_IfTheOriginalImageElementHasNoWidthAndHeightAttributesAndShouldDownloadImagesIsNotSpecified()
+        public void ReturnAmpImageElementWithLayoutAttributeSetToFill_IfTheOriginalImageElementHasNoWidthAndHeightAttributesAndShouldDownloadImagesIsNotSpecified()
         {
             // Arrange
-            const string ExpectedResult = "container";
+            const string ExpectedResult = "fill";
             var imageElement = ElementFactory.CreateImage();
             imageElement.Source = "http://www.mywebsite.com/img1.jpg";
 
