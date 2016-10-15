@@ -1,5 +1,11 @@
 **Html2Amp** is a simple converter from HTML code to "AMP Html".
 
+### Build status ###
+| Branch | Build | Nightly Build |
+|:---|------:|--------:|
+Master | [![Build status](https://ci.appveyor.com/api/projects/status/y7lhe4iuu19juwjp/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp/branch/master) | TODO
+Development | TODO | TODO
+
 # Getting started #
 ## 1. Install Html2Amp##
 With the first official release Html2Amp will be available as a nuget package. Until then you can reference Html2Amp.dll to your project.
