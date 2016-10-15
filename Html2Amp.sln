@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Html2Amp.UnitTests", "Html2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9123D9E6-9EBE-4E54-BC35-8232D28D34A6}"
 	ProjectSection(SolutionItems) = preProject
+		CopyTestDataToBin.targets = CopyTestDataToBin.targets
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject

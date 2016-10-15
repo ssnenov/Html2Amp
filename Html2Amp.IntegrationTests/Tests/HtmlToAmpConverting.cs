@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Html2Amp.IntegrationTests.Infrastructure;
 
 namespace Html2Amp.IntegrationTests
 {
