@@ -33,28 +33,6 @@ namespace Html2Amp.Sanitization.Implementation
 			return ampElement;
 		}
 
-		private void SetSourceAttribute(IHtmlInlineFrameElement iframeElement)
-		{
-			//Resources can be requested only via HTTPS
-			var iframeElementSrc = new Uri(iframeElement.Source);
-
-			if (iframeElementSrc.Scheme != "https")
-			{
-				var newUrl = new StringBuilder("https://");
-				newUrl.Append(iframeElementSrc.Host);
-
-				if (!iframeElementSrc.IsDefaultPort)
-				{
-					newUrl.Append(":");
-					newUrl.Append(iframeElementSrc.Port);
-				}
-
-				newUrl.Append(iframeElementSrc.PathAndQuery);
-
-				iframeElement.Source = newUrl.ToString();
-			}
-		}
-
 		private bool IsValidSourceAttribute(IElement htmlElement)
 		{
 			var source = new Uri(htmlElement.GetAttribute("src"));

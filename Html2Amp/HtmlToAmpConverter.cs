@@ -37,6 +37,7 @@ namespace Html2Amp
 			this.sanitizers.Add(new ImageSanitizer());
 			this.sanitizers.Add(new YouTubeVideoSanitizer());
 			this.sanitizers.Add(new IFrameSanitizer());
+            this.sanitizers.Add(new AudioSanitizer());
 
 			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
