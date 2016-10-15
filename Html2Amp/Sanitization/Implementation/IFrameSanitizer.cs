@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-	public class IFrameSanitizer : Sanitizer
+	public class IFrameSanitizer : MediaSanitizer
 	{
 		public override bool CanSanitize(IElement element)
 		{
@@ -31,12 +31,6 @@ namespace Html2Amp.Sanitization.Implementation
 			iframeElement.Parent.ReplaceChild(ampElement, iframeElement);
 
 			return ampElement;
-		}
-
-		protected override void SetElementLayout(IElement element, IElement ampElement)
-		{
-			base.SetElementLayout(element, ampElement);
-			this.SetMediaElementLayout(element, ampElement);
 		}
 
 		private void SetSourceAttribute(IHtmlInlineFrameElement iframeElement)

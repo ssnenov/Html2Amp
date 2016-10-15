@@ -23,31 +23,6 @@ namespace Html2Amp.Sanitization
 			}
 		}
 
-        protected virtual void SetMediaElementLayout(IElement element, IElement ampElement)
-        {
-            Guard.Requires(element, "element").IsNotNull();
-            Guard.Requires(ampElement, "ampElement").IsNotNull();
-
-            if (!ampElement.HasAttribute("layout"))
-            {
-                if (ampElement.HasAttribute("height"))
-                {
-                    if (ampElement.HasAttribute("width"))
-                    {
-                        ampElement.SetAttribute("layout", "responsive");
-                    }
-                    else
-                    {
-                        ampElement.SetAttribute("layout", "fixed-height");
-                    }
-                }
-                else
-                {
-                    ampElement.SetAttribute("layout", "container");
-                }
-            }
-        }
-
 		public void Configure(RunContext runContext)
 		{
 			this.RunContext = runContext;

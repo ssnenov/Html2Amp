@@ -9,7 +9,7 @@ using System.Net;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-	public class ImageSanitizer : Sanitizer
+	public class ImageSanitizer : MediaSanitizer
 	{
 		public override bool CanSanitize(IElement element)
 		{
@@ -41,12 +41,6 @@ namespace Html2Amp.Sanitization.Implementation
 			}
 
 			return document.CreateElement("amp-img");
-		}
-
-		protected override void SetElementLayout(IElement element, IElement ampElement)
-		{
-			base.SetElementLayout(element, ampElement);
-			this.SetMediaElementLayout(element, ampElement);
 		}
 
 		protected override void SetMediaElementLayout(IElement element, IElement ampElement)

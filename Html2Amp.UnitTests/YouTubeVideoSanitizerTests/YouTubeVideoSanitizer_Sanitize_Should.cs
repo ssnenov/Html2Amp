@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Html2Amp.UnitTests.Helpers;
+﻿using AngleSharp.Dom.Html;
 using Html2Amp.Sanitization.Implementation;
-using AngleSharp.Dom.Html;
+using Html2Amp.UnitTests.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 {
@@ -52,17 +51,49 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 		}
 
 		[TestMethod]
-		public void ReturnAmpYouTubeElementWithAttributeLayoutEqulaToResponsive()
+		public void ReturnAmpYouTubeElementWithAttributeLayoutEqualToFill_WhenWidthAndHeightAreNotSpecified()
 		{
 			// Arrange
+            const string ExpectedResult = "fill";
 			var iframe = this.CreateIFrame();
 
 			// Act
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
-			Assert.AreEqual("responsive", actualResult.GetAttribute("layout"));
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
 		}
+
+        [TestMethod]
+        public void ReturnAmpYouTubeElementWithAttributeLayoutEqualToResponsive_WhenBothWidthAndHeightAreSpecified()
+        {
+            // Arrange
+            const string ExpectedResult = "responsive";
+            var iframe = this.CreateIFrame();
+            iframe.DisplayHeight = 100;
+            iframe.DisplayWidth = 100;
+
+            // Act
+            var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+        }
+
+        [TestMethod]
+        public void ReturnAmpYouTubeElementWithAttributeLayoutEqualToFixedHeight_WhenOnlyHeighIsSpecified()
+        {
+            // Arrange
+            const string ExpectedResult = "fixed-height";
+            var iframe = this.CreateIFrame();
+            iframe.DisplayHeight = 100;
+
+            // Act
+            var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+            // Assert
+            Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+        }
 
 		[TestMethod]
 		public void ReturnAmpYouTubeElementWithAttributeWidth()
