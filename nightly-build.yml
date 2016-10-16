@@ -1,0 +1,11 @@
+version: 1.0.{build}
+configuration: Release
+platform: Any CPU
+cache: .\node_modules
+before_build:
+- cmd: nuget restore
+build:
+  parallel: true
+  verbosity: minimal
+before_test:
+- cmd: npm install amphtml-validator
