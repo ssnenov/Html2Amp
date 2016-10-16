@@ -17,7 +17,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
 
 			// Assert
-			Assert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
 
@@ -32,7 +32,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			var actualResult = HtmlTestFileToAmpConverter.Convert(configuration, TestName);
 
 			// Assert
-			Assert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
 
@@ -46,7 +46,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
 
 			// Assert
-			Assert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
 	}
