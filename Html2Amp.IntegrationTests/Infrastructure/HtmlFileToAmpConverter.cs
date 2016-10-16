@@ -18,5 +18,16 @@ namespace Html2Amp.IntegrationTests.Infrastructure
 
 			return ampHtml;
 		}
+
+		public static string Convert(RunConfiguration configuration, string testName)
+		{
+			var html = TestDataProvider.GetInFile(testName);
+			
+			var ampHtml = new HtmlToAmpConverter()
+				.WithConfiguration(configuration)
+				.ConvertFromHtml(html);
+
+			return ampHtml;
+		}
 	}
 }

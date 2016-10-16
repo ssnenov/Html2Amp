@@ -74,6 +74,14 @@
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.out">
       <SubType>Designer</SubType>
     </None>
+    <None Include="TestData\ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl\ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl.in" />
+    <None Include="TestData\ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl\ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl.out">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestData\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages.in" />
+    <None Include="TestData\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages.out">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
