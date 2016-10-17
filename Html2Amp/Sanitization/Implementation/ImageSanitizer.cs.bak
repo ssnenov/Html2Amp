@@ -64,6 +64,8 @@ namespace Html2Amp.Sanitization.Implementation
 			if (!string.IsNullOrEmpty(resultUrl))
 			{
 				ImageSize imageSize;
+				//int width = -1;
+				//int height = -1;
 
 				if (!this.RunContext.ImagesCache.TryGetValue(imageUrl, out imageSize))
 				{

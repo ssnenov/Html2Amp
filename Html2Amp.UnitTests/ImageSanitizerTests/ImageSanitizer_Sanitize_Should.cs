@@ -393,7 +393,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		{
 			// Arrange
 			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
-			runContext.ImagesCache["/images/logo1.png"] = new Models.Image() { Width = 100, Height = 200 };
+			runContext.ImagesCache["/images/logo1.png"] = new Models.ImageSize() { Width = 100, Height = 200 };
 
 			var imageElement = ElementFactory.CreateImage();
 			imageElement.Source = "/images/logo1.png";
