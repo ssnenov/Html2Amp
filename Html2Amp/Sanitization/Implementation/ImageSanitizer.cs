@@ -62,13 +62,31 @@ namespace Html2Amp.Sanitization.Implementation
 
 			if (!string.IsNullOrEmpty(resultUrl))
 			{
-				var image = this.DownloadImage(resultUrl);
+				int width = -1;
+				int height = -1;
 
-				if (image != null)
+				if (this.RunContext.ImagesCache.ContainsKey(imageUrl))
+				{
+					width = this.RunContext.ImagesCache[imageUrl].Width;
+					height = this.RunContext.ImagesCache[imageUrl].Height;
+				}
+				else
+				{
+					var image = this.DownloadImage(resultUrl);
+
+					if (image != null)
+					{
+						width = image.Width;
+						height = image.Height;
+						this.RunContext.ImagesCache[imageUrl] = new Html2Amp.Models.Image() { Width = width, Height = height };
+					}
+				}
+
+				if (width != -1 && height != -1)
 				{
 					// Width & Height should be dynamically generated attributes
-					htmlElement.SetAttribute("width", image.Width.ToString());
-					htmlElement.SetAttribute("height", image.Height.ToString());
+					htmlElement.SetAttribute("width", width.ToString());
+					htmlElement.SetAttribute("height", height.ToString());
 				}
 			}
 			else

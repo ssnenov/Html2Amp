@@ -1,9 +1,6 @@
 ﻿using ComboRox.Core.Utilities.SimpleGuard;
-using System;
+using Html2Amp.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp
 {
@@ -11,11 +8,14 @@ namespace Html2Amp
 	{
 		public RunConfiguration Configuration { get; private set; }
 
+		public Dictionary<string, Image> ImagesCache { get; private set; }
+
 		public RunContext(RunConfiguration configuration)
 		{
 			Guard.Requires(configuration, "configuration").IsNotNull();
 
 			this.Configuration = configuration;
+			this.ImagesCache = new Dictionary<string, Image>();
 
 			this.Initialize();
 		}
