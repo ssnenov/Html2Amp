@@ -78,7 +78,7 @@ namespace Html2Amp.Sanitization.Implementation
 					{
 						width = image.Width;
 						height = image.Height;
-						this.RunContext.ImagesCache[imageUrl] = new Html2Amp.Models.Image() { Width = width, Height = height };
+						this.RunContext.ImagesCache[imageUrl] = new Models.Image() { Width = width, Height = height };
 					}
 				}
 
