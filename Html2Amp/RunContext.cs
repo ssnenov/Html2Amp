@@ -10,6 +10,8 @@ namespace Html2Amp
 	{
 		public RunConfiguration Configuration { get; private set; }
 
+		public Uri RelativeUrlsHostAsUri { get; private set; }
+
 		internal ConcurrentDictionary<string, ImageSize> ImagesCache { get; private set; }
 
 		public RunContext(RunConfiguration configuration)
@@ -24,7 +26,10 @@ namespace Html2Amp
 
 		private void Initialize()
 		{
-			// Here will be the additional initialization
+			if (!string.IsNullOrEmpty(this.Configuration.RelativeUrlsHost))
+			{
+				this.RelativeUrlsHostAsUri = new Uri(this.Configuration.RelativeUrlsHost);
+			}
 		}
 	}
 }

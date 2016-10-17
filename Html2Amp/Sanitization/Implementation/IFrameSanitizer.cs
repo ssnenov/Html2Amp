@@ -31,11 +31,9 @@ namespace Html2Amp.Sanitization.Implementation
 			//iframes could not be in the same origin as the container, unless they do not specify allow-same-origin.
 			if (this.RunContext != null
 				&& this.RunContext.Configuration != null
-				&& !string.IsNullOrEmpty(this.RunContext.Configuration.RelativeUrlsHost))
+				&& this.RunContext.RelativeUrlsHostAsUri != null)
 			{
-				var urlsHost = new Uri(this.RunContext.Configuration.RelativeUrlsHost);
-
-				if (urlsHost.Host == source.Host)
+				if (this.RunContext.RelativeUrlsHostAsUri.Host == source.Host)
 				{
 					if (!string.IsNullOrEmpty(sandbox) && sandbox.Contains("allow-same-origin"))
 					{
