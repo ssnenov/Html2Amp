@@ -1,11 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -13,7 +8,7 @@ namespace Html2Amp.Sanitization.Implementation
 	{
 		public override bool CanSanitize(IElement element)
 		{
-			if(element == null || !(element is IHtmlAnchorElement))
+			if (element == null || !(element is IHtmlAnchorElement))
 			{
 				return false;
 			}

@@ -61,6 +61,7 @@
     <Compile Include="Infrastructure\HtmlFileToAmpConverter.cs" />
     <Compile Include="Infrastructure\TestDataProvider.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
+    <Compile Include="Tests\HrefJavaScriptSanitizationTests\HrefJavaScriptSanitization.cs" />
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ImageSanitizationTests\ImageSanitization.cs" />
@@ -76,6 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\HrefJavaScriptSanitizationWithJavaScriptValue\HrefJavaScriptSanitizationWithJavaScriptValue.in" />
+    <None Include="TestData\HrefJavaScriptSanitizationWithJavaScriptValue\HrefJavaScriptSanitizationWithJavaScriptValue.out" />
+    <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.in" />
+    <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.out" />
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.in" />
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.out">
       <SubType>Designer</SubType>
@@ -89,6 +94,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
