@@ -67,6 +67,7 @@
     <Compile Include="Tests\ImageSanitizationTests\ImageSanitization.cs" />
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
     <Compile Include="Tests\StyleAttributeSanitizationTests\StyleAttributeSanitization.cs" />
+    <Compile Include="Tests\TargetAttributeSanitizationTests\TargetAttributeSanitization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\AMPHtmlTemplate.html" />
@@ -103,6 +104,16 @@
     <None Include="TestData\StyleAttributeSanitizationInMultipleHtmlElements\StyleAttributeSanitizationInMultipleHtmlElements.out" />
     <None Include="TestData\StyleAttributeSanitizationInOneHtmlElement\StyleAttributeSanitizationInOneHtmlElement.in" />
     <None Include="TestData\StyleAttributeSanitizationInOneHtmlElement\StyleAttributeSanitizationInOneHtmlElement.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithFrameNameValue\TargetAttributeSanitizationWithFrameNameValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithFrameNameValue\TargetAttributeSanitizationWithFrameNameValue.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithBlankValue\TargetAttributeSanitizationWithBlankValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithBlankValue\TargetAttributeSanitizationWithBlankValue.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithTopValue\TargetAttributeSanitizationWithTopValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithTopValue\TargetAttributeSanitizationWithTopValue.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.out" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
