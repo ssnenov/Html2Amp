@@ -1,0 +1,3 @@
+﻿<amp-youtube width="640" height="390" data-param-autoplay="1" id="ytplayer"
+	data-param-origin="http://example.com"
+	data-videoid="M7lc1UVf-VE" layout="responsive"></amp-youtube>

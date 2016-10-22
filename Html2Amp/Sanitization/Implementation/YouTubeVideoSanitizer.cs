@@ -2,6 +2,7 @@
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -10,6 +11,8 @@ namespace Html2Amp.Sanitization.Implementation
 {
     public class YouTubeVideoSanitizer : MediaSanitizer
     {
+		protected readonly List<string> AllowedAttribtes = new List<string>() { "width", "height", "id" };
+
         public const string VideoIdRegex = @"^/embed/(?<id>[^/\?]+)/?$";
 
         public override bool CanSanitize(IElement element)
@@ -38,19 +41,7 @@ namespace Html2Amp.Sanitization.Implementation
 
             var ampElement = document.CreateElement("amp-youtube");
 
-            var width = htmlElement.GetAttribute("width");
-            var height = htmlElement.GetAttribute("height");
-
-            if (!string.IsNullOrEmpty(width))
-            {
-                ampElement.SetAttribute("width", width);
-            }
-
-            if (!string.IsNullOrEmpty(height))
-            {
-                ampElement.SetAttribute("height", height);
-            }
-
+			this.SetAttributes(ampElement, htmlElement);
             this.SetElementLayout(htmlElement, ampElement);
 
             Uri videoUri = new Uri(htmlElement.GetAttribute("src"));
@@ -86,5 +77,18 @@ namespace Html2Amp.Sanitization.Implementation
 
             return videoIdMatch.Groups["id"].Value;
         }
+
+		private void SetAttributes(IElement ampElement, IElement htmlElement)
+		{
+			foreach (var attribute in this.AllowedAttribtes)
+			{
+				var attributeValue = htmlElement.GetAttribute(attribute);
+
+				if (!string.IsNullOrEmpty(attributeValue))
+				{
+					ampElement.SetAttribute(attribute, attributeValue);
+				}
+			}
+		}
     }
 }

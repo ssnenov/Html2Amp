@@ -124,6 +124,20 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 		}
 
 		[TestMethod]
+		public void ReturnAmpYouTubeElementWithAttributeId()
+		{
+			// Arrange
+			var iframe = this.CreateIFrame();
+			iframe.Id = "ytbPlayer";
+
+			// Act
+			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+			// Assert
+			Assert.AreEqual("ytbPlayer", actualResult.GetAttribute("id"));
+		}
+
+		[TestMethod]
 		public void ReplaceIFrameWithAmpYouTubeElement()
 		{
 			// Arrange

@@ -68,6 +68,7 @@
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
     <Compile Include="Tests\StyleAttributeSanitizationTests\StyleAttributeSanitization.cs" />
     <Compile Include="Tests\TargetAttributeSanitizationTests\TargetAttributeSanitization.cs" />
+    <Compile Include="Tests\YouTubeVideoSanitizationTests\YouTubeVideoSanitization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\AMPHtmlTemplate.html" />
@@ -114,6 +115,18 @@
     <None Include="TestData\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.out" />
     <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.in" />
     <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithOtherNotAllowedAttributes\YouTubeVideoSanitizationWithOtherNotAllowedAttributes.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithOtherNotAllowedAttributes\YouTubeVideoSanitizationWithOtherNotAllowedAttributes.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithoutWidthAndHeight\YouTubeVideoSanitizationWithoutWidthAndHeight.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithoutWidthAndHeight\YouTubeVideoSanitizationWithoutWidthAndHeight.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithWidthAndHeight\YouTubeVideoSanitizationWithWidthAndHeight.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithWidthAndHeight\YouTubeVideoSanitizationWithWidthAndHeight.out" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
