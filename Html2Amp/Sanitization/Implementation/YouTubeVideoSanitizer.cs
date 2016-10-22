@@ -41,7 +41,7 @@ namespace Html2Amp.Sanitization.Implementation
 
             var ampElement = document.CreateElement("amp-youtube");
 
-			this.SetAttributes(ampElement, htmlElement);
+			htmlElement.CopyAttributes(ampElement, this.AllowedAttribtes);
             this.SetElementLayout(htmlElement, ampElement);
 
             Uri videoUri = new Uri(htmlElement.GetAttribute("src"));
@@ -77,18 +77,5 @@ namespace Html2Amp.Sanitization.Implementation
 
             return videoIdMatch.Groups["id"].Value;
         }
-
-		private void SetAttributes(IElement ampElement, IElement htmlElement)
-		{
-			foreach (var attribute in this.AllowedAttribtes)
-			{
-				var attributeValue = htmlElement.GetAttribute(attribute);
-
-				if (!string.IsNullOrEmpty(attributeValue))
-				{
-					ampElement.SetAttribute(attribute, attributeValue);
-				}
-			}
-		}
     }
 }

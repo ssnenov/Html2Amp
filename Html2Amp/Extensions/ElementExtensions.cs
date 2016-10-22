@@ -20,5 +20,18 @@ namespace AngleSharp.Dom
 				destination.SetAttribute(attribute.Name, attribute.Value);
 			}
 		}
+
+		public static void CopyAttributes(this IElement source, IElement destionation, IEnumerable<string> attributesToCopy)
+		{
+			foreach (var attribute in attributesToCopy)
+			{
+				var attributeValue = source.GetAttribute(attribute);
+
+				if (!string.IsNullOrEmpty(attributeValue))
+				{
+					destionation.SetAttribute(attribute, attributeValue);
+				}
+			}
+		}
 	}
 }
