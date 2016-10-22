@@ -1,0 +1,6 @@
+﻿<div>
+	<script>function func() {alert ('1');} </script>
+	<script>function func2() {alert ('2');} </script>
+	<script>function func3() {alert ('3');} </script>
+	<script src="myscripts.js"></script>
+</div>

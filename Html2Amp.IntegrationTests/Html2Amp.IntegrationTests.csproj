@@ -65,6 +65,7 @@
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ImageSanitizationTests\ImageSanitization.cs" />
+    <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\AMPHtmlTemplate.html" />
@@ -93,6 +94,10 @@
     <None Include="TestData\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages.out">
       <SubType>Designer</SubType>
     </None>
+    <None Include="TestData\ScriptElementSanitizationWithMoreScriptTags\ScriptElementSanitizationWithMoreScriptTags.in" />
+    <None Include="TestData\ScriptElementSanitizationWithMoreScriptTags\ScriptElementSanitizationWithMoreScriptTags.out" />
+    <None Include="TestData\ScriptElementSanitizationWithOneScriptTag\ScriptElementSanitizationWithOneScriptTag.in" />
+    <None Include="TestData\ScriptElementSanitizationWithOneScriptTag\ScriptElementSanitizationWithOneScriptTag.out" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
