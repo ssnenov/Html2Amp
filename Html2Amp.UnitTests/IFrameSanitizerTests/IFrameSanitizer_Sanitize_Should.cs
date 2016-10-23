@@ -194,5 +194,101 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
             // Assert
             Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
         }
+
+		[TestMethod]
+		public void ReturnAmpIFrameElementWithLayoutAttributeSetToNoDisplay_IfTheOriginalIFrameElementHasStyleDisplayNone()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var iframeElement = ElementFactory.CreateIFrame();
+			iframeElement.SetAttribute("style", "display:none");
+			iframeElement.Source = "http://www.mywebsite.com/example-resource";
+			ElementFactory.Document.Body.Append(iframeElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void ReturnAmpIFrameElementWithLayoutAttributeSetToNoDisplay_IfTheOriginalIFrameElementHasStyleVisibilityHidden()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var iframeElement = ElementFactory.CreateIFrame();
+			iframeElement.SetAttribute("style", "visibility:hidden");
+			iframeElement.Source = "http://www.mywebsite.com/example-resource";
+			ElementFactory.Document.Body.Append(iframeElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, iframeElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void CopyAllAttributesFromTheOriginalIFrameElementToTheAmpElement_Always()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateIFrame();
+			htmlElement.Source = "https://www.example.com";
+			htmlElement.Id = "iframeId";
+			htmlElement.ClassName = "someClassName";
+			htmlElement.DisplayWidth = 100;
+			htmlElement.DisplayHeight = 200;
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual("https://www.example.com", actualResult.GetAttribute("src"));
+			Assert.AreEqual("iframeId", actualResult.Id);
+			Assert.AreEqual("someClassName", actualResult.ClassName);
+			Assert.AreEqual(100, int.Parse(actualResult.GetAttribute("width")));
+			Assert.AreEqual(200, int.Parse(actualResult.GetAttribute("height")));
+		}
+
+		[TestMethod]
+		public void CopyAllChildrenFromTheOriginalIFrameElementToTheAmpElement_Always()
+		{
+			// Arrange
+			const int ExpectedResult = 2;
+			var htmlElement = ElementFactory.CreateIFrame();
+			var firstChild = ElementFactory.Create("input");
+			var secondChild = ElementFactory.Create("p");
+			htmlElement.Append(firstChild);
+			htmlElement.Append(secondChild);
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com" });
+
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.Children.Length);
+		}
     }
 }

@@ -49,5 +49,33 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
+
+		[TestMethod]
+		public void ImageSanitizationWithStyleDisplayNone()
+		{
+			// Arrange
+			const string TestName = "ImageSanitizationWithStyleDisplayNone";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
+
+		[TestMethod]
+		public void ImageSanitizationWithStyleVisibilityHidden()
+		{
+			// Arrange
+			const string TestName = "ImageSanitizationWithStyleVisibilityHidden";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
 	}
 }

@@ -97,6 +97,10 @@
     <None Include="TestData\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages\ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages.out">
       <SubType>Designer</SubType>
     </None>
+    <None Include="TestData\ImageSanitizationWithStyleVisibilityHidden\ImageSanitizationWithStyleVisibilityHidden.in" />
+    <None Include="TestData\ImageSanitizationWithStyleVisibilityHidden\ImageSanitizationWithStyleVisibilityHidden.out" />
+    <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.in" />
+    <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.out" />
     <None Include="TestData\ScriptElementSanitizationWithMoreScriptTags\ScriptElementSanitizationWithMoreScriptTags.in" />
     <None Include="TestData\ScriptElementSanitizationWithMoreScriptTags\ScriptElementSanitizationWithMoreScriptTags.out" />
     <None Include="TestData\ScriptElementSanitizationWithOneScriptTag\ScriptElementSanitizationWithOneScriptTag.in" />
@@ -115,6 +119,8 @@
     <None Include="TestData\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.out" />
     <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.in" />
     <None Include="TestData\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.in" />
     <None Include="TestData\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.in" />
@@ -125,6 +131,10 @@
     <None Include="TestData\YouTubeVideoSanitizationWithoutWidthAndHeight\YouTubeVideoSanitizationWithoutWidthAndHeight.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.in" />
     <None Include="TestData\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithStyleDisplayNone\YouTubeVideoSanitizationWithStyleDisplayNone.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithStyleDisplayNone\YouTubeVideoSanitizationWithStyleDisplayNone.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithStyleVisibilityHidden\YouTubeVideoSanitizationWithStyleVisibilityHidden.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithStyleVisibilityHidden\YouTubeVideoSanitizationWithStyleVisibilityHidden.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithWidthAndHeight\YouTubeVideoSanitizationWithWidthAndHeight.in" />
     <None Include="TestData\YouTubeVideoSanitizationWithWidthAndHeight\YouTubeVideoSanitizationWithWidthAndHeight.out" />
   </ItemGroup>

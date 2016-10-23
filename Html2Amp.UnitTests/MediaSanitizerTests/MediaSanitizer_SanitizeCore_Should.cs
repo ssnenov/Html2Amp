@@ -118,7 +118,6 @@ namespace Html2Amp.UnitTests.MediaSanitizerTests
 
 			// Assert
 			Assert.AreEqual(ExpectedResult, actualResult.Children.Length);
-			
 		}
 
 		[TestMethod]

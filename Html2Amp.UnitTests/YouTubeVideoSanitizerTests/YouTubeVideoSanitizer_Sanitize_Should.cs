@@ -28,13 +28,14 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 		public void ReturnAmpYouTubeElement()
 		{
 			// Arrange
+			const string ExpectedResult = "AMP-YOUTUBE";
 			var iframe = this.CreateIFrame();
 
 			// Act
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
-			Assert.AreEqual("AMP-YOUTUBE", actualResult.TagName);
+			Assert.AreEqual(ExpectedResult, actualResult.TagName);
 		}
 
 		[TestMethod]
@@ -96,9 +97,42 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
         }
 
 		[TestMethod]
+		public void ReturnAmpYouTubeElementWithAttributeLayoutEqualToNoDisplay_WhenTheIframeHasStyleDisplayNone()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var iframe = this.CreateIFrame();
+			iframe.DisplayHeight = 100;
+			iframe.SetAttribute("style", "display:none");
+
+			// Act
+			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void ReturnAmpYouTubeElementWithAttributeLayoutEqualToNoDisplay_WhenTheIframeHasStyleVisibilityHidden()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var iframe = this.CreateIFrame();
+			iframe.DisplayHeight = 100;
+			iframe.SetAttribute("style", "visibility:hidden");
+
+			// Act
+			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
 		public void ReturnAmpYouTubeElementWithAttributeWidth()
 		{
 			// Arrange
+			const string ExpectedResult = "30";
 			var iframe = this.CreateIFrame();
 			iframe.DisplayWidth = 30;
 
@@ -106,13 +140,14 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
-			Assert.AreEqual("30", actualResult.GetAttribute("width"));
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("width"));
 		}
 
 		[TestMethod]
 		public void ReturnAmpYouTubeElementWithAttributeHeight()
 		{
 			// Arrange
+			const string ExpectedResult = "50";
 			var iframe = this.CreateIFrame();
 			iframe.DisplayHeight = 50;
 
@@ -120,13 +155,14 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
-			Assert.AreEqual("50", actualResult.GetAttribute("height"));
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("height"));
 		}
 
 		[TestMethod]
 		public void ReturnAmpYouTubeElementWithAttributeId()
 		{
 			// Arrange
+			const string ExpectedResult = "ytbPlayer";
 			var iframe = this.CreateIFrame();
 			iframe.Id = "ytbPlayer";
 
@@ -134,7 +170,7 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
-			Assert.AreEqual("ytbPlayer", actualResult.GetAttribute("id"));
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("id"));
 		}
 
 		[TestMethod]

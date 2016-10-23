@@ -30,6 +30,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		{
 			// Arrange
 			const int ImageSize = 100;
+			const string ExpectedResult = "AMP-IMG";
 			var imageElement = ElementFactory.CreateImage();
 
 			imageElement.DisplayWidth = ImageSize;
@@ -42,7 +43,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual("AMP-IMG", ampElement.TagName);
+			Assert.AreEqual(ExpectedResult, ampElement.TagName);
 		}
 
 		[TestMethod]
@@ -91,6 +92,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		public void ReturnAmpAnimElement_WhenSourceExtensionIsGIF()
 		{
 			// Arrange
+			const string ExpectedResult = "AMP-ANIM";
 			const int ImageSize = 100;
 			var imageElement = ElementFactory.CreateImage();
 
@@ -106,13 +108,14 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual("AMP-ANIM", ampElement.TagName);
+			Assert.AreEqual(ExpectedResult, ampElement.TagName);
 		}
 
 		[TestMethod]
 		public void ReturnAmpImageElementWithLayoutEqualToResponsive_WhenWidthAndHeightAreSpecified()
 		{
 			// Arrange
+			const string ExpectedResult = "responsive";
 			const int ImageSize = 100;
 			var imageElement = ElementFactory.CreateImage();
 
@@ -126,7 +129,43 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual("responsive", ampElement.GetAttribute("layout"));
+			Assert.AreEqual(ExpectedResult, ampElement.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void ReturnAmpImageElementWithLayoutEqualToNoDisplay_WhenTheImageHasAttributeStyleDisplayNone()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var imageElement = ElementFactory.CreateImage();
+			imageElement.SetAttribute("style", "display:none");
+
+			// Adding image element to the document in order to simulate real herarchy
+			ElementFactory.Document.Body.Append(imageElement);
+
+			// Act
+			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, ampElement.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void ReturnAmpImageElementWithLayoutEqualToNoDisplay_WhenTheImageHasAttributeStyleVisibilityHidden()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var imageElement = ElementFactory.CreateImage();
+			imageElement.SetAttribute("style", "visibility:hidden");
+
+			// Adding image element to the document in order to simulate real herarchy
+			ElementFactory.Document.Body.Append(imageElement);
+
+			// Act
+			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, ampElement.GetAttribute("layout"));
 		}
 
 		[TestMethod]
@@ -200,6 +239,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		public void ResolveImageUrl_WhenSourceAttributeIsRelative()
 		{
 			// Arrange
+			const string ExpectedResult = "http://mywebsite.com/images/logo.png";
 			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
 
 			var imageElement = ElementFactory.CreateImage();
@@ -216,7 +256,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual("http://mywebsite.com/images/logo.png", ampElement.GetAttribute("src"));
+			Assert.AreEqual(ExpectedResult, ampElement.GetAttribute("src"));
 		}
 
 		[TestMethod]
@@ -245,6 +285,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		public void SetImageWidth_WhenItIsNotSpecifiedAndTheImageUrlIsValidAndShouldDownloadImagesEqualsTrue()
 		{
 			// Arrange
+			const int ExpectedResult = 100;
 			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com", ShouldDownloadImages = true });
 
 			var imageElement = ElementFactory.CreateImage();
@@ -261,12 +302,13 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual(100, int.Parse(ampElement.GetAttribute("width")));
+			Assert.AreEqual(ExpectedResult, int.Parse(ampElement.GetAttribute("width")));
 		}
 
 		public void SetImageHeight_WhenItIsNotSpecifiedAndTheImageUrlIsValid()
 		{
 			// Arrange
+			const int ExpectedResult = 200;
 			var runContext = new RunContext(new RunConfiguration() { RelativeUrlsHost = "http://mywebsite.com" });
 
 			var imageElement = ElementFactory.CreateImage();
@@ -283,7 +325,7 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 			var ampElement = imageSanitizer.Sanitize(ElementFactory.Document, imageElement);
 
 			// Assert
-			Assert.AreEqual(200, int.Parse(ampElement.GetAttribute("height")));
+			Assert.AreEqual(ExpectedResult, int.Parse(ampElement.GetAttribute("height")));
 		}
 
 		[TestMethod]
@@ -410,6 +452,29 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 
 			// Assert
 			Assert.IsFalse(imageSanitizer.DownloadImageIsCalled);
+		}
+
+		[TestMethod]
+		public void CopyAllAttributesFromTheOriginalImageElementToTheAmpElement_Always()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateImage();
+			htmlElement.Source = "https://www.example.com/img1.png";
+			htmlElement.Id = "imgId";
+			htmlElement.ClassName = "someClassName";
+			htmlElement.DisplayWidth = 100;
+			htmlElement.DisplayHeight = 200;
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			// Act
+			var actualResult = new ImageSanitizer().Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual("https://www.example.com/img1.png", actualResult.GetAttribute("src"));
+			Assert.AreEqual("imgId", actualResult.Id);
+			Assert.AreEqual("someClassName", actualResult.ClassName);
+			Assert.AreEqual(100, int.Parse(actualResult.GetAttribute("width")));
+			Assert.AreEqual(200, int.Parse(actualResult.GetAttribute("height")));
 		}
 	}
 }

@@ -89,5 +89,47 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
+
+		[TestMethod]
+		public void YouTubeVideoSanitizationWithStyleDisplayNone()
+		{
+			// Arrange
+			const string TestName = "YouTubeVideoSanitizationWithStyleDisplayNone";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
+
+		[TestMethod]
+		public void YouTubeVideoSanitizationWithStyleVisibilityHidden()
+		{
+			// Arrange
+			const string TestName = "YouTubeVideoSanitizationWithStyleVisibilityHidden";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
+
+		[TestMethod]
+		public void YouTubeVideoSanitizationWithChildren()
+		{
+			// Arrange
+			const string TestName = "YouTubeVideoSanitizationWithChildren";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
 	}
 }

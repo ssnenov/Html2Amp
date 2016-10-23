@@ -120,5 +120,75 @@ namespace Html2Amp.UnitTests.AudioSanitizerTests
             // Assert
             Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
         }
+
+		[TestMethod]
+		public void ReturnAmpAudioElementWithLayoutAttributeSetToNoDisplay_IfTheOriginalAudioElementHasStyleDisplayNone()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var audioElement = ElementFactory.CreateAudio();
+			audioElement.SetAttribute("style", "display:none");
+			ElementFactory.Document.Body.Append(audioElement);
+
+			// Act
+			var actualResult = new AudioSanitizer().Sanitize(ElementFactory.Document, audioElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void ReturnAmpAudioElementWithLayoutAttributeSetToNoDisplay_IfTheOriginalAudioElementHasStyleVisibilityHidden()
+		{
+			// Arrange
+			const string ExpectedResult = "nodisplay";
+			var audioElement = ElementFactory.CreateAudio();
+			audioElement.SetAttribute("style", "visibility:hidden");
+			ElementFactory.Document.Body.Append(audioElement);
+
+			// Act
+			var actualResult = new AudioSanitizer().Sanitize(ElementFactory.Document, audioElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.GetAttribute("layout"));
+		}
+
+		[TestMethod]
+		public void CopyAllAttributesFromTheOriginalAudioElementToTheAmpElement_Always()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateAudio();
+			htmlElement.Source = "https://www.example.com";
+			htmlElement.Id = "audioId";
+			htmlElement.ClassName = "someClassName";
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			// Act
+			var actualResult = new AudioSanitizer().Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual("https://www.example.com", actualResult.GetAttribute("src"));
+			Assert.AreEqual("audioId", actualResult.Id);
+			Assert.AreEqual("someClassName", actualResult.ClassName);
+		}
+
+		[TestMethod]
+		public void CopyAllChildrenFromTheOriginalAudioElementToTheAmpElement_Always()
+		{
+			// Arrange
+			const int ExpectedResult = 2;
+			var htmlElement = ElementFactory.CreateAudio();
+			var firstChild = ElementFactory.Create("input");
+			var secondChild = ElementFactory.Create("p");
+			htmlElement.Append(firstChild);
+			htmlElement.Append(secondChild);
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			// Act
+			var actualResult = new AudioSanitizer().Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual(ExpectedResult, actualResult.Children.Length);
+		}
     }
 }
