@@ -10,7 +10,12 @@ namespace AngleSharp.Dom
 	{
 		public static void CopyTo(this IElement source, IElement destination)
 		{
-			foreach (var node in source.Children)
+			// We should copy the children of the source element because
+			// when we append the child to the destionation, AngleSharp
+			// removes the node from the source element.
+			var sourceChildren = source.Children.ToList();
+
+			foreach (var node in sourceChildren)
 			{
 				destination.AppendChild(node);
 			}

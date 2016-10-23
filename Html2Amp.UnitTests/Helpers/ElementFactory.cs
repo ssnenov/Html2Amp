@@ -1,4 +1,5 @@
-﻿using AngleSharp.Dom;
+﻿using AngleSharp;
+using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace Html2Amp.UnitTests.Helpers
 {
 	public class ElementFactory
 	{
-		private static readonly IHtmlDocument document = new HtmlParser().Parse(string.Empty);
+		private static readonly IHtmlDocument document = new HtmlParser(Configuration.Default.WithCss()).Parse(string.Empty);
 
 		public static IHtmlDocument Document
 		{
@@ -24,7 +25,8 @@ namespace Html2Amp.UnitTests.Helpers
 
         public static IElement CreateFromHtmlString(string html)
         {
-            IHtmlDocument document = new HtmlParser().Parse(html);
+			var config = Configuration.Default.WithCss();
+            IHtmlDocument document = new HtmlParser(config).Parse(html);
 
             return document.Body.Children.First();
         }

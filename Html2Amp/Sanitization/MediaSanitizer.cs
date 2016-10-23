@@ -22,9 +22,9 @@ namespace Html2Amp.Sanitization
 
 			if (!ampElement.HasAttribute("layout"))
 			{
-				if (ampElement.HasAttribute("height"))
+				if (element.HasAttribute("height"))
 				{
-					if (ampElement.HasAttribute("width"))
+					if (element.HasAttribute("width"))
 					{
 						ampElement.SetAttribute("layout", "responsive");
 					}
