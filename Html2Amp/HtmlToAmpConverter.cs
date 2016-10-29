@@ -2,6 +2,7 @@
 using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
+using ComboRox.Core.Utilities.SimpleGuard;
 using Html2Amp.Sanitization;
 using Html2Amp.Sanitization.Implementation;
 using System.Collections.Generic;
@@ -55,6 +56,11 @@ namespace Html2Amp
 			this.sanitizers.Add(new TargetAttributeSanitizer());
 		}
 
+		/// <summary>
+		/// Sets the collection of <see cref="ISanitizer"/> which will be used for convertion.
+		/// </summary>
+		/// <param name="sanitizers">Collection of <see cref="ISanitizer"/></param>
+		/// <returns><see cref="HtmlToAmpConverter"/></returns>
 		public HtmlToAmpConverter WithSanitizers(HashSet<ISanitizer> sanitizers)
 		{
 			this.sanitizers = sanitizers;
@@ -62,6 +68,11 @@ namespace Html2Amp
 			return this;
 		}
 
+		/// <summary>
+		/// Sets the <see cref="RunConfiguration" /> which will be used for convertion.
+		/// </summary>
+		/// <param name="configuration">The <see cref="RunConfiguration"/></param>
+		/// <returns><see cref="HtmlToAmpConverter"/></returns>
 		public HtmlToAmpConverter WithConfiguration(RunConfiguration configuration)
 		{
 			this.configuration = configuration;
@@ -69,12 +80,15 @@ namespace Html2Amp
 			return this;
 		}
 
-		public string ConvertFromHtml(string htmlSource)
+		/// <summary>
+		/// Converts HTML to "AMP HTML".
+		/// </summary>
+		/// <param name="htmlSource">HTML source code to be converted.</param>
+		/// <exception cref="ArgumentNullException">When <paramref name="htmlSource"/> is null or empty string.</exception>
+		/// <returns>Returns <see cref="ConvertionResult"/> which contains the result of the convertion.</returns>
+		public ConvertionResult ConvertFromHtml(string htmlSource)
 		{
-			if (string.IsNullOrEmpty(htmlSource))
-			{
-				return string.Empty;
-			}
+			Guard.Requires(htmlSource, "htmlSource").IsNotNullOrEmpty();
 
 			IHtmlDocument document = new HtmlParser(this.angleSharpConfig).Parse(htmlSource);
 			IHtmlHtmlElement htmlElement = (IHtmlHtmlElement)document.DocumentElement;
@@ -83,7 +97,9 @@ namespace Html2Amp
 
 			ConvertFromHtmlElement(document, document.Body);
 
-			return document.Body.InnerHtml;
+			return new ConvertionResult {
+				AmpHtml = document.Body.InnerHtml
+			};
 		}
 
 		private void EnsureInitilized()

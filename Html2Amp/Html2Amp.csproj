@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertionResult.cs" />
     <Compile Include="Extensions\ElementExtensions.cs" />
     <Compile Include="HtmlToAmpConverter.cs" />
     <Compile Include="Models\ImageSize.cs" />

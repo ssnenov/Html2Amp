@@ -14,20 +14,20 @@ namespace Html2Amp.IntegrationTests.Infrastructure
 		{
 			var html = TestDataProvider.GetInFile(testName);
 			
-			var ampHtml = new HtmlToAmpConverter().ConvertFromHtml(html);
+			var convertionResult = new HtmlToAmpConverter().ConvertFromHtml(html);
 
-			return ampHtml;
+			return convertionResult.AmpHtml;
 		}
 
 		public static string Convert(RunConfiguration configuration, string testName)
 		{
 			var html = TestDataProvider.GetInFile(testName);
 			
-			var ampHtml = new HtmlToAmpConverter()
+			var convertionResult = new HtmlToAmpConverter()
 				.WithConfiguration(configuration)
 				.ConvertFromHtml(html);
 
-			return ampHtml;
+			return convertionResult.AmpHtml;
 		}
 	}
 }

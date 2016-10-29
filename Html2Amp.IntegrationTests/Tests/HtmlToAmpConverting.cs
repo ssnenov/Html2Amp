@@ -15,7 +15,7 @@ namespace Html2Amp.IntegrationTests
 			var htmlToAmpConverter = new HtmlToAmpConverter();
 
 			// Act
-			string ampHtml = htmlToAmpConverter.ConvertFromHtml(htmlToConvert);
+			string ampHtml = htmlToAmpConverter.ConvertFromHtml(htmlToConvert).AmpHtml;
 
 			// Assert
 			Assert.AreEqual("<amp-img src=\"test-image.png\" width=\"100\" height=\"100\" layout=\"responsive\"></amp-img>", ampHtml);
@@ -33,7 +33,7 @@ namespace Html2Amp.IntegrationTests
 			var htmlToAmpConverter = new HtmlToAmpConverter();
 
 			// Act
-			string ampHtml = htmlToAmpConverter.ConvertFromHtml(htmlToConvert);
+			string ampHtml = htmlToAmpConverter.ConvertFromHtml(htmlToConvert).AmpHtml;
 
 			// Assert
 			Assert.AreEqual("<a href=\"#\">link</a>", ampHtml);
