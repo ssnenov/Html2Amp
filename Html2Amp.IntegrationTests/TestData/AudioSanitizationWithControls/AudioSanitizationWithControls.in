@@ -1,0 +1,4 @@
+﻿<audio controls>
+	<source src="myaudio.ogg" type="audio/ogg">
+  Your browser does not support the audio tag.
+</audio>

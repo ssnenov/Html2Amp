@@ -65,6 +65,7 @@
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\IFrameSanitizationTests\IframeSanitization.cs" />
+    <Compile Include="Tests\AudioSanitizationTests\AudioSanitization.cs" />
     <Compile Include="Tests\ImageSanitizationTests\ImageSanitization.cs" />
     <Compile Include="Tests\JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitization.cs" />
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
@@ -88,6 +89,8 @@
     <None Include="TestData\HrefJavaScriptSanitizationWithJavaScriptValue\HrefJavaScriptSanitizationWithJavaScriptValue.out" />
     <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.in" />
     <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.out" />
+    <None Include="TestData\AudioSanitizationWithControls\AudioSanitizationWithControls.in" />
+    <None Include="TestData\AudioSanitizationWithControls\AudioSanitizationWithControls.out" />
     <None Include="TestData\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.in" />
     <None Include="TestData\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.out" />
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.in" />
