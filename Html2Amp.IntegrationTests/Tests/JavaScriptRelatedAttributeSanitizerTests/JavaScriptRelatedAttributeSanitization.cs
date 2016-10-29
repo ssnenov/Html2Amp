@@ -8,7 +8,7 @@ namespace Html2Amp.IntegrationTests.Tests.JavaScriptRelatedAttributeSanitizerTes
 	public class JavaScriptRelatedAttributeSanitizer
 	{
 		[TestMethod]
-		public void JavaScriptRelatedAttributeSanitization()
+		public void JavaScriptRelatedAttribute()
 		{
 			// Arrange
 			const string TestName = "JavaScriptRelatedAttributeSanitization";

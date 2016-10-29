@@ -65,10 +65,11 @@
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ImageSanitizationTests\ImageSanitization.cs" />
-    <Compile Include="Tests\JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitizer.cs" />
+    <Compile Include="Tests\JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitization.cs" />
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
     <Compile Include="Tests\StyleAttributeSanitizationTests\StyleAttributeSanitization.cs" />
     <Compile Include="Tests\TargetAttributeSanitizationTests\TargetAttributeSanitization.cs" />
+    <Compile Include="Tests\XmlAttributeSanitizationTests\XmlAttributesSanitization.cs" />
     <Compile Include="Tests\YouTubeVideoSanitizationTests\YouTubeVideoSanitization.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,8 @@
     <None Include="TestData\ImageSanitizationWithStyleVisibilityHidden\ImageSanitizationWithStyleVisibilityHidden.out" />
     <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.in" />
     <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.out" />
+    <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.in" />
+    <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.out" />
     <None Include="TestData\JavaScriptRelatedAttributeSanitization\JavaScriptRelatedAttributeSanitization.in" />
     <None Include="TestData\JavaScriptRelatedAttributeSanitization\JavaScriptRelatedAttributeSanitization.out" />
     <None Include="TestData\ScriptElementSanitizationWithMoreScriptTags\ScriptElementSanitizationWithMoreScriptTags.in" />
