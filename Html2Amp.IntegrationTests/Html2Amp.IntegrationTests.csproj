@@ -109,6 +109,8 @@
     <None Include="TestData\StyleAttributeSanitizationInMultipleHtmlElements\StyleAttributeSanitizationInMultipleHtmlElements.out" />
     <None Include="TestData\StyleAttributeSanitizationInOneHtmlElement\StyleAttributeSanitizationInOneHtmlElement.in" />
     <None Include="TestData\StyleAttributeSanitizationInOneHtmlElement\StyleAttributeSanitizationInOneHtmlElement.out" />
+    <None Include="TestData\TargetAttributeSanitizationWithoutValue\TargetAttributeSanitizationWithoutValue.in" />
+    <None Include="TestData\TargetAttributeSanitizationWithoutValue\TargetAttributeSanitizationWithoutValue.out" />
     <None Include="TestData\TargetAttributeSanitizationWithFrameNameValue\TargetAttributeSanitizationWithFrameNameValue.in" />
     <None Include="TestData\TargetAttributeSanitizationWithFrameNameValue\TargetAttributeSanitizationWithFrameNameValue.out" />
     <None Include="TestData\TargetAttributeSanitizationWithBlankValue\TargetAttributeSanitizationWithBlankValue.in" />

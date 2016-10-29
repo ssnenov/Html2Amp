@@ -108,5 +108,33 @@ namespace Html2Amp.UnitTests.UrlHandlerTests
             // Assert
             Assert.AreEqual("http://mydomain.com/images/pic.jpg", actualResult);
         }
+
+		[TestMethod]
+        public void ReturnResultUrlWithHttp_WhenTheUrlIsProtocolInvariantAndHostIsWithHttp()
+        {
+            // Arrange
+            var host = "http://mydomain.com/";
+            var url = "//mywebsite.com/images/pic.jpg";
+
+            // Act
+            var actualResult = this.UrlHandler.TryResolveUrl(host, url);
+
+            // Assert
+            Assert.AreEqual("http://mywebsite.com/images/pic.jpg", actualResult);
+        }
+
+		[TestMethod]
+        public void ReturnResultUrlWithHttps_WhenTheUrlIsProtocolInvariantAndHostIsWithHttps()
+        {
+            // Arrange
+            var host = "https://mydomain.com/";
+            var url = "//mywebsite.com/images/pic.jpg";
+
+            // Act
+            var actualResult = this.UrlHandler.TryResolveUrl(host, url);
+
+            // Assert
+            Assert.AreEqual("https://mywebsite.com/images/pic.jpg", actualResult);
+        }
     }
 }

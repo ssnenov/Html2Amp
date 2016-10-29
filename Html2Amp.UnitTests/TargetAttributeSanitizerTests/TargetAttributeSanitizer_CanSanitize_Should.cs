@@ -65,5 +65,19 @@ namespace Html2Amp.UnitTests.TargetAttributeSanitizerTests
 			// Assert
 			Assert.IsTrue(actualResult);
 		}
+
+		[TestMethod]
+		public void ReturnTrue_WhenElementHasTargetAttributeEqualEmptyString()
+		{
+			// Arrange
+			var linkElement = ElementFactory.CreateAnchor();
+			linkElement.SetAttribute("target", string.Empty);
+
+			// Act
+			var actualResult = new TargetAttributeSanitizer().CanSanitize(linkElement);
+
+			// Assert
+			Assert.IsTrue(actualResult);
+		}
 	}
 }

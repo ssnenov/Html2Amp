@@ -15,7 +15,7 @@ namespace Html2Amp.Sanitization.Implementation
 
 			var targetAttributeValue = element.GetAttribute("target");
 
-			return !string.IsNullOrEmpty(targetAttributeValue) && targetAttributeValue != "_blank";
+			return targetAttributeValue != null && targetAttributeValue != "_blank";
 		}
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)

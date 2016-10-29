@@ -21,6 +21,20 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 		}
 
 		[TestMethod]
+		public void TargetAttributeSanitizationWithoutValue()
+		{
+			// Arrange
+			const string TestName = "TargetAttributeSanitizationWithoutValue";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
+
+		[TestMethod]
 		public void TargetAttributeSanitizationWithFrameNameValue()
 		{
 			// Arrange
