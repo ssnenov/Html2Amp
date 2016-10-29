@@ -28,7 +28,7 @@ namespace Html2Amp.Sanitization.Implementation
 			var source = new Uri(htmlElement.GetAttribute("src"));
 			var sandbox = htmlElement.GetAttribute("sandbox");
 
-			//iframes could not be in the same origin as the container, unless they do not specify allow-same-origin.
+			// iframes could not be in the same origin as the container, unless they do not specify allow-same-origin.
 			if (this.RunContext != null
 				&& this.RunContext.Configuration != null
 				&& this.RunContext.RelativeUrlsHostAsUri != null)
