@@ -13,6 +13,7 @@ namespace Html2Amp.PerfTests
 		public static void Main(string[] args)
 		{
 			BenchmarkRunner.Run<ElementExtensions_CopyTo>();
+			BenchmarkRunner.Run<HtmlConverting>();
 		}
 	}
 }

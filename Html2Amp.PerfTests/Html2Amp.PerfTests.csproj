@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElementExtensionsTests\ElementExtensions_CopyTo.cs" />
+    <Compile Include="Html2AmpConverting\ConvertingImageElement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
