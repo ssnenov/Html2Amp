@@ -11,9 +11,9 @@ namespace Html2Amp
 {
 	public class HtmlToAmpConverter
 	{
-		private IConfiguration angleSharpConfig { get; set; }
+		private HtmlParser parser;
 
-		private HashSet<ISanitizer> sanitizers { get; set; }
+		private HashSet<ISanitizer> sanitizers;
 
 		private RunConfiguration configuration;
 
@@ -28,7 +28,7 @@ namespace Html2Amp
 			// We should load the css engine of AngleSharp,
 			//otherwise it doesn't pasre the css.
 			// https://github.com/AngleSharp/AngleSharp/issues/90
-			this.angleSharpConfig = Configuration.Default.WithCss();
+			this.parser = new HtmlParser(Configuration.Default.WithCss());
 			this.configuration = new RunConfiguration();
 			this.sanitizers = new HashSet<ISanitizer>();
 
@@ -90,7 +90,7 @@ namespace Html2Amp
 		{
 			Guard.Requires(htmlSource, "htmlSource").IsNotNullOrEmpty();
 
-			IHtmlDocument document = new HtmlParser(this.angleSharpConfig).Parse(htmlSource);
+			IHtmlDocument document = parser.Parse(htmlSource);
 			IHtmlHtmlElement htmlElement = (IHtmlHtmlElement)document.DocumentElement;
 
 			this.EnsureInitilized();
