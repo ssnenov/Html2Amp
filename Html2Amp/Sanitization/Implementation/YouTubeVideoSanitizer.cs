@@ -28,7 +28,7 @@ namespace Html2Amp.Sanitization.Implementation
             if (Uri.TryCreate(sourceAttributeValue, UriKind.Absolute, out sourceUri))
             {
                 return sourceUri.LocalPath.StartsWith("/embed/")
-                    && Regex.IsMatch(sourceUri.Host, @"^(www\.)?youtube\.com$");
+                    && Regex.IsMatch(sourceUri.Host, @"^(www\.)?youtube(-nocookie)?\.com$");
             }
 
             return false;

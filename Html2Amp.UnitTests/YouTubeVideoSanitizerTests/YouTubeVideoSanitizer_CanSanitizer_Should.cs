@@ -99,5 +99,19 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 			// Assert
 			Assert.IsTrue(actualResult);
 		}
+
+		[TestMethod]
+		public void ReturnTrue_WhenSourceAttributeIsYouTubeNoCookie()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateIFrame();
+			htmlElement.Source = "http://www.youtube-nocookie.com/embed/d8fr3AdK_tQ4";
+
+			// Act
+			var actualResult = new YouTubeVideoSanitizer().CanSanitize(htmlElement);
+
+			// Assert
+			Assert.IsTrue(actualResult);
+		}
 	}
 }

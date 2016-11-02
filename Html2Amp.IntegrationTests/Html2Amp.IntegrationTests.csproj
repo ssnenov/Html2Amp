@@ -141,6 +141,8 @@
     <None Include="TestData\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.in" />
     <None Include="TestData\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.out" />
+    <None Include="TestData\YouTubeVideoSanitizationWithNoCookieHost\YouTubeVideoSanitizationWithNoCookieHost.in" />
+    <None Include="TestData\YouTubeVideoSanitizationWithNoCookieHost\YouTubeVideoSanitizationWithNoCookieHost.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithOtherNotAllowedAttributes\YouTubeVideoSanitizationWithOtherNotAllowedAttributes.in" />
     <None Include="TestData\YouTubeVideoSanitizationWithOtherNotAllowedAttributes\YouTubeVideoSanitizationWithOtherNotAllowedAttributes.out" />
     <None Include="TestData\YouTubeVideoSanitizationWithoutWidthAndHeight\YouTubeVideoSanitizationWithoutWidthAndHeight.in" />

@@ -131,5 +131,19 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
 			AmpAssert.IsValidAmp(TestName);
 		}
+
+		[TestMethod]
+		public void YouTubeVideoSanitizationWithNoCookieHost()
+		{
+			// Arrange
+			const string TestName = "YouTubeVideoSanitizationWithNoCookieHost";
+
+			// Act
+			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+
+			// Assert
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
+			AmpAssert.IsValidAmp(TestName);
+		}
 	}
 }
