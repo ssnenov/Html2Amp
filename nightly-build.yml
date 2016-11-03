@@ -8,4 +8,4 @@ build:
   parallel: true
   verbosity: minimal
 before_test:
-- cmd: npm install amphtml-validator
+- cmd: npm install amphtml-validator@1.0.13
