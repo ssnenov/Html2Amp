@@ -92,3 +92,5 @@ Todo
 [https://www.ampproject.org/docs/reference/extended.html](Link URL)
 
 [https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md](Link URL)
+
+[https://www.smashingmagazine.com/2016/02/everything-about-google-accelerated-mobile-pages](Link URL)
