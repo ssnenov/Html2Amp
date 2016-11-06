@@ -8,6 +8,3 @@ build:
   verbosity: minimal
 test:
   assemblies: .\Html2Amp.UnitTests\bin\Release\*UnitTests.dll
-branches:
-  except:
-    - master

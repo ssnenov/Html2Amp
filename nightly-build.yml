@@ -9,6 +9,3 @@ build:
   verbosity: minimal
 before_test:
 - cmd: npm install amphtml-validator@1.0.13
-branches:
-  except:
-    - master
