@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-    public class YouTubeVideoSanitizer : MediaSanitizer
+    public class YouTubeVideoSanitizer : MediaSanitizer, IScriptsDependable
     {
 		protected readonly List<string> AllowedAttribtes = new List<string>() { "width", "height", "id" };
 
@@ -77,5 +77,10 @@ namespace Html2Amp.Sanitization.Implementation
 
             return videoIdMatch.Groups["id"].Value;
         }
-    }
+
+		public virtual IList<string> GetScriptsDependencies()
+		{
+			return new string[] { "https://cdn.ampproject.org/v0/amp-youtube-0.1.js" };
+		}
+	}
 }

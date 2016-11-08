@@ -1,11 +1,18 @@
-﻿using AngleSharp.Dom;
+﻿using System;
+using System.Collections.Generic;
+using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-	public class AudioSanitizer : MediaSanitizer
+	public class AudioSanitizer : MediaSanitizer, IScriptsDependable
 	{
+		protected override bool ShoulRequestResourcesOnlyViaHttps
+		{
+			get { return true; }
+		}
+
 		public override bool CanSanitize(IElement element)
 		{
 			return element != null && element is IHtmlAudioElement;
@@ -44,9 +51,9 @@ namespace Html2Amp.Sanitization.Implementation
 			}
 		}
 
-		protected override bool ShoulRequestResourcesOnlyViaHttps
+		public virtual IList<string> GetScriptsDependencies()
 		{
-			get { return true; }
+			return new string[] { "https://cdn.ampproject.org/v0/amp-audio-0.1.js" };
 		}
 	}
 }

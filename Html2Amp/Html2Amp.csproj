@@ -71,6 +71,7 @@
     <Compile Include="Sanitization\Implementation\XmlAttributeSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\YouTubeVideoSanitizer.cs" />
     <Compile Include="Sanitization\ISanitizer.cs" />
+    <Compile Include="Sanitization\IScriptsDependable.cs" />
     <Compile Include="Sanitization\MediaSanitizer.cs" />
     <Compile Include="Sanitization\Sanitizer.cs" />
     <Compile Include="Web\UrlHandler.cs" />

@@ -6,6 +6,7 @@ using ComboRox.Core.Utilities.SimpleGuard;
 using Html2Amp.Sanitization;
 using Html2Amp.Sanitization.Implementation;
 using System.Collections.Generic;
+using System;
 
 namespace Html2Amp
 {
@@ -45,7 +46,7 @@ namespace Html2Amp
 			this.sanitizers.Add(new ImageSanitizer());
 			this.sanitizers.Add(new YouTubeVideoSanitizer());
 			this.sanitizers.Add(new IFrameSanitizer());
-            this.sanitizers.Add(new AudioSanitizer());
+			this.sanitizers.Add(new AudioSanitizer());
 
 			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
@@ -95,11 +96,13 @@ namespace Html2Amp
 
 			this.EnsureInitilized();
 
-			ConvertFromHtmlElement(document, document.Body);
+			var result = new ConvertionResult();
 
-			return new ConvertionResult {
-				AmpHtml = document.Body.InnerHtml
-			};
+			ConvertFromHtmlElement(result, document, document.Body);
+
+			result.AmpHtml = document.Body.InnerHtml;
+
+			return result;
 		}
 
 		private void EnsureInitilized()
@@ -127,13 +130,14 @@ namespace Html2Amp
 			}
 		}
 
-		private void ConvertFromHtmlElement(IDocument document, IElement htmlElement)
+		private void ConvertFromHtmlElement(ConvertionResult result, IDocument document, IElement htmlElement)
 		{
 			foreach (var sanitizer in sanitizers)
 			{
 				if (sanitizer.CanSanitize(htmlElement))
 				{
 					htmlElement = sanitizer.Sanitize(document, htmlElement);
+					this.ExtractDependencies(result, sanitizer);
 					if (htmlElement == null) // If the element is removed
 					{
 						break;
@@ -145,7 +149,20 @@ namespace Html2Amp
 			{
 				foreach (var childElement in htmlElement.Children)
 				{
-					ConvertFromHtmlElement(document, childElement);
+					ConvertFromHtmlElement(result, document, childElement);
+				}
+			}
+		}
+
+		private void ExtractDependencies(ConvertionResult result, ISanitizer sanitizer)
+		{
+			var scriptsDependableSanitizer = sanitizer as IScriptsDependable;
+			if (scriptsDependableSanitizer != null)
+			{
+				Type sanitizerType = scriptsDependableSanitizer.GetType();
+				if (!result.scriptsReferenciesBucket.ContainsKey(sanitizerType))
+				{
+					result.scriptsReferenciesBucket.Add(sanitizerType, scriptsDependableSanitizer.GetScriptsDependencies());
 				}
 			}
 		}

@@ -3,11 +3,17 @@ using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Html2Amp.Sanitization.Implementation
 {
-	public class IFrameSanitizer : MediaSanitizer
+	public class IFrameSanitizer : MediaSanitizer, IScriptsDependable
 	{
+		protected override bool ShoulRequestResourcesOnlyViaHttps
+		{
+			get { return true; }
+		}
+
 		public override bool CanSanitize(IElement element)
 		{
 			return element != null
@@ -17,10 +23,10 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
-            Guard.Requires(document, "document").IsNotNull();
-            Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+			Guard.Requires(document, "document").IsNotNull();
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-            return this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
+			return this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
 		}
 
 		private bool IsValidSourceAttribute(IElement htmlElement)
@@ -49,9 +55,9 @@ namespace Html2Amp.Sanitization.Implementation
 			return false;
 		}
 
-        protected override bool ShoulRequestResourcesOnlyViaHttps
-        {
-            get { return true; }
-        }
-    }
+		public virtual IList<string> GetScriptsDependencies()
+		{
+			return new[] { "https://cdn.ampproject.org/v0/amp-iframe-0.1.js" };
+		}
+	}
 }
