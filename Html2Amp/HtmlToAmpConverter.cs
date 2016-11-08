@@ -5,8 +5,8 @@ using AngleSharp.Parser.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using Html2Amp.Sanitization;
 using Html2Amp.Sanitization.Implementation;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Html2Amp
 {
@@ -47,7 +47,7 @@ namespace Html2Amp
 			this.sanitizers.Add(new ImageSanitizer());
 			this.sanitizers.Add(new YouTubeVideoSanitizer());
 			this.sanitizers.Add(new IFrameSanitizer());
-			this.sanitizers.Add(new AudioSanitizer());
+            this.sanitizers.Add(new AudioSanitizer());
 
 			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
@@ -148,9 +148,10 @@ namespace Html2Amp
 
 			if (htmlElement != null)
 			{
-				foreach (var childElement in htmlElement.Children)
+				IHtmlCollection<IElement> children = htmlElement.Children;
+				for (int i = 0; i < children.Length; i++)
 				{
-					ConvertFromHtmlElement(result, document, childElement);
+					ConvertFromHtmlElement(result, document, children[i]);
 				}
 			}
 		}
