@@ -1,11 +1,7 @@
 ﻿using AngleSharp.Dom;
 using Html2Amp.Sanitization.Implementation;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Html2Amp.UnitTests.Accessors
 {
