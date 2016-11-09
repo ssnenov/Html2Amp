@@ -17,5 +17,8 @@
             <reference file="DotNetGuard.dll" />
             <reference file="Html2Amp.dll" />
         </references>
+		<files>
+			<file src="Referenced Assemblies\DotNetGuard.dll" target="Referenced Assemblies"/>
+		</files>
     </metadata>
 </package>
