@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>HtmlToAmp</id>
+        <version>0.0.1</version>
+        <title>HtmlToAmp</title>
+        <authors>Simeon Nenov,Izabel Gandileva</authors>
+        <owners>Simeon Nenov,Izabel Gandileva</owners>
+        <projectUrl>https://github.com/ssnenov/Html2Amp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Html2Amp is a library for converting regular html to AMP html.</description>
+        <tags>html amp convert</tags>
+        <dependencies>
+            <dependency id="AngleSharp" version="0.9.8" />
+        </dependencies>
+        <references>
+            <reference file="DotNetGuard.dll" />
+            <reference file="Html2Amp.dll" />
+        </references>
+    </metadata>
+</package>
