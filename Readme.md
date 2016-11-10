@@ -1,14 +1,18 @@
 **Html2Amp** is a simple converter from HTML code to "AMP Html".
 
 ### Build status ###
-| Branch | Build | Nightly Build |
-|:---|------:|--------:|
-Master | [![Build status](https://ci.appveyor.com/api/projects/status/y7lhe4iuu19juwjp/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/6b7s053qpbgdlm9s/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-dvv32/branch/master)
-Development | TODO | TODO
+| Branch | Build | Nightly Build | Release
+|:---|------:|--------:|--------:|
+Master | | | [![Build status](https://ci.appveyor.com/api/projects/status/q4j9xhm3sexjhalc/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-3pdec/branch/master)
+Development | [![Build status](https://ci.appveyor.com/api/projects/status/y7lhe4iuu19juwjp/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/6b7s053qpbgdlm9s/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-dvv32/branch/master)
 
 # Getting started #
 ## 1. Install Html2Amp##
-With the first official release Html2Amp will be available as a nuget package. Until then you can reference Html2Amp.dll to your project.
+- Install "HtmlToAmp" package using the "Package Manager Console" in Visual Studio.
+```
+Install-Package HtmlToAmp
+```
+- Download the package from [nuget.org](//www.nuget.org/packages/HtmlToAmp).
 
 ## 2. Writing code ##
 ### 2.1 Simple usage ###
