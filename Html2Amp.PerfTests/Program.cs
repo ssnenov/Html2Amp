@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using Html2Amp.PerfTests.ElementExtensionsTests;
 using Html2Amp.PerfTests.Html2AmpConverting;
 
 namespace Html2Amp.PerfTests
@@ -7,8 +8,8 @@ namespace Html2Amp.PerfTests
 	{
 		public static void Main()
 		{
-			//BenchmarkRunner.Run<ElementExtensions_CopyTo>();
-			//BenchmarkRunner.Run<HtmlConverting>();
+			BenchmarkRunner.Run<ElementExtensions_CopyTo>();
+			BenchmarkRunner.Run<HtmlConverting>();
 			BenchmarkRunner.Run<ScriptDependencies>();
 		}
 	}
