@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Dom;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -8,8 +9,20 @@ namespace Html2Amp.Sanitization.Implementation
 	{
 		public override bool CanSanitize(IElement element)
 		{
-			return base.CanSanitize(element)
-				&& element.GetAttribute("src").EndsWith(".gif", StringComparison.OrdinalIgnoreCase);
+			if (base.CanSanitize(element))
+			{
+				var sourceAttribute = element.GetAttribute("src");
+				var queryStringIndex = sourceAttribute.IndexOf("?");
+
+				if (queryStringIndex != -1)
+				{
+					sourceAttribute = sourceAttribute.Substring(0, queryStringIndex);
+				}
+
+				return Path.GetExtension(sourceAttribute) == ".gif";
+			}
+
+			return false;
 		}
 
 		protected internal override string GetAmpElementTag()

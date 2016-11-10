@@ -89,29 +89,6 @@ namespace Html2Amp.UnitTests.ImageSanitizerTests
 		}
 
 		[TestMethod]
-		public void ReturnAmpAnimElement_WhenSourceExtensionIsGIF()
-		{
-			// Arrange
-			const string ExpectedResult = "AMP-ANIM";
-			const int ImageSize = 100;
-			var imageElement = ElementFactory.CreateImage();
-
-			imageElement.DisplayWidth = ImageSize;
-			imageElement.DisplayHeight = ImageSize;
-
-			imageElement.Source = "http://mysite.com/my-animation.gif";
-
-			// Adding image element to the document in order to simulate real herarchy
-			ElementFactory.Document.Body.Append(imageElement);
-
-			// Act
-			var ampElement = new ImageSanitizer().Sanitize(ElementFactory.Document, imageElement);
-
-			// Assert
-			Assert.AreEqual(ExpectedResult, ampElement.TagName);
-		}
-
-		[TestMethod]
 		public void ReturnAmpImageElementWithLayoutEqualToResponsive_WhenWidthAndHeightAreSpecified()
 		{
 			// Arrange
