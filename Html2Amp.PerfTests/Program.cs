@@ -1,19 +1,15 @@
 ﻿using BenchmarkDotNet.Running;
-using Html2Amp.PerfTests.ElementExtensionsTests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Html2Amp.PerfTests.Html2AmpConverting;
 
 namespace Html2Amp.PerfTests
 {
 	public class Program
 	{
-		public static void Main(string[] args)
+		public static void Main()
 		{
-			BenchmarkRunner.Run<ElementExtensions_CopyTo>();
-			BenchmarkRunner.Run<HtmlConverting>();
+			//BenchmarkRunner.Run<ElementExtensions_CopyTo>();
+			//BenchmarkRunner.Run<HtmlConverting>();
+			BenchmarkRunner.Run<ScriptDependencies>();
 		}
 	}
 }
