@@ -1,10 +1,10 @@
 **Html2Amp** is a simple converter from HTML code to "AMP Html".
 
 ### Build status ###
-| Branch | Build | Nightly Build | Release
-|:---|------:|--------:|--------:|
-Master | | | [![Build status](https://ci.appveyor.com/api/projects/status/q4j9xhm3sexjhalc/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-3pdec/branch/master)
-Development | [![Build status](https://ci.appveyor.com/api/projects/status/y7lhe4iuu19juwjp/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/6b7s053qpbgdlm9s/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-dvv32/branch/master)
+| | Build | Nightly Build | Release
+|---|------|--------|--------|
+Master | n / a | n / a | [![Build status](https://ci.appveyor.com/api/projects/status/q4j9xhm3sexjhalc/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-3pdec/branch/master)
+Development | [![Build status](https://ci.appveyor.com/api/projects/status/y7lhe4iuu19juwjp/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/6b7s053qpbgdlm9s/branch/master?svg=true)](https://ci.appveyor.com/project/SimeonNenov/html2amp-dvv32/branch/master) | n / a
 
 # Getting started #
 ## 1. Install Html2Amp##
