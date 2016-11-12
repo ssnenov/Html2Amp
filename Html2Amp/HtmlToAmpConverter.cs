@@ -160,9 +160,9 @@ namespace Html2Amp
 			if (scriptsDependableSanitizer != null)
 			{
 				Type sanitizerType = scriptsDependableSanitizer.GetType();
-				if (!result.scriptsReferenciesBucket.ContainsKey(sanitizerType))
+				if (!result.scriptsReferencesBucket.ContainsKey(sanitizerType))
 				{
-					result.scriptsReferenciesBucket.Add(sanitizerType, scriptsDependableSanitizer.GetScriptsDependencies());
+					result.scriptsReferencesBucket.Add(sanitizerType, scriptsDependableSanitizer.GetScriptsDependencies());
 				}
 			}
 		}

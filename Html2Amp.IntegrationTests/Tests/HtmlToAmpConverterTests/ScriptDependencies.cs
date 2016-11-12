@@ -23,7 +23,7 @@ namespace Html2Amp.IntegrationTests.Tests.HtmlToAmpConverterTests
 			var convertionResult = HtmlTestFileToAmpConverter.Convert(new RunConfiguration { RelativeUrlsHost = "http://mydomain.com" }, TestName);
 
 			// Assert
-			Assert.AreEqual(3, convertionResult.ScriptsReferencies.Intersect(dependencies).Count());
+			Assert.AreEqual(3, convertionResult.ScriptsReferences.Intersect(dependencies).Count());
 		}
 	}
 }

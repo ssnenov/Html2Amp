@@ -7,9 +7,9 @@ namespace Html2Amp
 {
 	public class ConvertionResult
 	{
-		private IList<string> scriptsReferencies;
+		private IList<string> scriptsReferences;
 
-		internal Dictionary<Type, IList<string>> scriptsReferenciesBucket = new Dictionary<Type, IList<string>>();
+		internal Dictionary<Type, IList<string>> scriptsReferencesBucket = new Dictionary<Type, IList<string>>();
 
 		/// <summary>
 		/// Gets the output(AMP HTML) of the convertion.
@@ -19,16 +19,16 @@ namespace Html2Amp
 		/// <summary>
 		/// Gets the scripts required to be referenced in the page in order to work properly.
 		/// </summary>
-		public IList<string> ScriptsReferencies
+		public IList<string> ScriptsReferences
 		{
 			get
 			{
-				if (scriptsReferencies == null)
+				if (scriptsReferences == null)
 				{
-					scriptsReferencies = scriptsReferenciesBucket.Values.SelectMany(x => x).ToList();
+					scriptsReferences = scriptsReferencesBucket.Values.SelectMany(x => x).ToList();
 				}
 
-				return scriptsReferencies;
+				return scriptsReferences;
 			}
 		}
 	}
