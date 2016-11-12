@@ -14,7 +14,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "ImageSanitizationWithImageSizes";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -29,7 +29,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			var configuration = new RunConfiguration { ShouldDownloadImages = false };
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(configuration, TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(configuration, TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -43,7 +43,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -57,7 +57,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "ImageSanitizationWithStyleDisplayNone";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -71,7 +71,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "ImageSanitizationWithStyleVisibilityHidden";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

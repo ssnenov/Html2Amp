@@ -14,7 +14,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "AudioSanitizationWithControls";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

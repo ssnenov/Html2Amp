@@ -13,7 +13,7 @@ namespace Html2Amp.IntegrationTests.Tests.ScriptElementSanitizationTests
 			const string TestName = "ScriptElementSanitizationWithOneScriptTag";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -27,7 +27,7 @@ namespace Html2Amp.IntegrationTests.Tests.ScriptElementSanitizationTests
 			const string TestName = "ScriptElementSanitizationWithMoreScriptTags";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

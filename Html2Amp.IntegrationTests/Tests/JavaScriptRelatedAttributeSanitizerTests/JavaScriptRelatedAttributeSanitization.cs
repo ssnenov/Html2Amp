@@ -14,7 +14,7 @@ namespace Html2Amp.IntegrationTests.Tests.JavaScriptRelatedAttributeSanitizerTes
 			const string TestName = "JavaScriptRelatedAttributeSanitization";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

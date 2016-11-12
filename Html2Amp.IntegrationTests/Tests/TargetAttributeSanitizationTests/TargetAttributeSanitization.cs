@@ -13,7 +13,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithBlankValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -27,7 +27,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithoutValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -41,7 +41,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithFrameNameValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -55,7 +55,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithParentValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -69,7 +69,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithSelfValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -84,7 +84,7 @@ namespace Html2Amp.IntegrationTests.Tests.TargetAttributeSanitizationTests
 			const string TestName = "TargetAttributeSanitizationWithTopValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

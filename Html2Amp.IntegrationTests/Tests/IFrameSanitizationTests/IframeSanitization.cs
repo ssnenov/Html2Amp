@@ -14,7 +14,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "IFrameSanitizationWithSourceHostEqualToContainerHost";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(new RunConfiguration { RelativeUrlsHost = "http://mydomain.com" }, TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(new RunConfiguration { RelativeUrlsHost = "http://mydomain.com" }, TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -28,7 +28,7 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 			const string TestName = "IFrameSanitizationWithSourceHostNotEqualToContainerHost";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(new RunConfiguration { RelativeUrlsHost = "http://different-domain.com" }, TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(new RunConfiguration { RelativeUrlsHost = "http://different-domain.com" }, TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

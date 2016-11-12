@@ -13,7 +13,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithWidthAndHeight";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -27,7 +27,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithoutWidthAndHeight";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -41,7 +41,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithHeightOnly";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -55,7 +55,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithIdAttribute";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -69,7 +69,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithOtherNotAllowedAttributes";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -83,7 +83,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithDataParamsAttributes";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -97,7 +97,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithStyleDisplayNone";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -111,7 +111,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithStyleVisibilityHidden";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -125,7 +125,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithChildren";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -139,7 +139,7 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 			const string TestName = "YouTubeVideoSanitizationWithNoCookieHost";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

@@ -13,7 +13,7 @@ namespace Html2Amp.IntegrationTests.Tests.StyleAttributeSanitizationTests
 			const string TestName = "StyleAttributeSanitizationInOneHtmlElement";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -27,7 +27,7 @@ namespace Html2Amp.IntegrationTests.Tests.StyleAttributeSanitizationTests
 			const string TestName = "StyleAttributeSanitizationInMultipleHtmlElements";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

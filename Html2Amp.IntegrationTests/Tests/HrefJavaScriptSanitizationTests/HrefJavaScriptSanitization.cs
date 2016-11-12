@@ -13,7 +13,7 @@ namespace Html2Amp.IntegrationTests.Tests.HrefJavaScriptSanitizationTests
 			const string TestName = "HrefJavaScriptSanitizationWithJavaScriptValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
@@ -27,7 +27,7 @@ namespace Html2Amp.IntegrationTests.Tests.HrefJavaScriptSanitizationTests
 			const string TestName = "HrefJavaScriptSanitizationWithNonJavaScriptValue";
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.Convert(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
 
 			// Assert
 			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);

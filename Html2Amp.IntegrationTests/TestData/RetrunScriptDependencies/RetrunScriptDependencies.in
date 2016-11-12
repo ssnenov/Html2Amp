@@ -1,0 +1,8 @@
+﻿<div>
+  <iframe src="https://mydomain.com" sandbox="allow-same-origin" ></iframe>
+  <iframe width="640" height="390" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE"></iframe>
+  <audio controls="">
+    <source src="myaudio.ogg" type="audio/ogg">
+    Your browser does not support the audio tag.
+  </audio>
+</div>
