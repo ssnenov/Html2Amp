@@ -53,6 +53,8 @@ namespace Html2Amp
 			this.sanitizers.Add(new StyleAttributeSanitizer());
 			this.sanitizers.Add(new JavaScriptRelatedAttributeSanitizer());
 			this.sanitizers.Add(new XmlAttributeSanitizer());
+			this.sanitizers.Add(new ForbiddenAttributesSanitizer());
+
 			// Changing attributes
 			this.sanitizers.Add(new HrefJavaScriptSanitizer());
 			this.sanitizers.Add(new TargetAttributeSanitizer());
