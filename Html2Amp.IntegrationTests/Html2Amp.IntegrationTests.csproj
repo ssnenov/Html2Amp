@@ -60,6 +60,7 @@
     <Compile Include="Infrastructure\Assertion\HtmlAssert.cs" />
     <Compile Include="Infrastructure\HtmlFileToAmpConverter.cs" />
     <Compile Include="Infrastructure\TestDataProvider.cs" />
+    <Compile Include="Infrastructure\TestNameResolver.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
     <Compile Include="Tests\HrefJavaScriptSanitizationTests\HrefJavaScriptSanitization.cs" />
     <Compile Include="Tests\HtmlToAmpConverterTests\ScriptDependencies.cs" />
@@ -92,8 +93,8 @@
     <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.out" />
     <None Include="TestData\AudioSanitizationWithControls\AudioSanitizationWithControls.in" />
     <None Include="TestData\AudioSanitizationWithControls\AudioSanitizationWithControls.out" />
-    <None Include="TestData\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.in" />
-    <None Include="TestData\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.out" />
+    <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.in" />
+    <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostNotEqualToContainerHost\IFrameSanitizationWithSourceHostNotEqualToContainerHost.out" />
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.in" />
     <None Include="TestData\ImageSanitizationWithImageSizes\ImageSanitizationWithImageSizes.out">
       <SubType>Designer</SubType>
@@ -110,8 +111,8 @@
     <None Include="TestData\ImageSanitizationWithStyleVisibilityHidden\ImageSanitizationWithStyleVisibilityHidden.out" />
     <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.in" />
     <None Include="TestData\ImageSanitizationWithStyleDisplayNone\ImageSanitizationWithStyleDisplayNone.out" />
-    <None Include="TestData\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.in" />
-    <None Include="TestData\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.out" />
+    <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.in" />
+    <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.out" />
     <None Include="TestData\RetrunScriptDependencies\RetrunScriptDependencies.in" />
     <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.in" />
     <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.out" />
