@@ -61,6 +61,8 @@
     <Compile Include="Accessors\YouTubeVideoSanitizerAccessor.cs" />
     <Compile Include="AudioSanitizerTests\AudioSanitizer_CanSanitize_Should.cs" />
     <Compile Include="AudioSanitizerTests\AudioSanitizer_Sanitize_Should.cs" />
+    <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_Sanitize_Should.cs" />
     <Compile Include="GifImageSanitizerTets\GifImageSanitizer_CanSanitizer_Should.cs" />
     <Compile Include="GifImageSanitizerTets\GifImageSanitizer_Sanitizer_Should.cs" />
     <Compile Include="Helpers\ElementFactory.cs" />
@@ -106,6 +108,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
