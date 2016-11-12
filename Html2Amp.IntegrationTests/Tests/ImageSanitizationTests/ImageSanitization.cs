@@ -11,71 +11,71 @@ namespace Html2Amp.IntegrationTests.Tests.ImageSanitizerTests
 		public void ImageSanitizationWithImageSizes()
 		{
 			// Arrange
-			const string TestName = "ImageSanitizationWithImageSizes";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages()
 		{
 			// Arrange
-			const string TestName = "ImageSanitizationWithoutImageSizesAndShouldNotDownloadImages";
+			string testName = TestNameResolver.GetCurrentTestName();
 			var configuration = new RunConfiguration { ShouldDownloadImages = false };
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(configuration, TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(configuration, testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl()
 		{
 			// Arrange
-			const string TestName = "ImageSanitizationWithoutImageSizesAndWithAbsoluteUrl";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void ImageSanitizationWithStyleDisplayNone()
 		{
 			// Arrange
-			const string TestName = "ImageSanitizationWithStyleDisplayNone";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void ImageSanitizationWithStyleVisibilityHidden()
 		{
 			// Arrange
-			const string TestName = "ImageSanitizationWithStyleVisibilityHidden";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 	}
 }

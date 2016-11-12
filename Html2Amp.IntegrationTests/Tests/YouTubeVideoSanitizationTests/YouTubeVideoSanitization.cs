@@ -10,140 +10,140 @@ namespace Html2Amp.IntegrationTests.Tests.YouTubeVideoSanitizationTests
 		public void YouTubeVideoSanitizationWithWidthAndHeight()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithWidthAndHeight";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithoutWidthAndHeight()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithoutWidthAndHeight";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithHeightOnly()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithHeightOnly";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithIdAttribute()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithIdAttribute";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithOtherNotAllowedAttributes()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithOtherNotAllowedAttributes";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithDataParamsAttributes()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithDataParamsAttributes";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithStyleDisplayNone()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithStyleDisplayNone";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithStyleVisibilityHidden()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithStyleVisibilityHidden";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithChildren()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithChildren";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 
 		[TestMethod]
 		public void YouTubeVideoSanitizationWithNoCookieHost()
 		{
 			// Arrange
-			const string TestName = "YouTubeVideoSanitizationWithNoCookieHost";
+			string testName = TestNameResolver.GetCurrentTestName();
 
 			// Act
-			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(TestName);
+			var actualResult = HtmlTestFileToAmpConverter.ConvertToString(testName);
 
 			// Assert
-			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(TestName), actualResult);
-			AmpAssert.IsValidAmp(TestName);
+			HtmlAssert.AreEqual(TestDataProvider.GetOutFile(testName), actualResult);
+			AmpAssert.IsValidAmp(testName);
 		}
 	}
 }

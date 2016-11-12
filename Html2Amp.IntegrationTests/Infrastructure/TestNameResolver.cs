@@ -5,6 +5,12 @@ namespace Html2Amp.IntegrationTests.Infrastructure
 {
 	public static class TestNameResolver
 	{
+		/// <summary>
+		/// Creates a test name from test class name and test method name.
+		/// Example: class MyClass { string MyMethod(){ ...} }
+		/// will produce "MyClass\MyMethod"
+		/// </summary>
+		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public static string GetCurrentTestName()
 		{
