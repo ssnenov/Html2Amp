@@ -271,7 +271,7 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
 		public void CopyAllChildrenFromTheOriginalIFrameElementToTheAmpElement_Always()
 		{
 			// Arrange
-			const int ExpectedResult = 2;
+			const int ExpectedResult = 3; // 2 children + 1 placeholder added
 			var htmlElement = ElementFactory.CreateIFrame();
 			var firstChild = ElementFactory.Create("input");
 			var secondChild = ElementFactory.Create("p");
@@ -289,6 +289,46 @@ namespace Html2Amp.UnitTests.IFrameSanitizerTests
 
 			// Assert
 			Assert.AreEqual(ExpectedResult, actualResult.Children.Length);
+		}
+
+		[TestMethod]
+		public void AddPlaceholderElement_WhenTheIFrameHasNoPlaceholder()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateIFrame();
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com", IFramesPlaceholder = "<p>Placeholder text</p>" });
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual(1, actualResult.Children.Length);
+			Assert.AreEqual("<p>Placeholder text</p>", actualResult.FirstElementChild.OuterHtml);
+		}
+
+		[TestMethod]
+		public void NotAddPlaceholderElement_WhenTheIFrameAlreadyHasAPlaceholder()
+		{
+			// Arrange
+			var htmlElement = ElementFactory.CreateIFrame();
+			var placeholder = ElementFactory.CreateFromHtmlString("<span placeholder>This will be loaded later...</span>");
+			htmlElement.Append(placeholder);
+			ElementFactory.Document.Body.Append(htmlElement);
+
+			var runContext = new RunContext(new RunConfiguration { RelativeUrlsHost = "http://test-domain.com", IFramesPlaceholder = "<p>Placeholder text</p>" });
+			var iframeSanitizer = new IFrameSanitizer();
+			iframeSanitizer.Configure(runContext);
+
+			// Act
+			var actualResult = iframeSanitizer.Sanitize(ElementFactory.Document, htmlElement);
+
+			// Assert
+			Assert.AreEqual(1, actualResult.Children.Length);
+			Assert.AreEqual("This will be loaded later...", actualResult.FirstElementChild.InnerHtml);
 		}
     }
 }

@@ -141,8 +141,6 @@
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.out" />
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.in" />
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.out" />
-    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.in" />
-    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.in" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.in" />

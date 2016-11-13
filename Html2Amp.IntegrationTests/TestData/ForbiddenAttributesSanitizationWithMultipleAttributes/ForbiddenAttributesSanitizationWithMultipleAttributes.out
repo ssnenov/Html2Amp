@@ -1,3 +1,5 @@
 ﻿<div>
-	<amp-iframe src="https://www.mydomain.com" frameborder ="0" layout="fill" />
+	<amp-iframe src="https://www.mydomain.com" frameborder ="0" layout="fill">
+		<span>This part of the page will be loaded later.</span>
+	</amp-iframe>
 </div>

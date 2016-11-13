@@ -32,6 +32,10 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
 
 			CheckAttributesAreEqual(expected, actual);
 
+			Assert.AreEqual(expected.Children.Count(), actual.Children.Count(), string.Format(
+					"One of the elements has more children! {0}",
+					GenerateMessage(expected, actual)));
+
 			foreach (var exprectedChild in expected.Children)
 			{
 				foreach (var actualChild in actual.Children)

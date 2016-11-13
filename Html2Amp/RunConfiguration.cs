@@ -1,7 +1,11 @@
-﻿namespace Html2Amp
+﻿using AngleSharp;
+using AngleSharp.Parser.Html;
+namespace Html2Amp
 {
 	public class RunConfiguration
 	{
+		const string IFramesPlaceholderValue = "<span>This part of the page will be loaded later.</span>";
+
 		/// <summary>
 		/// Gets or sets the host used for resolving relative URLs.
 		/// </summary>
@@ -18,9 +22,17 @@
 		/// </summary>
         public bool ShouldDownloadImages { get; set; }
 
+		/// <summary>
+		/// Gets or sets the element used as placeholder for iframes.
+		/// By default, the value is: <span>This part of the page will be loaded later.</span>
+		/// </summary>
+		/// <example><p class="custom-class">This source will be available soon.</p></example>
+		public string IFramesPlaceholder { get; set; }
+
 		public RunConfiguration()
 		{
-			ShouldDownloadImages = true;
+			this.ShouldDownloadImages = true;
+			this.IFramesPlaceholder = IFramesPlaceholderValue;
 		}
 	}
 }

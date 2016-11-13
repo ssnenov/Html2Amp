@@ -4,6 +4,7 @@ using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -26,7 +27,17 @@ namespace Html2Amp.Sanitization.Implementation
 			Guard.Requires(document, "document").IsNotNull();
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			return this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
+			var sanitizedElement = this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
+
+			if (!sanitizedElement.Children.Any() || !sanitizedElement.Children.Any(c => c.HasAttribute("placeholder")))
+			{
+				if (this.RunContext != null && this.RunContext.IFramesPlaceholderElement != null)
+				{
+					sanitizedElement.Append(this.RunContext.IFramesPlaceholderElement);
+				}
+			}
+
+			return sanitizedElement;
 		}
 
 		private bool IsValidSourceAttribute(IElement htmlElement)

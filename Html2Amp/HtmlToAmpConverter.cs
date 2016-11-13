@@ -7,6 +7,7 @@ using Html2Amp.Sanitization;
 using Html2Amp.Sanitization.Implementation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Html2Amp
 {
@@ -94,8 +95,7 @@ namespace Html2Amp
 		{
 			Guard.Requires(htmlSource, "htmlSource").IsNotNullOrEmpty();
 
-			IHtmlDocument document = parser.Parse(htmlSource);
-			IHtmlHtmlElement htmlElement = (IHtmlHtmlElement)document.DocumentElement;
+			IHtmlDocument document = this.parser.Parse(htmlSource);
 
 			this.EnsureInitilized();
 
@@ -149,8 +149,8 @@ namespace Html2Amp
 				}
 			}
 
-			IHtmlCollection<IElement> children = htmlElement.Children;
-			for (int i = 0; i < children.Length; i++)
+			var children = htmlElement.Children.ToList();
+			for (int i = 0; i < children.Count; i++)
 			{
 				ConvertFromHtmlElement(result, document, children[i]);
 			}

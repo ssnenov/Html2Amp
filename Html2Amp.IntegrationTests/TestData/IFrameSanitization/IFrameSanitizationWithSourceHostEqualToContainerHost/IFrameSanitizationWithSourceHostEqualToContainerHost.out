@@ -1,1 +1,3 @@
-﻿<amp-iframe src="https://mydomain.com" sandbox="allow-same-origin" layout="fill" />
+﻿<amp-iframe src="https://mydomain.com" sandbox="allow-same-origin" layout="fill">
+	<span>This part of the page will be loaded later.</span>
+</amp-iframe>
