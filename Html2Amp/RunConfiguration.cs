@@ -7,6 +7,9 @@ using AngleSharp.Parser.Html;
 
 namespace Html2Amp
 {
+	// Consider using GetConfigurationValueCore() method for getting configuration values instead of
+	// using generic method GetConfigurationValue<T>(). The reason is that the generic method uses Convert.ChangeType()
+	// in order to perform casting to the actul type of T.
 	public class RunConfiguration : DynamicObject
 	{
 		const string IFramesPlaceholderValue = "<span>This part of the page will be loaded later.</span>";
@@ -27,7 +30,7 @@ namespace Html2Amp
 		/// <example>mydomain.com/blogs</example>
 		public string RelativeUrlsHost
 		{
-			get { return this.GetConfigurationValue("RelativeUrlsHost", relativeUrlsHost); }
+			get { return (string)this.GetConfigurationValueCore("RelativeUrlsHost", relativeUrlsHost); }
 			set { relativeUrlsHost = value; }
 		}
 
@@ -38,7 +41,7 @@ namespace Html2Amp
 		/// </summary>
 		public bool ShouldDownloadImages
 		{
-			get { return this.GetConfigurationValue("ShouldDownloadImages", shouldDownloadImages); }
+			get { return (bool)this.GetConfigurationValueCore("ShouldDownloadImages", shouldDownloadImages); }
 			set { this.shouldDownloadImages = value; }
 		}
 
