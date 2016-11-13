@@ -6,7 +6,7 @@ namespace Html2Amp.Sanitization.Implementation
 {
 	public class ForbiddenAttributesSanitizer : Sanitizer
 	{
-		private readonly string[] forbiddenAttributes = { "align", "frameborder" };
+		private readonly string[] forbiddenAttributes = { "align" };
 
 		public override bool CanSanitize(IElement element)
 		{

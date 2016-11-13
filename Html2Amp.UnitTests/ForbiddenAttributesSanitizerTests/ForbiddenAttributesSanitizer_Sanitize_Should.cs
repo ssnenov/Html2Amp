@@ -19,13 +19,13 @@ namespace Html2Amp.UnitTests.ForbiddenAttributesSanitizerTests
 		{
 			// Arange
 			var element = ElementFactory.Create("div");
-			element.SetAttribute("frameborder", "0");
+			element.SetAttribute("align", "left");
 
 			// Act
 			var actualResult = new ForbiddenAttributesSanitizer().Sanitize(ElementFactory.Document, element);
 
 			// Assert
-			Assert.IsFalse(actualResult.HasAttribute("frameborder"));
+			Assert.IsFalse(actualResult.HasAttribute("align"));
 		}
 	}
 }

@@ -1,0 +1,3 @@
+﻿<div>
+	<amp-iframe src="https://www.mydomain.com" frameborder ="0" layout="fill" />
+</div>

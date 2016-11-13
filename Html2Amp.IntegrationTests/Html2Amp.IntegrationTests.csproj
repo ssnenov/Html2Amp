@@ -62,6 +62,7 @@
     <Compile Include="Infrastructure\TestDataProvider.cs" />
     <Compile Include="Infrastructure\TestNameResolver.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
+    <Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
     <Compile Include="Tests\HrefJavaScriptSanitizationTests\HrefJavaScriptSanitization.cs" />
     <Compile Include="Tests\HtmlToAmpConverterTests\ScriptDependencies.cs" />
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
@@ -87,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\ForbiddenAttributesSanitizationWithMultipleAttributes\ForbiddenAttributesSanitizationWithMultipleAttributes.in" />
+    <None Include="TestData\ForbiddenAttributesSanitizationWithMultipleAttributes\ForbiddenAttributesSanitizationWithMultipleAttributes.out" />
     <None Include="TestData\HrefJavaScriptSanitizationWithJavaScriptValue\HrefJavaScriptSanitizationWithJavaScriptValue.in" />
     <None Include="TestData\HrefJavaScriptSanitizationWithJavaScriptValue\HrefJavaScriptSanitizationWithJavaScriptValue.out" />
     <None Include="TestData\HrefJavaScriptSanitizationWithNonJavaScriptValue\HrefJavaScriptSanitizationWithNonJavaScriptValue.in" />
