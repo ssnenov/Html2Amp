@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,7 +51,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -62,7 +65,8 @@
     <Compile Include="Infrastructure\TestDataProvider.cs" />
     <Compile Include="Infrastructure\TestNameResolver.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
-    <Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
+	<Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
+    <Compile Include="TestDoubles\RunConfigurationTestDouble.cs" />
     <Compile Include="Tests\HrefJavaScriptSanitizationTests\HrefJavaScriptSanitization.cs" />
     <Compile Include="Tests\HtmlToAmpConverterTests\ScriptDependencies.cs" />
     <Compile Include="Tests\HtmlToAmpConverting.cs" />
@@ -74,6 +78,7 @@
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
     <Compile Include="Tests\StyleAttributeSanitizationTests\StyleAttributeSanitization.cs" />
     <Compile Include="Tests\TargetAttributeSanitizationTests\TargetAttributeSanitization.cs" />
+    <Compile Include="Tests\AppSettingsConfiguration.cs" />
     <Compile Include="Tests\XmlAttributeSanitizationTests\XmlAttributesSanitization.cs" />
     <Compile Include="Tests\YouTubeVideoSanitizationTests\YouTubeVideoSanitization.cs" />
   </ItemGroup>
@@ -141,6 +146,8 @@
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithParentValue\TargetAttributeSanitizationWithParentValue.out" />
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.in" />
     <None Include="TestData\TargetAttributeSanitization\TargetAttributeSanitizationWithSelfValue\TargetAttributeSanitizationWithSelfValue.out" />
+    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.in" />
+    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithChildren\YouTubeVideoSanitizationWithChildren.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.in" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithDataParamsAttributes\YouTubeVideoSanitizationWithDataParamsAttributes.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithIdAttribute\YouTubeVideoSanitizationWithIdAttribute.in" />
