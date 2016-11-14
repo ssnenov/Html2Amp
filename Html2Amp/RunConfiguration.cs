@@ -7,16 +7,17 @@ using AngleSharp.Parser.Html;
 
 namespace Html2Amp
 {
-	// Consider using GetConfigurationValueCore() method for getting configuration values instead of
+	// Consider using GetConfigurationValueCore() method for reference types when getting configuration values instead of
 	// using generic method GetConfigurationValue<T>(). The reason is that the generic method uses Convert.ChangeType()
 	// in order to perform casting to the actul type of T.
 	public class RunConfiguration : DynamicObject
 	{
-		const string IFramesPlaceholderValue = "<span>This part of the page will be loaded later.</span>";
+		private const string IFramesPlaceholderValue = "<span>This part of the page will be loaded later.</span>";
 
 		private readonly Dictionary<string, object> configuration = new Dictionary<string, object>();
 
 		private string relativeUrlsHost;
+		private string iframesPlaceholder;
 		private bool shouldDownloadImages;
 
 		public const string Html2AmpConfigurationKeyPrefix = "Html2Amp:";
@@ -41,7 +42,7 @@ namespace Html2Amp
 		/// </summary>
 		public bool ShouldDownloadImages
 		{
-			get { return (bool)this.GetConfigurationValueCore("ShouldDownloadImages", shouldDownloadImages); }
+			get { return this.GetConfigurationValue("ShouldDownloadImages", shouldDownloadImages); }
 			set { this.shouldDownloadImages = value; }
 		}
 
@@ -50,7 +51,11 @@ namespace Html2Amp
 		/// By default, the value is: <span>This part of the page will be loaded later.</span>
 		/// </summary>
 		/// <example><p class="custom-class">This source will be available soon.</p></example>
-		public string IFramesPlaceholder { get; set; }
+		public string IFramesPlaceholder
+		{
+			get { return (string)this.GetConfigurationValueCore("IFramesPlaceholder", iframesPlaceholder); }
+			set { this.iframesPlaceholder = value; }
+		}
 
 		public RunConfiguration()
 		{
