@@ -52,9 +52,9 @@ namespace Html2Amp
 
 			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
+			this.sanitizers.Add(new ForbiddenAttributesSanitizer());
 			this.sanitizers.Add(new JavaScriptRelatedAttributeSanitizer());
 			this.sanitizers.Add(new XmlAttributeSanitizer());
-			this.sanitizers.Add(new ForbiddenAttributesSanitizer());
 
 			// Changing attributes
 			this.sanitizers.Add(new HrefJavaScriptSanitizer());
@@ -153,7 +153,7 @@ namespace Html2Amp
 			for (int i = 0; i < children.Count; i++)
 			{
 				ConvertFromHtmlElement(result, document, children[i]);
-			}
+				}
 		}
 
 		private void ExtractDependencies(ConvertionResult result, ISanitizer sanitizer)
