@@ -10,20 +10,19 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override bool CanSanitize(IElement element)
 		{
-			return element != null && element.Attributes
-				.Select(x => x.Name).Intersect(this.forbiddenAttributes).Count() > 0;
+			return element != null && element.Attributes.Any(a => this.forbiddenAttributes.Contains(a.Name));
 		}
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			var attributesToRemove = htmlElement.Attributes.Select(x => x.Name)
-				.Intersect(this.forbiddenAttributes).ToList();
-
-			foreach (var attribute in attributesToRemove)
+			foreach (var attribute in this.forbiddenAttributes)
 			{
-				htmlElement.RemoveAttribute(attribute);
+				if (htmlElement.HasAttribute(attribute))
+				{
+					htmlElement.RemoveAttribute(attribute);
+				}
 			}
 
 			return htmlElement;
