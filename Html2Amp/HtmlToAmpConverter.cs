@@ -133,7 +133,7 @@ namespace Html2Amp
 			}
 		}
 
-		private bool ConvertFromHtmlElement(ConvertionResult result, IDocument document, IElement htmlElement)
+		private void ConvertFromHtmlElement(ConvertionResult result, IDocument document, IElement htmlElement)
 		{
 			foreach (var sanitizer in sanitizers)
 			{
@@ -142,23 +142,18 @@ namespace Html2Amp
 					htmlElement = sanitizer.Sanitize(document, htmlElement);
 					if (htmlElement == null) // If the element is removed
 					{
-						return true;
+						return;
 					}
 
 					this.ExtractDependencies(result, sanitizer);
 				}
 			}
 
-			var children = htmlElement.Children;
-			for (int i = 0; i < children.Length; i++)
+			var children = htmlElement.Children.ToList();
+			for (int i = 0; i < children.Count; i++)
 			{
-				if (ConvertFromHtmlElement(result, document, children[i]))
-				{
-					i--;
+				ConvertFromHtmlElement(result, document, children[i]);
 				}
-			}
-
-			return false;
 		}
 
 		private void ExtractDependencies(ConvertionResult result, ISanitizer sanitizer)
