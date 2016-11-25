@@ -13,7 +13,7 @@ namespace Html2Amp.Sanitization.Implementation
     {
 		protected readonly List<string> AllowedAttribtes = new List<string>() { "width", "height", "id" };
 
-        public const string VideoIdRegex = @"^/embed/(?<id>[^/\?]+)/?$";
+        public const string VideoIdRegex = @"^/embed/(?<id>[^/\?]+)";
 
         public override bool CanSanitize(IElement element)
         {
