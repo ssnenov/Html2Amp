@@ -3,6 +3,7 @@ using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
 using System.Linq;
+using System;
 
 namespace Html2Amp.UnitTests.Helpers
 {
@@ -44,6 +45,11 @@ namespace Html2Amp.UnitTests.Helpers
 		public static IHtmlInlineFrameElement CreateIFrame()
 		{
 			return (IHtmlInlineFrameElement)Create("iframe");
+		}
+
+		public static IHtmlTableElement CreateTable()
+		{
+			return (IHtmlTableElement)Create("table");
 		}
 
 		public static IHtmlScriptElement CreateScript()
