@@ -20,7 +20,7 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override bool CanSanitize(IElement element)
 		{
-			return element != null && this.forbiddenElements.Contains(element.TagName.ToLower());
+			return element != null && this.forbiddenElements.Contains(element.LocalName);
 		}
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
