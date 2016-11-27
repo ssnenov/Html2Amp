@@ -43,5 +43,19 @@ namespace Html2Amp.UnitTests.ForbiddenAttributesSanitizerTests
 			// Assert
 			Assert.IsTrue(actualResult);
 		}
+
+		[TestMethod]
+		public void ReturnTrue_WhenTheElementHasUsemapAttribute()
+		{
+			// Arange
+			var element = ElementFactory.Create("div");
+			element.SetAttribute("usemap", "map");
+
+			// Act
+			var actualResult = new ForbiddenAttributesSanitizer().CanSanitize(element);
+
+			// Assert
+			Assert.IsTrue(actualResult);
+		}
 	}
 }

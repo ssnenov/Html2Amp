@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using AngleSharp.Html;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -29,7 +30,7 @@ namespace Html2Amp.Sanitization.Implementation
 
 			var sanitizedElement = this.SanitizeCore<IHtmlInlineFrameElement>(document, htmlElement, "amp-iframe");
 
-			if (!sanitizedElement.Children.Any() || !sanitizedElement.Children.Any(c => c.HasAttribute("placeholder")))
+			if (!sanitizedElement.Children.Any() || !sanitizedElement.Children.Any(c => c.HasAttribute(AttributeNames.Placeholder)))
 			{
 				if (this.RunContext != null && this.RunContext.IFramesPlaceholderElement != null)
 				{

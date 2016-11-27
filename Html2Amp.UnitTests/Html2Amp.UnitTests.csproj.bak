@@ -63,10 +63,10 @@
     <Compile Include="Accessors\YouTubeVideoSanitizerAccessor.cs" />
     <Compile Include="AudioSanitizerTests\AudioSanitizer_CanSanitize_Should.cs" />
     <Compile Include="AudioSanitizerTests\AudioSanitizer_Sanitize_Should.cs" />
-    <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_CanSanitize_Should.cs" />
-    <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_Sanitize_Should.cs" />
-	<Compile Include="ElementsReplacingWithNoCopySanitizerTests\ElementsReplacingWithoutCopyingAttributesSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="ElementsReplacingWithNoCopySanitizerTests\ElementsReplacingWithoutCopyingAttributesSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ElementsReplacingWithNoCopySanitizerTests\ElementsReplacingWithoutCopyingAttributesSanitizer_Sanitize_Should.cs" />
+ <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_Sanitize_Should.cs" />
     <Compile Include="ForbiddenElementsSanitizerTests\ForbiddenElementsSanitizer_CanSanitize_Should.cs" />

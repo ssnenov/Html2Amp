@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom;
+using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
@@ -7,7 +8,7 @@ namespace Html2Amp.Sanitization.Implementation
 	{
 		public override bool CanSanitize(IElement element)
 		{
-			return element != null && element.TagName == "SCRIPT";
+			return element != null && element is IHtmlScriptElement;
 		}
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)

@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using AngleSharp.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
@@ -13,7 +14,7 @@ namespace Html2Amp.Sanitization.Implementation
 				return false;
 			}
 
-			var hrefAttribute = element.GetAttribute("href");
+			var hrefAttribute = element.GetAttribute(AttributeNames.Href);
 			return hrefAttribute != null && hrefAttribute.StartsWith("javascript:");
 		}
 
@@ -21,7 +22,7 @@ namespace Html2Amp.Sanitization.Implementation
 		{
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			htmlElement.SetAttribute("href", "#");
+			htmlElement.SetAttribute(AttributeNames.Href, "#");
 
 			return htmlElement;
 		}
