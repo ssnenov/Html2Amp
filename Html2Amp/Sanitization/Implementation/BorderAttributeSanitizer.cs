@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -21,8 +22,12 @@ namespace Html2Amp.Sanitization.Implementation
 
 		public override IElement Sanitize(IDocument document, IElement htmlElement)
 		{
+			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
+
 			// TODO: export the border as css in future versions
-			throw new NotImplementedException();
+			htmlElement.RemoveAttribute("border");
+
+			return htmlElement;
 		}
 	}
 }

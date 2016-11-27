@@ -51,7 +51,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -62,6 +64,7 @@
     <Compile Include="AudioSanitizerTests\AudioSanitizer_CanSanitize_Should.cs" />
     <Compile Include="AudioSanitizerTests\AudioSanitizer_Sanitize_Should.cs" />
     <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="BorderAttributeSanitizerTests\BorderAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_Sanitize_Should.cs" />
     <Compile Include="ForbiddenElementsSanitizerTests\ForbiddenElementsSanitizer_CanSanitize_Should.cs" />
