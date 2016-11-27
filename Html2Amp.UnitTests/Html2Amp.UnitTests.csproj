@@ -63,6 +63,8 @@
     <Compile Include="AudioSanitizerTests\AudioSanitizer_Sanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_CanSanitize_Should.cs" />
     <Compile Include="ForbiddenAttributesSanitizerTests\ForbiddenAttributesSanitizer_Sanitize_Should.cs" />
+    <Compile Include="ForbiddenElementsSanitizerTests\ForbiddenElementsSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="ForbiddenElementsSanitizerTests\ForbiddenElementsSanitizer_Sanitize_Should.cs" />
     <Compile Include="GifImageSanitizerTets\GifImageSanitizer_CanSanitizer_Should.cs" />
     <Compile Include="GifImageSanitizerTets\GifImageSanitizer_Sanitizer_Should.cs" />
     <Compile Include="Helpers\ElementFactory.cs" />

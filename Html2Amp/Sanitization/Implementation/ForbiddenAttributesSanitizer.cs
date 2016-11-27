@@ -6,7 +6,17 @@ namespace Html2Amp.Sanitization.Implementation
 {
 	public class ForbiddenAttributesSanitizer : Sanitizer
 	{
-		private readonly string[] forbiddenAttributes = { "align" };
+		private string[] forbiddenAttributes;
+
+		public ForbiddenAttributesSanitizer()
+			: this(new string[] { "align", "usemap" })
+		{
+		}
+
+		public ForbiddenAttributesSanitizer(string[] forbiddenAttributes)
+		{
+			this.forbiddenAttributes = forbiddenAttributes;
+		}
 
 		public override bool CanSanitize(IElement element)
 		{
