@@ -1,11 +1,8 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
@@ -36,12 +33,12 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
 					"One of the elements has more children! {0}",
 					GenerateMessage(expected, actual)));
 
-			foreach (var exprectedChild in expected.Children)
+			var expectedChildren = expected.Children.ToList();
+			var actualChildren = actual.Children.ToList();
+
+			for (int i = 0; i < expectedChildren.Count; i++)
 			{
-				foreach (var actualChild in actual.Children)
-				{
-					AreEqualCore(exprectedChild, actualChild);
-				}
+				AreEqualCore(expectedChildren[i], actualChildren[i]);
 			}
 		}
 

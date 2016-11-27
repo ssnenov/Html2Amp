@@ -65,6 +65,7 @@
     <Compile Include="Infrastructure\TestDataProvider.cs" />
     <Compile Include="Infrastructure\TestNameResolver.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
+    <Compile Include="Tests\ElementsReplacingWithoutCopyingAttributesSanitizationTests\ElementsReplacingWithoutCopyingAttributesSanitization.cs" />
     <Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
     <Compile Include="TestDoubles\RunConfigurationTestDouble.cs" />
     <Compile Include="Tests\ForbiddenElementsSanitizationTests\ForbiddenElementsSanitization.cs" />
@@ -95,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\ElementsReplacingWithoutCopyingAttributesSanitizationWithFonts\ElementsReplacingWithoutCopyingAttributesSanitizationWithFonts.in" />
+    <None Include="TestData\ElementsReplacingWithoutCopyingAttributesSanitizationWithFonts\ElementsReplacingWithoutCopyingAttributesSanitizationWithFonts.out" />
     <None Include="TestData\ForbiddenAttributesSanitizationWithMultipleAttributes\ForbiddenAttributesSanitizationWithMultipleAttributes.in" />
     <None Include="TestData\ForbiddenAttributesSanitizationWithMultipleAttributes\ForbiddenAttributesSanitizationWithMultipleAttributes.out" />
     <None Include="TestData\ForbiddenElementsSanitizationWithMapTag\ForbiddenElementsSanitizationWithMapTag.in" />

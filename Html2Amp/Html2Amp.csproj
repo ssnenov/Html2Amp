@@ -63,6 +63,8 @@
     <Compile Include="RunContext.cs" />
     <Compile Include="Sanitization\ImageSanitizerBase.cs" />
     <Compile Include="Sanitization\Implementation\AudioSanitizer.cs" />
+    <Compile Include="Sanitization\ElementsReplacingSanitizer.cs" />
+    <Compile Include="Sanitization\Implementation\ElementsReplacingWithoutCopyingAttributesSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\ForbiddenAttributesSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\ForbiddenElementsSanitizer.cs" />
     <Compile Include="Sanitization\Implementation\ImageSanitizer.cs" />

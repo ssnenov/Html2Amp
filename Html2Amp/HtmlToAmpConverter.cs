@@ -51,6 +51,7 @@ namespace Html2Amp
 			this.sanitizers.Add(new YouTubeVideoSanitizer());
 			this.sanitizers.Add(new IFrameSanitizer());
 			this.sanitizers.Add(new AudioSanitizer());
+			this.sanitizers.Add(new ElementsReplacingWithoutCopyingAttributesSanitizer());
 
 			// Removing attributes
 			this.sanitizers.Add(new StyleAttributeSanitizer());
@@ -155,7 +156,7 @@ namespace Html2Amp
 			for (int i = 0; i < children.Count; i++)
 			{
 				ConvertFromHtmlElement(result, document, children[i]);
-				}
+			}
 		}
 
 		private void ExtractDependencies(ConvertionResult result, ISanitizer sanitizer)
