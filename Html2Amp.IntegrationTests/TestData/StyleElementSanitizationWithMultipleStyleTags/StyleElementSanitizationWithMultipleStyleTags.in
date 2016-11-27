@@ -1,0 +1,11 @@
+﻿<div>
+	<style>
+		h1 {color:red;}
+		p {color:blue;}
+	</style>
+	<style type="text/css">
+		body {
+		  color:red;
+		}
+	</style>
+</div>

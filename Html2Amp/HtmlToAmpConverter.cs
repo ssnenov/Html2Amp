@@ -42,6 +42,7 @@ namespace Html2Amp
 
 			// Removing elements
 			this.sanitizers.Add(new ScriptElementSanitizer());
+			this.sanitizers.Add(new StyleElementSanitizer());
 
 			// Rewriting elements
 			this.sanitizers.Add(new GifImageSanitizer());

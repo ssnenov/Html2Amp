@@ -65,7 +65,7 @@
     <Compile Include="Infrastructure\TestDataProvider.cs" />
     <Compile Include="Infrastructure\TestNameResolver.cs" />
     <Compile Include="Infrastructure\TestResult.cs" />
-	<Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
+    <Compile Include="Tests\ForbiddenAttributesSanitizationTests\ForbiddenAttributesSanitization.cs" />
     <Compile Include="TestDoubles\RunConfigurationTestDouble.cs" />
     <Compile Include="Tests\HrefJavaScriptSanitizationTests\HrefJavaScriptSanitization.cs" />
     <Compile Include="Tests\HtmlToAmpConverterTests\ScriptDependencies.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Tests\JavaScriptRelatedAttributeSanitizerTests\JavaScriptRelatedAttributeSanitization.cs" />
     <Compile Include="Tests\ScriptElementSanitizationTests\ScriptElementSanitization.cs" />
     <Compile Include="Tests\StyleAttributeSanitizationTests\StyleAttributeSanitization.cs" />
+    <Compile Include="Tests\StyleElementSanitizationTests\StyleElementSanitization.cs" />
     <Compile Include="Tests\TargetAttributeSanitizationTests\TargetAttributeSanitization.cs" />
     <Compile Include="Tests\AppSettingsConfiguration.cs" />
     <Compile Include="Tests\XmlAttributeSanitizationTests\XmlAttributesSanitization.cs" />
@@ -122,6 +123,8 @@
     <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.in" />
     <None Include="TestData\IFrameSanitization\IFrameSanitizationWithSourceHostEqualToContainerHost\IFrameSanitizationWithSourceHostEqualToContainerHost.out" />
     <None Include="TestData\RetrunScriptDependencies\RetrunScriptDependencies.in" />
+    <None Include="TestData\StyleElementSanitizationWithMultipleStyleTags\StyleElementSanitizationWithMultipleStyleTags.in" />
+    <None Include="TestData\StyleElementSanitizationWithMultipleStyleTags\StyleElementSanitizationWithMultipleStyleTags.out" />
     <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.in" />
     <None Include="TestData\XmlAttributesSanitization\XmlAttributesSanitization.out" />
     <None Include="TestData\JavaScriptRelatedAttributeSanitization\JavaScriptRelatedAttributeSanitization.in" />

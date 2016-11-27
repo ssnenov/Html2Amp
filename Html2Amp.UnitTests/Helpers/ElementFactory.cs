@@ -51,6 +51,11 @@ namespace Html2Amp.UnitTests.Helpers
 			return (IHtmlScriptElement)Create("script");
 		}
 
+		public static IHtmlStyleElement CreateStyle()
+		{
+			return (IHtmlStyleElement)Create("style");
+		}
+
         public static IHtmlAudioElement CreateAudio()
         {
             return (IHtmlAudioElement)Create("audio");

@@ -87,6 +87,8 @@
     <Compile Include="StyleAttributeSanitizerTests\StyleAttributeSanitizer_CanSanitize_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleAttributeSanitizerTests\StyleAttributeSanitizer_Sanitize_Should.cs" />
+    <Compile Include="StyleElementSanitizerTests\StyleElementSanitizer_CanSanitize_Should.cs" />
+    <Compile Include="StyleElementSanitizerTests\StyleElementSanitizer_Sanitize_Should.cs" />
     <Compile Include="TargetAttributeSanitizerTests\TargetAttributeSanitizer_CanSanitize_Should.cs" />
     <Compile Include="TargetAttributeSanitizerTests\TargetAttributeSanitizer_Sanitize_Should.cs" />
     <Compile Include="TestDoubles\ImageSanitizerTestDouble.cs" />
