@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom;
+using AngleSharp.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace Html2Amp.Sanitization.Implementation
 		private string[] forbiddenAttributes;
 
 		public ForbiddenAttributesSanitizer()
-			: this(new string[] { "align", "usemap" })
+			: this(new string[] { AttributeNames.Align, AttributeNames.UseMap })
 		{
 		}
 

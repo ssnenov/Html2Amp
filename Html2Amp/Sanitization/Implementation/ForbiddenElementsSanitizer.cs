@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom;
+using AngleSharp.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace Html2Amp.Sanitization.Implementation
 		private string[] forbiddenElements;
 
 		public ForbiddenElementsSanitizer()
-			: this(new string[] { "map" })
+			: this(new string[] { TagNames.Map })
 		{
 		}
 

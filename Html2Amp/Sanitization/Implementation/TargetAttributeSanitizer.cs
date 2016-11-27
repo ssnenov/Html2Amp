@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using AngleSharp.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 
 namespace Html2Amp.Sanitization.Implementation
@@ -13,7 +14,7 @@ namespace Html2Amp.Sanitization.Implementation
 				return false;
 			}
 
-			var targetAttributeValue = element.GetAttribute("target");
+			var targetAttributeValue = element.GetAttribute(AttributeNames.Target);
 
 			return targetAttributeValue != null && targetAttributeValue != "_blank";
 		}
@@ -22,7 +23,7 @@ namespace Html2Amp.Sanitization.Implementation
 		{
 			Guard.Requires(htmlElement, "htmlElement").IsNotNull();
 
-			htmlElement.SetAttribute("target", "_blank");
+			htmlElement.SetAttribute(AttributeNames.Target, "_blank");
 
 			return htmlElement;
 		}

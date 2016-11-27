@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
+using AngleSharp.Html;
 
 namespace Html2Amp.Sanitization.Implementation
 {
@@ -30,11 +31,11 @@ namespace Html2Amp.Sanitization.Implementation
 
 			if (!ampElement.HasAttribute("layout"))
 			{
-				if (ampElement.HasAttribute("height"))
+				if (ampElement.HasAttribute(AttributeNames.Height))
 				{
-					if (ampElement.HasAttribute("width"))
+					if (ampElement.HasAttribute(AttributeNames.Width))
 					{
-						if (ampElement.GetAttribute("width") == "auto")
+						if (ampElement.GetAttribute(AttributeNames.Width) == "auto")
 						{
 							ampElement.SetAttribute("layout", "responsive");
 						}

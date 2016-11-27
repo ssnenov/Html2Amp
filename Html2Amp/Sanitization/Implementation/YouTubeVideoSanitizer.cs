@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
+using AngleSharp.Html;
 using ComboRox.Core.Utilities.SimpleGuard;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Html2Amp.Sanitization.Implementation
 {
     public class YouTubeVideoSanitizer : MediaSanitizer, IScriptsDependable
     {
-		protected readonly List<string> AllowedAttribtes = new List<string>() { "width", "height", "id" };
+		protected readonly List<string> AllowedAttribtes = new List<string>() { AttributeNames.Width, AttributeNames.Height, AttributeNames.Id };
 
         public const string VideoIdRegex = @"^/embed/(?<id>[^/\?]+)";
 
@@ -44,7 +45,7 @@ namespace Html2Amp.Sanitization.Implementation
 			htmlElement.CopyAttributes(ampElement, this.AllowedAttribtes);
             this.SetElementLayout(htmlElement, ampElement);
 
-            Uri videoUri = new Uri(htmlElement.GetAttribute("src"));
+            Uri videoUri = new Uri(htmlElement.GetAttribute(AttributeNames.Src));
 
             var videoId = this.GetVideoId(videoUri);
             ampElement.SetAttribute("data-videoid", videoId);
