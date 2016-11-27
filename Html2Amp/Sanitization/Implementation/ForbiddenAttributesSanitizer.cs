@@ -29,10 +29,7 @@ namespace Html2Amp.Sanitization.Implementation
 
 			foreach (var attribute in this.forbiddenAttributes)
 			{
-				if (htmlElement.HasAttribute(attribute))
-				{
-					htmlElement.RemoveAttribute(attribute);
-				}
+				htmlElement.RemoveAttribute(attribute);
 			}
 
 			return htmlElement;
