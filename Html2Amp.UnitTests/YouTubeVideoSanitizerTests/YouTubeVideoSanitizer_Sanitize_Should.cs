@@ -179,12 +179,30 @@ namespace Html2Amp.UnitTests.YouTubeVideoSanitizerTests
 			// Arrange
 			var iframe = this.CreateIFrame();
 			var iframeParent = iframe.Parent;
+
 			// Act
 			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
 
 			// Assert
 			Assert.AreEqual(1, iframeParent.ChildNodes.Length);
 			Assert.AreEqual("AMP-YOUTUBE", actualResult.TagName);
+		}
+
+		[TestMethod]
+		public void RetrunCorrectVideoId_WhenUrlIsProtocolInvariant()
+		{
+			// Arrange
+			var iframe = ElementFactory.CreateIFrame();
+			iframe.Source = string.Format("//youtube.com/embed/{0}", VideoId);
+
+			var parent = ElementFactory.CreateAnchor();
+			parent.AppendChild(iframe);
+
+			// Act
+			var actualResult = new YouTubeVideoSanitizer().Sanitize(ElementFactory.Document, iframe);
+
+			// Assert
+			Assert.AreEqual(VideoId, actualResult.GetAttribute("data-videoid"));
 		}
 
 		private IHtmlInlineFrameElement CreateIFrame()

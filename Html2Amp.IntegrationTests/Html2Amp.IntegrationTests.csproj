@@ -169,6 +169,8 @@
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithoutWidthAndHeight\YouTubeVideoSanitizationWithoutWidthAndHeight.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.in" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithHeightOnly\YouTubeVideoSanitizationWithHeightOnly.out" />
+    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithProtocolInvariantUrl\YouTubeVideoSanitizationWithProtocolInvariantUrl.in" />
+    <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithProtocolInvariantUrl\YouTubeVideoSanitizationWithProtocolInvariantUrl.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithStyleDisplayNone\YouTubeVideoSanitizationWithStyleDisplayNone.in" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithStyleDisplayNone\YouTubeVideoSanitizationWithStyleDisplayNone.out" />
     <None Include="TestData\YoutubeVideoSanitization\YouTubeVideoSanitizationWithStyleVisibilityHidden\YouTubeVideoSanitizationWithStyleVisibilityHidden.in" />
